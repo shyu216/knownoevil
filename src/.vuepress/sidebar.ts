@@ -3,7 +3,6 @@ import { sidebar } from "vuepress-theme-hope";
 export default sidebar({
   "/": [
     "",
-    "portfolio",
     {
       text: "Demo",
       icon: "laptop-code",
@@ -12,15 +11,16 @@ export default sidebar({
       children: "structure",
     },
     {
-      text: "Docs",
-      icon: "book",
-      prefix: "guide/",
-      children: "structure",
-    },
-    {
       text: "Slides",
       icon: "person-chalkboard",
       link: "https://plugin-md-enhance.vuejs.press/guide/content/revealjs/demo.html",
+    },
+    {
+      text: "Master",
+      icon: "book",
+      prefix: "master/",
+      link: "master/",
+      children: "structure",
     },
   ],
 });

@@ -3,11 +3,11 @@ import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  base: "/",
+  base: "/knownoevil/",
 
   lang: "en-US",
-  title: "Docs Demo",
-  description: "A docs demo for vuepress-theme-hope",
+  title: "Know No Evil",
+  description: "Somewhere to recap knowledge",
 
   theme,
 
