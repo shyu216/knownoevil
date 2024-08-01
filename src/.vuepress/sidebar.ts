@@ -4,19 +4,14 @@ export default sidebar({
   "/": [
     "",
     {
-      text: "Demo",
-      icon: "laptop-code",
-      prefix: "demo/",
-      link: "demo/",
+      text: "CUHK",
+      icon: "book",
+      prefix: "bachelor/",
+      link: "bachelor/",
       children: "structure",
     },
     {
-      text: "Slides",
-      icon: "person-chalkboard",
-      link: "https://plugin-md-enhance.vuejs.press/guide/content/revealjs/demo.html",
-    },
-    {
-      text: "Master",
+      text: "UniMelb",
       icon: "book",
       prefix: "master/",
       link: "master/",

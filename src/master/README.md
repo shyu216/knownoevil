@@ -1,9 +1,11 @@
 ---
 title: Master
 index: false
-icon: laptop-code
+icon: book
 category:
-  - Guide
+  - UniMelb
 ---
+
+Dale took his Master's degree at UniMelb.
 
 <Catalog />
