@@ -105,7 +105,7 @@ export default hopeTheme({
       // katex: true,
 
       // install mathjax-full before enabling it
-      // mathjax: true,
+      mathjax: true,
 
       // install mermaid before enabling it
       // mermaid: true,
