@@ -11,6 +11,8 @@ export default hopeTheme({
     url: "https://github.com/shyu216",
   },
 
+  favicon: "/favicon.ico",
+
   iconAssets: "fontawesome-with-brands",
 
   logo: "https://github.com/shyu216.png",
@@ -130,12 +132,12 @@ export default hopeTheme({
     
     // install @vuepress/plugin-pwa and uncomment these if you want a PWA
     pwa: {
-      favicon: "/favicon.ico",
+      favicon: "./favicon.ico",
       cacheHTML: true,
       cacheImage: true,
       appendBase: true,
       apple: {
-        icon: "/assets/icon/apple-icon-152.png",
+        icon: "/apple-touch-icon.png",
         statusBarColor: "black",
       },
       msTile: {
@@ -145,24 +147,24 @@ export default hopeTheme({
       manifest: {
         icons: [
           {
-            src: "/assets/icon/chrome-mask-512.png",
+            src: "/android-chrome-512x512.png",
             sizes: "512x512",
             purpose: "maskable",
             type: "image/png",
           },
           {
-            src: "/assets/icon/chrome-mask-192.png",
+            src: "/android-chrome-192x192.png",
             sizes: "192x192",
             purpose: "maskable",
             type: "image/png",
           },
           {
-            src: "/assets/icon/chrome-512.png",
+            src: "/android-chrome-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "/assets/icon/chrome-192.png",
+            src: "/android-chrome-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
