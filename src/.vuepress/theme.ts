@@ -27,7 +27,7 @@ export default hopeTheme({
   // sidebar
   sidebar,
 
-  footer: "Built with VuePress and Theme Hope",
+  footer: "Somewhere to recap knowledge",
 
   displayFooter: true,
 
