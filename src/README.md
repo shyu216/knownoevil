@@ -5,7 +5,7 @@ title: Welcome
 heroImage: ./android-chrome-512x512.png
 heroFullScreen: true
 heroText: Know No Evil
-tagline: Somewhere to recap knowledge
+tagline: Learn quickly, forget quickly, learn again!
 actions:
   - text: Bachelor
     link: ./bachelor/
