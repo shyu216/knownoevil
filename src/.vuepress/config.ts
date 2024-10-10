@@ -7,7 +7,7 @@ export default defineUserConfig({
 
   lang: "en-US",
   title: "Know No Evil",
-  description: "Somewhere to recap knowledge",
+  description: "Somewhere to recap what you've learned",
 
   theme,
 
