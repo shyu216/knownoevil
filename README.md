@@ -3,6 +3,4 @@ This website can be course notes, review outlines, recollections or random thoug
 
 Built in VuePress.
 
-```ts
-iconAssets: "fontawesome-with-brands"
-```
+Find icon here: [https://fontawesome.com/search](https://fontawesome.com/search)
