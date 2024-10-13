@@ -35,7 +35,7 @@ Shor算法是一种量子算法，用于分解大整数为素数的乘积。这�
 ### 周期查找
 
 让我们来看一个周期函数：
-$$ f(x) = ax \mod N $$
+$$ f(x) = a^x \mod N $$
 其中 $a$ 和 $N$ 是正整数，且 $a$ 小于 $N$，并且它们没有公因数。周期或阶（$r$）是满足以下条件的最小（非零）整数：
 $$ a^r \mod N = 1 $$
 
@@ -70,7 +70,14 @@ $$
 $$
 \begin{align*}
 |u_1⟩ &= \frac{1}{\sqrt{r}} \sum_{k=0}^{r-1} e^{- \frac{2\pi i k}{r}} |a^k \mod N⟩ \\
-U|u_1⟩ &= e^{\frac{2\pi i}{r}} |u_1⟩ \\
+U|u_1⟩ &= e^{\frac{2\pi i}{r}} |u_1⟩ 
+\end{align*}
+$$
+
+当$a=3$, $N=35$时，我们可以看到这个特征态的形式：
+
+$$
+\begin{align*}
 |u_1⟩ &= \frac{1}{\sqrt{12}} \left( |1⟩ + e^{- \frac{2\pi i}{12}} |3⟩ + e^{- \frac{4\pi i}{12}} |9⟩ + \cdots + e^{- \frac{20\pi i}{12}} |4⟩ + e^{- \frac{22\pi i}{12}} |12⟩ \right) \\
 U|u_1⟩ &= \frac{1}{\sqrt{12}} \left( |3⟩ + e^{- \frac{2\pi i}{12}} |9⟩ + e^{- \frac{4\pi i}{12}} |27⟩ + \cdots + e^{- \frac{20\pi i}{12}} |12⟩ + e^{- \frac{22\pi i}{12}} |1⟩ \right) \\
 U|u_1⟩ &= e^{\frac{2\pi i}{12}} \cdot \frac{1}{\sqrt{12}} \left( e^{- \frac{2\pi i}{12}} |3⟩ + e^{- \frac{4\pi i}{12}} |9⟩ + e^{- \frac{6\pi i}{12}} |27⟩ + \cdots + e^{- \frac{22\pi i}{12}} |12⟩ + e^{- \frac{24\pi i}{12}} |1⟩ \right) \\
