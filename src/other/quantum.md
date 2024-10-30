@@ -117,6 +117,12 @@ How to calculate the eigenvalues and eigenvectors given a matrix $A = \frac{1}{\
 :::
 Note: as $-1 = e^{i\pi}$, $^{4}\sqrt{-1} = e^{i\frac{\pi}{4}} = \sin(\frac{\pi}{4}) + i \cos(\frac{\pi}{4}) = \frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}}$.
 
+### What is a state?
+
+$|\psi \rangle = \alpha |0 \rangle + \beta |1 \rangle$
+
+- Amplitude: $\alpha, \beta$, where amplitudes can be complex numbers
+- probability: $|\alpha|^2, |\beta|^2$, where the square of the modulus can be the multiplication of the complex conjugate of the amplitude with itself (not simple multiplication!)
 
 ### What is dense coding?
 
@@ -145,6 +151,8 @@ BB84 is an early QKD protocol.
 - Step 3: Alice and Bob share their bases publicly and discard the qubits measured in different bases.
 - Step 4: Alice and Bob compare a subset of their qubits to check for eavesdropping.
 - Step 5: Eeavesdropping can be detected if some qubits with the same bases have different values.
+
+If there is a earvesdropper, the qubits will be different with $\frac{1}{4}$ probability. Namely they have $\frac{3}{4}$ probability to overlook the eavesdropper.
 
 ### What is Quantum Phase Estimation?
 
