@@ -14,4 +14,8 @@ actions:
   - text: Master
     link: ./master/
     type: primary
+  
+  - text: Other
+    link: ./other/
+    type: secondary
 ---
