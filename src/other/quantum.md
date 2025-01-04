@@ -245,3 +245,24 @@ $K = (n, p, q, e, d)$
 
 ### What is Shor's algorithm?
 
+Attempt to use period finding to factorize a number though quantum computing.
+
+The classical part:
+
+- Step 1: Choose a random number $a$ between 1 and $n-1$
+- Step 2: Find the greatest common divisor of $a$ and $n$, if it is not 1, then we have found a factor
+- Step 3: If the greatest common divisor is 1, then we find the period $r$ of $a^x \mod n$
+  - Quantum part applies here
+- Step 4: If $r$ is odd, go back to step 1
+- Step 5: If $r$ is even, then $a^{r/2} \mod n$ is a non-trivial factor of $n$
+
+The quantum part:
+
+- Step 1: Prepare two registers, one for the input and one for the data processing
+- Step 2: Apply Hadamard gates to the first register to create a superposition of all possible inputs
+- Step 3: Apply a quantum operation that computes $a^x \mod n$ in superposition
+- Step 4: Measure the second register to collapse the superposition
+- Step 5: Use the quantum Fourier transform to estimate the period $r$
+
+
+  
