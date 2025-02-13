@@ -1,6 +1,5 @@
 ---
-title: The Review Notes of Quantum Computing
-shortTitle: Quantum Computing Notes
+title: 量子计算的复习笔记
 icon: book-open
 category:
   - UniMelb

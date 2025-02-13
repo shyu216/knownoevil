@@ -1,6 +1,5 @@
 ---
-title: Resource for DL/QML
-shortTitle: Resource for DL/QML
+title: DL/QML的学习资料
 icon: book-open
 category:
   - UniMelb
@@ -76,9 +75,7 @@ tag:
 
   - [Yann LeCun | Objective-Driven AI: Towards AI systems that can learn, remember, reason, and plan](https://youtu.be/MiqLoAZFRSE?si=NHUtR1hqdQD5JDIM)
 
-  - [Geoffrey Hinton | On working with Ilya, choosing problem, and the power of intuition](https://www.youtube.com/watch?v=n4IQOBka8bc)
-
-  - Not really on specific research topics, but talks about Hinton’s experience with AI in general
+  - [Geoffrey Hinton | On working with Ilya, choosing problem, and the power of intuition](https://www.youtube.com/watch?v=n4IQOBka8bc). Not really on specific research topics, but talks about Hinton’s experience with AI in general
 
   - [Geoffrey Hinton – Two Paths to Intelligence](https://youtu.be/rGgGOccMEiY?si=eqirYIFhEdw6Apym)
 

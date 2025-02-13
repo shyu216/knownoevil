@@ -1,7 +1,6 @@
 ---
 title: A summary of my first attempt at a hackathon
 shortTitle: Hackathon
-order: 1
 icon: laptop
 category:
    - Hackathon

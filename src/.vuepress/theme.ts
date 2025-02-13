@@ -31,15 +31,9 @@ export default hopeTheme({
 
   displayFooter: true,
 
-  encrypt: {
-    config: {
-      "/demo/encrypt.html": ["1234"],
-    },
-  },
-
-  metaLocales: {
-    editLink: "Edit this page on GitHub",
-  },
+  // metaLocales: {
+  //   editLink: "Edit this page on GitHub",
+  // },
 
   plugins: {
     // Note: This is for testing ONLY!
@@ -55,6 +49,10 @@ export default hopeTheme({
     components: {
       components: ["Badge", "VPCard"],
     },
+
+    readingTime: false,
+
+    blog: true,
 
     // All features are enabled for demo, only preserve features you need here
     mdEnhance: {
@@ -129,7 +127,7 @@ export default hopeTheme({
     },
 
     searchPro: true,
-    
+
     // install @vuepress/plugin-pwa and uncomment these if you want a PWA
     pwa: {
       favicon: "./favicon.ico",
