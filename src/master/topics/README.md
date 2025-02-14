@@ -1,6 +1,7 @@
 ---
 title: Research Topics
 icon: lightbulb
+index: false
 category:
   - UniMelb
 ---

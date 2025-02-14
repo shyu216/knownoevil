@@ -1,6 +1,7 @@
 ---
 title: Bachelor
 icon: book
+index: false
 category:
   - CUHK
 ---

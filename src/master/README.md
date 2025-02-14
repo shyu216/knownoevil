@@ -1,6 +1,7 @@
 ---
 title: Master
 icon: book
+index: false
 category:
   - UniMelb
 ---
