@@ -2,6 +2,7 @@
 title: Shor算法，一种用于分解大整数为素数乘积的量子算法
 shortTitle: Shor算法
 icon: lightbulb
+star: true
 category:
    - 24S2
 tag:

@@ -1,6 +1,7 @@
 ---
 title: DL/QML的学习资料
 icon: book-open
+star: true
 category:
   - UniMelb
   - 24S2
