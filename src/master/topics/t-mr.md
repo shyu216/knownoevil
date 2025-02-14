@@ -4,7 +4,7 @@ shortTitle: Model Reprogramming
 order: 6
 icon: lightbulb
 category:
-   - 25s1
+   - 25S1
 ---
 
 Model reprogramming [1] or input visual prompts [2] has been successfully used in reusing pretrained image classifiers. This project aims to explore whether model reprogramming can enable the transferability of pretrained deep neural networks across low-level image processing tasks. Specifically, we will investigate the feasibility of using pretrained models (e.g., U-Net) for image denoising, enhancement, and super-resolution on different tasks by introducing task-specific visual prompts.

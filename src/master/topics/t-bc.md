@@ -4,7 +4,7 @@ shortTitle: Brain-inspired computing
 order: 3
 icon: lightbulb
 category:
-   - 25s1
+   - 25S1
 ---
 
 Although deep neural networks have been widely adopted and proven effective across many applications, the backpropagation process remains complex and not easily interpretable in a way that mirrors human understanding. Humans are capable of swiftly grasping and interpreting complex patterns to make decisions, whereas neural networks depend on computationally intensive methods for learning.

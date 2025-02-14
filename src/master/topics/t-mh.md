@@ -4,7 +4,7 @@ shortTitle: Mobile Health
 order: 1
 icon: lightbulb
 category:
-   - 25s1
+   - 25S1
 ---
 
 With the growing adoption of wearable and mobile devices, the use of AI in mobile health is becoming increasingly relevant for a variety of healthcare applications. However, deploying AI models on these resource-limited client devices poses significant challenges, restricting their applicability. This is especially the case with the introduction of large language models (LLMs) and multimodal LLMs, which require substantial memory and therefore present additional deployment hurdles.

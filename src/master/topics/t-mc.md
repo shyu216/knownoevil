@@ -4,7 +4,7 @@ shortTitle: Museum Collection
 order: 5
 icon: lightbulb
 category:
-   - 25s1
+   - 25S1
 ---
 
 Museum collections are an important source of information in understanding the historical knowledge on culture, people and scientific discoveries. Museums host range of data including metadata (including descriptive texts), and images of objects (from multiple views) and notes. For this project, we use the collections from the University of Melbourne Medical museums (Medical History Museum, Henry Forman Atkinson Dental Museum, Harry Brookes Allen Museum of Anatomy and Pathology).

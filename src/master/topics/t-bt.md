@@ -4,7 +4,7 @@ shortTitle: Breath Tracking
 order: 4
 icon: lightbulb
 category:
-   - 25s1
+   - 25S1
 ---
 
 The XV Scanner™ is the world’s only fully dedicated X-ray lung function scanner, designed to do something completely unique–capture a single, full-breath cycle in motion, from four different angles simultaneously.
