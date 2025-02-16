@@ -68,3 +68,17 @@ AI的interpretability, adaptability, privacy, robustness. wearable程度, method
 ### SLM怎么设置实验?
 
 iphone+MobileAIBench. 没有baseline.
+
+## 6. Cloud-Device Collaborative Learning for Multimodal Large Language Models
+
+### 它的解决方案?
+
+云上老师(大llama)和学生(小llama), 本地(device)学生上传少量token, 下载收到的参数.
+
+### benchmark?
+
+VQA-v2, A-OKVQA, COCO Caption 2017 和 Nocaps.
+
+## 7. Mobile Edge Intelligence for Large Language Models: A Contemporary Survey
+
+## 8. On-Device Language Models: A Comprehensive Review

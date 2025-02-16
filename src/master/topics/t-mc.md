@@ -12,4 +12,14 @@ Museum collections are an important source of information in understanding the h
 
 Some collections contain images (some from different viewing angles or scale) and their associated descriptions. This project will explore vision language models to extract detailed description of an object, and use the outcomes to enhance the collection descriptions if they exist, or to construct new descriptions if there aren’t any descriptive texts associated. 
 
-Supervisor: Caren Han, Jianzhong Qi, Eun-Jung Holden
+Supervisor: [Caren Han](https://drcarenhan.github.io/), [Jianzhong Qi](https://jianzhongqi.github.io/), Eun-Jung Holden
+
+https://mdhs.unimelb.edu.au/about/our-museums
+
+# 文献阅读
+
+## 1. I2t: Image parsing to text description
+
+2010, and-or graph
+
+## 2. BabyTalk: Understanding and Generating Simple Image Descriptions

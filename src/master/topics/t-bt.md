@@ -21,4 +21,42 @@ The project will collaborate with 4DMedical and require considering the followin
 - Real-time signal processing and filtering to optimise the breath trace output.
 - Testing and evaluation of the preferred approaches performance and reliability.
 
-Supervisor: Bin Chen, Lingyan Ruan
+Supervisor: [Bin Chen](https://binchen.me/), [Lingyan Ruan](https://lyruan.com/)
+
+https://4dmedical.com/products/hardware/xv-scanner/
+
+# 侧重点
+
+- latency: lightweight model, SOTA
+- factors: patient size, shape, and non-breath related movements
+
+# 文献阅读
+
+## 1. [Algorithmic insights of camera-based respiratory motion extraction](https://iopscience.iop.org/article/10.1088/1361-6579/ac5b49/pdf)
+
+### 呼吸追踪步骤?
+
+Region of Interest (RoI) detection, motion estimation, and respiratory signal/rate
+construction.
+
+## 2. [Respiration Tracking for People Counting and Recognition](https://blog.csdn.net/a_beatiful_knife/article/details/119716157)
+
+### sensor?
+
+channel state information (CSI) of a single pair of commercial WiFi devices.
+
+### 相关性?
+
+弱.
+
+## 3. [Catch Your Breath: Simultaneous RF Tracking and Respiration Monitoring With Radar Pairs](https://blog.csdn.net/zzq0523/article/details/128633338)
+
+### sensor?
+
+Impulse-Radio Ultra-Wideband (IR-UWB) Radar. 波.
+
+## 4. A real-time camera-based adaptive breathing monitoring system
+
+### 设置实验?
+
+和reference medical device比较. ge dash 5000.
