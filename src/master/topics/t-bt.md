@@ -27,8 +27,11 @@ https://4dmedical.com/products/hardware/xv-scanner/
 
 # 侧重点
 
-- latency: lightweight model, SOTA
-- factors: patient size, shape, and non-breath related movements
+- goal: real-time, handle factors
+- factors: patient size, shape, and non-breath related movements. cloth
+- resource: SLURM, HPC, depth camera, linux device
+- method: first traditional (cpp), then deep learning
+- output: breath trace/circle/curve
 
 # 文献阅读
 
