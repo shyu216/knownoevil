@@ -3,6 +3,7 @@ title: Paper Review
 icon: newspaper
 star: true
 index: false
+collapsible: false
 category:
   - UniMelb
 ---
