@@ -1,5 +1,6 @@
 ---
 title: Eulerian Video Magnification for Revealing Subtle Changes in the World
+shortTitle: EVM
 icon: note-sticky
 tag:
     - Image Processing
