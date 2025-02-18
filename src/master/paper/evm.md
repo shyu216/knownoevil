@@ -9,15 +9,15 @@ tag:
 
 website: https://people.csail.mit.edu/mrub/evm/
 
-### What is the goal of EVM?
+## What is the goal of EVM?
 
 Combine spatial decomposition and temporal filtering to reveal/magnify/amplify color and motion changes for perceptually appealing visualization (artifact-free).
 
-### What assumptions are made in EVM?
+## What assumptions are made in EVM?
 
 Brightness constancy. Smooth motion. 
 
-### What are the spatial decomposition and temporal filtering steps in EVM?
+## What are the spatial decomposition and temporal filtering steps in EVM?
 
 First decompose the video into different spatial frequency bands. Then perform temporal filtering on each band.
 
@@ -96,3 +96,23 @@ plt.title("Filtered Image"), plt.xticks([]), plt.yticks([])
 plt.show()
 ```
 
+## What are spatial decomposition techniques?
+
+1. Lagrangian: Track how specific points or regions move across frames. It decomposes the image or video into trajectories of these points.
+2. Eulerian: Analyze changes (intensity of pixels) at fixed locations. It decomposes the signal into temporal variations at specific spatial locations.
+3. Laplacian: Based on the Laplacian operator. It decomposes an image into multiple scales or frequency bands using a Laplacian pyramid. Each level of the pyramid captures details at a specific scale (e.g., fine edges vs. coarse structures).
+4. Gaussian: Based on the Gaussian filter. It decomposes an image into multiple scales using a Gaussian pyramid. Each level of the pyramid represents the image at a different resolution (from fine to coarse).
+
+## What are temporal filtering techniques?
+
+1. Ideal band-pass filter: It allows a specific range of frequencies to pass through while blocking others. It is ideal in the sense that it has a sharp cutoff and no ripples in the passband or stopband.
+2. Butterworth filter: It has a smooth frequency response. It is characterized by the order (number of poles) and cutoff frequency. Higher order filters have steeper roll-off but more ripples in the passband.
+3. IIR (Infinite Impulse Response) filter: It uses feedback to achieve a desired frequency response. It is characterized by the poles and zeros in the z-plane. It can be unstable if the poles are outside the unit circle.
+
+## What is first-order Taylor series expansion?
+
+It is a linear approximation of a function around a specific point. It is used to estimate the value of a function near the point. The approximation is given by the first-order Taylor series expansion:
+
+$$f(x) \approx f(x_0) + f'(x_0)(x - x_0)$$
+
+where $f(x)$ is the function, $f(x_0)$ is the function value at $x_0$, $f'(x_0)$ is the derivative of the function at $x_0$, and $x$ is the point of interest.

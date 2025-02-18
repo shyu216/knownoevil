@@ -27,6 +27,8 @@ export default hopeTheme({
   // sidebar
   sidebar,
 
+  editLink: false,
+
   footer: "Somewhere to recap knowledge",
 
   displayFooter: true,
