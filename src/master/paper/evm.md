@@ -109,3 +109,6 @@ Commonly used. Fits well for Fourier analysis. Periodic motion.
 To make sure processed signal to be approximately equal to the true magnified motion.
 
 $$\lambda = 2\pi / \omega$$
+
+### What will motion magnification errors cause? How to reduce them?
+
