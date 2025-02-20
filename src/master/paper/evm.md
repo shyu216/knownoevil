@@ -59,8 +59,13 @@ A pyramid of a video is a multi-scale representation of a video sequence, where 
 ## What are temporal filtering techniques?
 
 1. Ideal band-pass filter: It allows a specific range of frequencies to pass through while blocking others. It is ideal in the sense that it has a sharp cutoff and no ripples in the passband or stopband.
-2. Butterworth filter: It has a smooth frequency response. It is characterized by the order (number of poles) and cutoff frequency. Higher order filters have steeper roll-off but more ripples in the passband.
-3. IIR (Infinite Impulse Response) filter: It uses feedback to achieve a desired frequency response. It is characterized by the poles and zeros in the z-plane. It can be unstable if the poles are outside the unit circle.
+2. Butterworth filter and IIR (Infinite Impulse Response) filter: It is a type of filter that has a smooth rolloff in the frequency domain. It is commonly used in signal processing due to its stability and simplicity. It can directly work on temporal domain.
+
+### What are spatial, temporal and frequency domain?
+
+1. Spatial domain: The original representation of an image or video in terms of pixel values. It is the domain where the image is defined in terms of its spatial coordinates (width and height).
+2. Temporal domain: The domain where the video is defined in terms of time (frame rate). It captures the changes in pixel values over time.
+3. Frequency domain: The domain where the image or video is represented in terms of spatial or temporal frequencies. It provides insights into the frequency content of the signal, such as the presence of high or low frequencies.
 
 ### What are passband and stopband in a filter?
 
@@ -112,3 +117,4 @@ $$\lambda = 2\pi / \omega$$
 
 ### What will motion magnification errors cause? How to reduce them?
 
+Exaggerate the motion. Attenuate the amplification factor for high frequency bands and maybe not needed.
