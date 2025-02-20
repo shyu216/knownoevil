@@ -6,20 +6,21 @@ tag:
     - Image Processing
     - Computer Vision
     - Motion Magnification
-    - Fourier Transform
 ---
 
 website: [https://people.csail.mit.edu/mrub/evm/](https://people.csail.mit.edu/mrub/evm/)
 
 youtube: [https://www.youtube.com/watch?v=ONZcjs1Pjmk](https://www.youtube.com/watch?v=ONZcjs1Pjmk)
 
+a chinese blog: [https://www.hahack.com/codes/eulerian-video-magnification/](https://www.hahack.com/codes/eulerian-video-magnification/)
+
 ## What is the goal of EVM?
 
-Combine spatial decomposition and temporal filtering to reveal/magnify/amplify color and motion changes for perceptually appealing visualization (artifact-free).
+Combine spatial decomposition and temporal filtering to reveal color and motion changes for perceptually appealing visualization (artifact-free).
 
 ## What assumptions are made in EVM?
 
-Brightness constancy. Smooth motion. 
+EVM rely on the optical flow algorithm to estimate the motion between frames, which assumes the brightness is constant. The motion should be smooth and continuous to avoid magnification errors (failure of Taylor series expansion). 
 
 ## What are the spatial decomposition and temporal filtering steps in EVM?
 
@@ -71,12 +72,6 @@ A pyramid of a video is a multi-scale representation of a video sequence, where 
 
 The passband is the range of frequencies that are allowed to pass through the filter with minimal attenuation. The stopband is the range of frequencies that are blocked or attenuated by the filter.
 
-### What are poles and zeros in a z-plane?
-
-Poles and zeros are points in the z-plane that determine the frequency response of a filter. Poles are the roots of the denominator polynomial, while zeros are the roots of the numerator polynomial in the z-transform of the filter.
-
-Z-plane is a complex plane where the z-transform of a discrete-time signal or system is represented. The poles and zeros of the transfer function in the z-plane provide insights into the stability and frequency response of the system.
-
 ### What is first-order Taylor series expansion? Why is it used?
 
 It is a linear approximation of a function around a specific point. It is used to estimate the value of a function near the point. The approximation is given by the first-order Taylor series expansion:
@@ -93,7 +88,7 @@ I(x, t) denote the image intensity at position x and time t.
 
 It is used to express the observed intensity I(x, t) = f(x + δ(t)) from I(x, 0) = f(x).
 
-It will be automatically estimated from the input video.
+It will be represented as a sinusoidal function with amplitude A, frequency ω, and phase φ.
 
 ### What is the amplification factor α (alpha)?
 
@@ -107,13 +102,15 @@ In general case, the displacement function is not entirely within the passband o
 
 ### Why use sinusoidal function to estimate the image intensity?
 
-Commonly used. Fits well for Fourier analysis. Periodic motion.
+It is the basic function in Fourier analysis. It captures the periodic nature of the intensity changes in the image.
 
 ### What is spatial frequency ω (omega) and wavelength λ (lambda)?
 
-To make sure processed signal to be approximately equal to the true magnified motion.
-
 $$\lambda = 2\pi / \omega$$
+
+They are in inverse relationship. High frequency has short wavelength, while low frequency has long wavelength.
+
+High frequency represents fine details (edge), while low frequency represents smooth regions (background).
 
 ### What will motion magnification errors cause? How to reduce them?
 
