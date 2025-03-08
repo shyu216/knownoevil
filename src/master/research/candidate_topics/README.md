@@ -1,5 +1,5 @@
 ---
-title: Research Topics
+title: Candidate Topics
 icon: lightbulb
 star: false
 index: false

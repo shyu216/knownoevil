@@ -8,11 +8,13 @@ tag:
     - Motion Magnification
 ---
 
-website: [https://people.csail.mit.edu/mrub/evm/](https://people.csail.mit.edu/mrub/evm/)
-
-youtube: [https://www.youtube.com/watch?v=ONZcjs1Pjmk](https://www.youtube.com/watch?v=ONZcjs1Pjmk)
-
-a chinese blog: [https://www.hahack.com/codes/eulerian-video-magnification/](https://www.hahack.com/codes/eulerian-video-magnification/)
+- paper website: [https://people.csail.mit.edu/mrub/evm/](https://people.csail.mit.edu/mrub/evm/)
+- related work: [https://people.csail.mit.edu/mrub/vidmag/](https://people.csail.mit.edu/mrub/vidmag/)
+- paper with code: [https://paperswithcode.com/task/motion-magnification](https://paperswithcode.com/task/motion-magnification)
+- connected papers: [https://www.connectedpapers.com/main/1ad1b8a6b365ff7011b7eac1dded748639ae972b/graph?utm_source=share_popup&utm_medium=copy_link&utm_campaign=share_graph](https://www.connectedpapers.com/main/1ad1b8a6b365ff7011b7eac1dded748639ae972b/graph?utm_source=share_popup&utm_medium=copy_link&utm_campaign=share_graph)
+- youtube: [https://www.youtube.com/watch?v=ONZcjs1Pjmk](https://www.youtube.com/watch?v=ONZcjs1Pjmk)
+- an english blog: [https://hbenbel.github.io/blog/evm/](https://hbenbel.github.io/blog/evm/)
+- a chinese blog: [https://www.hahack.com/codes/eulerian-video-magnification/](https://www.hahack.com/codes/eulerian-video-magnification/)
 
 ## What is the goal?
 
