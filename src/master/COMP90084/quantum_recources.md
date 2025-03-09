@@ -1,6 +1,6 @@
 ---
 title: DL/QML的学习资料
-icon: book-open
+icon: bookmark
 star: true
 category:
   - UniMelb

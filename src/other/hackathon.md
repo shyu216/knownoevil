@@ -1,12 +1,16 @@
 ---
 title: A summary of my first attempt at a hackathon
 shortTitle: Hackathon
-icon: laptop
+icon: utensils
 category:
    - Hackathon
 tag:
    - Event
 ---
+
+## What is a hackathon?
+
+To investigate a certain problem and develop a solution within a limited time frame. Offers free food!
 
 ### What is the solution?
 

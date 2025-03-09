@@ -2,7 +2,7 @@
 title: Images to Text for Museum Collection 
 shortTitle: Museum Collection 
 order: 5
-icon: lightbulb
+icon: poop
 category:
    - 25S1
 ---

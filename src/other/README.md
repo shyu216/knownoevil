@@ -1,5 +1,5 @@
 ---
 title: Other
-icon: comment
+icon: calendar-alt
 index: false
 ---

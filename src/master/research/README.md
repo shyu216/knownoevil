@@ -1,6 +1,6 @@
 ---
 title: Breath Tracking Project
-icon: magnifying-glass
+icon: heartbeat
 star: true
 index: false
 collapsible: false

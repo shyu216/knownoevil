@@ -1,6 +1,6 @@
 ---
 title: Candidate Topics
-icon: lightbulb
+icon: spoon
 star: false
 index: false
 category:

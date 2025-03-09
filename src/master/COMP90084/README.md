@@ -1,6 +1,6 @@
 ---
 title: COMP90084
-icon: bookmark
+icon: book-bookmark
 index: false
 ---
 

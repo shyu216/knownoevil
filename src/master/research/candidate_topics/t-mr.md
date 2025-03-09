@@ -2,7 +2,7 @@
 title: Model Reprogramming for Low-Level Image Processing
 shortTitle: Model Reprogramming
 order: 6
-icon: lightbulb
+icon: poop
 category:
    - 25S1
 ---

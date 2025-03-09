@@ -2,7 +2,7 @@
 title: Breath Tracking using a Depth Camera for XV Scanner
 shortTitle: Breath Tracking
 order: 4
-icon: lightbulb
+icon: poop
 category:
    - 25S1
 ---
