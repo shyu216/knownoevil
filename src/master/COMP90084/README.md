@@ -4,3 +4,4 @@ icon: book-bookmark
 index: false
 ---
 
+<Catalog hideHeading/>

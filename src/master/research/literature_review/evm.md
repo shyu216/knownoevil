@@ -2,6 +2,7 @@
 title: Eulerian Video Magnification for Revealing Subtle Changes in the World
 shortTitle: EVM
 icon: note-sticky
+timeline: true
 tag:
     - Image Processing
     - Computer Vision

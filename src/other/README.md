@@ -4,4 +4,4 @@ icon: calendar-alt
 index: false
 ---
 
-<Catalog />
+<Catalog hideHeading/>

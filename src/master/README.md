@@ -5,4 +5,4 @@ index: false
 collapsible: false
 ---
 
-<Catalog />
+<Catalog hideHeading/>

@@ -7,4 +7,6 @@ category:
   - UniMelb
 ---
 
-Here are some candidate research topics for second-year in UniMelb.
+Following are the candidate topics for my research project.
+
+<Catalog hideHeading/>
