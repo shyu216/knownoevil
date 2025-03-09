@@ -6,7 +6,7 @@ export default defineUserConfig({
   base: "/knownoevil/",
 
   lang: "en-US",
-  title: "Know No Evil",
+  title: "SIHONG's Blog",
   description: "A place to jot down the picked up",
 
   theme,
