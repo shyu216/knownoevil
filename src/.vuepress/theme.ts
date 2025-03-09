@@ -29,7 +29,7 @@ export default hopeTheme({
 
   editLink: false,
 
-  footer: "Somewhere to recap knowledge",
+  footer: "A place to jot down the picked up.",
 
   displayFooter: true,
 

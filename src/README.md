@@ -1,7 +1,7 @@
 ---
 home: true
 icon: home
-title: Home
+index: false
 # heroImage: ./android-chrome-512x512.png
 heroFullScreen: true
 heroText: A place to jot down the picked up.
