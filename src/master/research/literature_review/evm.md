@@ -152,3 +152,20 @@ $$
 
 The difference between the estimated motion $\hat{I}(x, t)$ and the actual motion $\tilde{I}(x, t)$.
 
+### Why the lowpass1 and lowpass2 keep updating in the code?
+
+Accumulate filter states to filter the video signal in the time domain, rather than depending only on the current/previous frame.
+
+### Why updating the filter equals to computing the temporal derivative?
+
+The temporal derivative is the rate of change of a signal with respect to time. By updating the filter, the motion is estimated by the temporal changes in the signal.
+
+$$\frac{dI}{dt} = \frac{I(t) - I(t-1)}{dt}$$
+
+### Why r1 and r2 are used in the code?
+
+They are the ratio of the current frame to the previous frame, controlling the response speed of the filter:
+
+- When r approaches 1, the filter responds faster to the input signal and is able to capture higher frequency changes.
+
+- When r approaches 0, the filter responds more slowly to the input signal and can only capture changes in lower frequencies.
