@@ -97,7 +97,9 @@ Pyrealsense does not support Python 3.12 on Windows, so pip cannot find it.
 
 On macOS, it can be installed by `brew install librealsense`. There are examples to run in the `/usr/local/Cellar/librealsense/2.56.3/bin`. And sudo is needed.
 
-Can use `pyrealsense2-macosx`. Sudo needed.
+Can use[ `pyrealsense2-macosx`](https://github.com/cansik/pyrealsense2-macosx). [Sudo needed](https://github.com/IntelRealSense/librealsense/issues/9916#issuecomment-1082893427).
+
+When activate color stream, the frames doesn't arrive when running the code in the second time. Remove and insert the USB again can solve.
 
 ### How to check the info of connected USB devices?
 
