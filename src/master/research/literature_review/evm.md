@@ -7,6 +7,7 @@ tag:
     - Image Processing
     - Computer Vision
     - Motion Magnification
+    - Signal Processing
 ---
 
 - paper website: [https://people.csail.mit.edu/mrub/evm/](https://people.csail.mit.edu/mrub/evm/)
@@ -169,3 +170,175 @@ They are the ratio of the current frame to the previous frame, controlling the r
 - When r approaches 1, the filter responds faster to the input signal and is able to capture higher frequency changes.
 
 - When r approaches 0, the filter responds more slowly to the input signal and can only capture changes in lower frequencies.
+
+A more academic explanation of above 2 questions would be the following.
+
+## What is a first-order digital lowpass filter?
+
+:::tip
+一阶数字低通滤波器（first-order digital lowpass filter）通常是 IIR滤波器（Infinite Impulse Response filter）的一种。
+:::
+
+:::tip
+传递函数（Transfer Function）是描述系统输入和输出之间关系的函数。在频域中，传递函数是输入信号和输出信号的傅里叶变换之间的比值。
+
+对于一个线性时不变系统（LTI系统），传递函数 $H(s)$ 定义为输出信号的拉普拉斯变换 $Y(s)$ 与输入信号的拉普拉斯变换 $X(s)$ 之间的比值：
+
+$$ H(s) = \frac{Y(s)}{X(s)} $$
+
+其中：
+
+$H(s)$ 是传递函数。
+$Y(s)$ 是输出信号的拉普拉斯变换。
+$X(s)$ 是输入信号的拉普拉斯变换。
+$s$ 是复频域变量。
+在离散时间系统中，传递函数通常用 $z$ 变换表示：
+
+$$ H(z) = \frac{Y(z)}{X(z)} $$
+
+其中：
+
+$H(z)$ 是离散时间系统的传递函数。
+$Y(z)$ 是输出信号的 $z$ 变换。
+$X(z)$ 是输入信号的 $z$ 变换。
+$z$ 是复频域变量。
+:::
+
+:::tip
+拉普拉斯变换（Laplace Transform）是一种数学变换方法，用于将一个函数从时间域转换到复频域。
+
+对于一个时间域函数 $f(t)$，其拉普拉斯变换 $F(s)$ 定义为：
+
+$$ F(s) = \mathcal{L}{f(t)} = \int_{0}^{\infty} f(t) e^{-st} , dt $$
+
+其中：
+
+- $F(s)$ 是 $f(t)$ 的拉普拉斯变换。
+- $f(t)$ 是时间域函数。
+- $s$ 是复频域变量，通常表示为 $s = \sigma + j\omega$，其中 $\sigma$ 和 $\omega$ 是实数，$j$ 是虚数单位。
+
+逆拉普拉斯变换用于将复频域函数 $F(s)$ 转换回时间域函数 $f(t)$，其定义为：
+
+$$ f(t) = \mathcal{L}^{-1}{F(s)} = \frac{1}{2\pi j} \int_{\gamma - j\infty}^{\gamma + j\infty} F(s) e^{st} , ds $$
+
+其中：
+
+- $f(t)$ 是 $F(s)$ 的逆拉普拉斯变换。
+- $F(s)$ 是复频域函数。
+- $\gamma$ 是实数，使得积分路径位于 $F(s)$ 的所有奇点的右侧。
+:::
+
+:::tip
+Z变换（Z Transform）是一种数学变换方法，用于将一个离散时间序列从时间域转换到复频域。
+
+对于一个离散时间序列 $x[n]$，其Z变换 $X(z)$ 定义为：
+
+$$ X(z) = \mathcal{Z}{x[n]} = \sum_{n=-\infty}^{\infty} x[n] z^{-n} $$
+
+其中：
+
+- $X(z)$ 是 $x[n]$ 的Z变换。
+- $x[n]$ 是离散时间序列。
+- $z$ 是复频域变量，通常表示为 $z = re^{j\omega}$，其中 $r$ 是幅度，$\omega$ 是角频率，$j$ 是虚数单位。
+:::
+
+It is a kind of "moving average" filter, which is used to smooth the signal and remove high-frequency noise. Given input signal $x[n]$ and output signal $y[n]$, the first-order digital lowpass filter can be represented by the following difference equation:
+
+$$y[n] = (1 - \alpha) y[n-1] + \alpha x[n]$$
+
+where $\alpha$ is the filter coefficient, which controls the amount of smoothing applied to the signal. A smaller $\alpha$ value results in less smoothing, while a larger $\alpha$ value results in more smoothing. EVM sets $\alpha$ as motion frequency.
+
+And its transfer function in the Z domain is:
+
+$$H(z) = \frac{Y(z)}{X(z)} = \frac{\alpha}{1 - (1 - \alpha)z^{-1}}$$
+
+where $H(z)$ is the transfer function, $Y(z)$ is the output signal in the Z domain, and $X(z)$ is the input signal in the Z domain.
+
+:::tip
+通过对差分方程进行Z变换，可以得到系统的传递函数。
+
+对 $y[n]$ 进行Z变换：
+$$ \mathcal{Z}{y[n]} = Y(z) $$
+
+对 $(1 - \alpha) y[n-1]$ 进行Z变换：
+$$ \mathcal{Z}{(1 - \alpha) y[n-1]} = (1 - \alpha) Y(z) z^{-1} $$
+
+对 $\alpha x[n]$ 进行Z变换：
+$$ \mathcal{Z}{\alpha x[n]} = \alpha X(z) $$
+
+将这些结果代入差分方程的Z变换中：
+
+$$ Y(z) = (1 - \alpha) Y(z) z^{-1} + \alpha X(z) $$
+
+将所有 $Y(z)$ 项移到方程的左边：
+
+$$ Y(z) - (1 - \alpha) Y(z) z^{-1} = \alpha X(z) $$
+
+提取 $Y(z)$：
+
+$$ Y(z) \left[1 - (1 - \alpha) z^{-1}\right] = \alpha X(z) $$
+
+解出传递函数 $H(z) = \frac{Y(z)}{X(z)}$：
+
+$$ H(z) = \frac{Y(z)}{X(z)} = \frac{\alpha}{1 - (1 - \alpha) z^{-1}} $$
+:::
+
+## What is a first-order Butterworth lowpass filter?
+
+Given a frequncy $f_c$ and a sampling rate $f_s$, the first-order Butterworth lowpass filter can be represented by the following difference equation:
+
+$$y[n] = \frac{-b[1] y[n-1] + a[0] x[n] + a[1] x[n-1]}{b[0]}$$
+
+where $a[0] = \frac{1}{1 + \sqrt{2} \pi f_c / f_s}$, $a[1] = a[0]$, $b[0] = 1$, $b[1] = \frac{1 - \sqrt{2} \pi f_c / f_s}{1 + \sqrt{2} \pi f_c / f_s}$.
+
+And its transfer function in the Z domain is:
+
+$$H(z) = \frac{Y(z)}{X(z)} = \frac{a[0] + a[1]z^{-1}}{b[0] + b[1]z^{-1}}$$
+
+where $H(z)$ is the transfer function, $Y(z)$ is the output signal in the Z domain, and $X(z)$ is the input signal in the Z domain.
+
+:::tip
+对 $y[n]$ 进行Z变换：
+$$ \mathcal{Z}{y[n]} = Y(z) $$
+对 $-b[1] y[n-1]$ 进行Z变换：
+$$ \mathcal{Z}{-b[1] y[n-1]} = -b[1] Y(z) z^{-1} $$
+对 $a[0] x[n]$ 进行Z变换：
+$$ \mathcal{Z}{a[0] x[n]} = a[0] X(z) $$
+对 $a[1] x[n-1]$ 进行Z变换：
+$$ \mathcal{Z}{a[1] x[n-1]} = a[1] X(z) z^{-1} $$
+将这些结果代入差分方程的Z变换中：
+$$ Y(z) = \frac{-b[1] Y(z) z^{-1} + a[0] X(z) + a[1] X(z) z^{-1}}{b[0]} $$
+将所有 $Y(z)$ 项移到方程的左边：
+$$ Y(z) \left[1 + b[1] z^{-1}\right] = a[0] X(z) + a[1] X(z) z^{-1} $$
+提取 $Y(z)$：
+$$ Y(z) = \frac{a[0] + a[1] z^{-1}}{b[0] + b[1] z^{-1}} X(z) $$
+解出传递函数 $H(z) = \frac{Y(z)}{X(z)}$：
+$$ H(z) = \frac{Y(z)}{X(z)} = \frac{a[0] + a[1] z^{-1}}{b[0] + b[1] z^{-1}} $$
+:::
+
+## Why the output of these filters are shifted?
+
+The output of these filters is shifted because the filters are causal and have a delay in their response. The shift is due to the time it takes for the filter to process the input signal and produce the output signal.
+
+![Butterworth VS IIR Filter](/butterworh_iir_filter.png)
+
+:::tip
+相位响应（Phase Response）是描述滤波器对输入信号的相位变化的影响。它表示输入信号的每个频率分量在通过滤波器后，其相位发生了多少变化。相位响应在信号处理和滤波器设计中非常重要，因为它影响信号的时间特性和波形。
+
+对于一个线性时不变系统（LTI系统），其传递函数 $H(s)$ 或 $H(z)$ 可以表示为复数形式：
+
+$$ H(s) = |H(s)| e^{j\theta(s)} $$
+
+或
+
+$$ H(z) = |H(z)| e^{j\theta(z)} $$
+
+其中：
+
+$|H(s)|$ 或 $|H(z)|$ 是幅度响应（Magnitude Response），表示滤波器对不同频率分量的增益。
+$\theta(s)$ 或 $\theta(z)$ 是相位响应，表示滤波器对不同频率分量的相位变化。
+
+相位失真（Phase Distortion）：如果滤波器的相位响应不是线性的，不同频率分量会经历不同的相位变化，导致信号波形的失真。这在音频处理和通信系统中尤其重要，因为相位失真会影响信号的保真度和清晰度。
+
+群延迟（Group Delay）：群延迟是相位响应的导数，表示信号的不同频率分量通过滤波器时的时间延迟。理想情况下，群延迟应该是常数，这样所有频率分量都经历相同的时间延迟，保持信号的波形不变。
+:::

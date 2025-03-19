@@ -13,7 +13,7 @@ tag:
 
 A recursive way to compute conditional expectation.
 
-It is to estimate $\hat{x}_k$ given ${u_j, y_j}^k_{j=1}$, where $u_j$ is the control input and $y_j$ is the measurement of a linear stochastic system:
+It is to estimate $\hat{x}_k$ given $\{u_j, y_j\}^k_{j=1}$, where $u_j$ is the control input and $y_j$ is the measurement of a linear stochastic system:
 
 $$
 \begin{cases}
