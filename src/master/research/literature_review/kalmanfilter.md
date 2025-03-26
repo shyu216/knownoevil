@@ -22,7 +22,7 @@ $$
 
 where $\hat{x}_{k-1|k-1}$ is the state estimate in the previous state, in this case the previous breathing parameter estimated, and $A$ is the state transition model. 
 
-::: info
+::: details Ask GPT
 在卡尔曼滤波器的文献中，$\hat{x}_{k|k-1}$ 和 $\hat{x}^{-}_k$ 通常表示相同的概念，即“先验”状态估计。
 :::
 
@@ -33,7 +33,7 @@ $$
 P_{k|k-1} = A P_{k-1|k-1} A^T + Q. \quad (27)
 $$
 
-::: info
+::: details Ask GPT
 PQ矩阵用于描述卡尔曼滤波器中的误差协方差和过程噪声：
 
 - $P$：误差协方差矩阵，描述状态估计误差的协方差。它在预测和更新阶段都会被更新。
@@ -66,7 +66,7 @@ As a result of the update phase, the final breathing parameter $\hat{x}_k$ is es
 
 ## What is the conclusion?
 
-::: info
+::: details Ask GPT
 状态空间模型可以表示为：
 
 $$

@@ -58,7 +58,7 @@ Question: Given trace and determinant, how to determine the purity?
 
 For example, if $Tr(\rho) = 1$ and $det(\rho) = 1/16$.
   
-::: info
+::: details Ask GPT
 对于一个 $2 \times 2$ 的密度矩阵 $\rho$，其迹和行列式可以用来计算纯度。具体步骤如下：
 
 设 $\rho$ 为 $2 \times 2$ 的密度矩阵，其特征值为 $\lambda_1$ 和 $\lambda_2$。
@@ -101,7 +101,7 @@ $Av = \lambda v$
 
 How to calculate the eigenvalues and eigenvectors given a matrix $A = \frac{1}{\sqrt{2}} \begin{bmatrix} 0 & 1+i \\ 1-i & 0 \end{bmatrix}$?
 
-::: info
+::: details Ask GPT
 步骤 1: 计算矩阵 $A$ 的特征方程：$det(A - \lambda I) = 0$，得到 $\lambda^2 - 1 = 0$
 
 步骤 2: 解特征方程得到特征值 $\lambda = \pm 1$
@@ -163,7 +163,7 @@ where $\varphi$ is the phase. So-called the phase estimation.
 
 How?
 
-::: info
+::: details Ask GPT
 使用一组量子比特 $a_0, a_1, \cdots, a_{t-1}$ 来估计相位 $\varphi$。具体来说，相位 $\varphi$ 可以表示为：
 
 $$\varphi = 0.8 = \frac{a_0}{2^1} + \frac{a_1}{2^2} + \cdots + \frac{a_{t-1}}{2^t}$$
@@ -185,7 +185,7 @@ $$
 \text{QFT}|\theta\rangle = \frac{1}{\sqrt{2^n}} \sum_{k=0}^{2^n-1} e^{2\pi i \theta k} |k\rangle
 $$
 
-::: info
+::: details Ask GPT
 每个变量的含义：
 
 - $\text{QFT}$：量子傅里叶变换操作。
@@ -200,7 +200,7 @@ $$
 
 What is the relation between unitary operator $U$ and the number of qubits $m$?
 
-::: info
+::: details Ask GPT
 在量子计算中，使用两个量子比特的例子来说明如何应用 Hadamard 门（忽略归一化因子）后所需的操作：
 
 $$
@@ -233,7 +233,7 @@ $K = (n, p, q, e, d)$
 - Bob: $E_k(x) = x^e \mod n$
 - Alice: $D_k(y) = y^d \mod n$
 
-::: info
+::: details Ask GPT
 费马小定理/欧拉定理: 如果x,n互质，则$x^{\phi(n)} \equiv 1 \mod n$
 
 证明1: $\prod_{i=1}^{p-1} A_i \equiv \prod_{i=1}^{p-1} aA_i \mod p$, 当p是质数，a不是p的倍数时成立。因为两边的p-1个数里都有p-1种可能的余数，两边实际等价的
