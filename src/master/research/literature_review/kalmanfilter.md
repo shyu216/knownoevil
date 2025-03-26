@@ -64,7 +64,7 @@ $$
 
 As a result of the update phase, the final breathing parameter $\hat{x}_k$ is estimated, which is the output of this algorithm. However, the Kalman filter is an iterative method that recalculates $\hat{x}_k$ at each time step. Therefore, the “a posteriori” state estimate $\hat{x}_k$ at the current time step will be the previous state estimate $\hat{x}_{k-1}$ at the next time step. The same happens with the covariance since the “a posteriori” estimate covariance $P_k$ at the current time step will be the previous estimate covariance $P_{k-1}$ at the next time step. In this way, the algorithm can start a new prediction process again (Figure 33). The whole process is repeated indefinitely. The output of the system at each transition is the “a posteriori” estimate of the respiration parameters $\hat{x}_k$.
 
-## What is the conclusion?
+## How to implement?
 
 ::: details Ask GPT
 状态空间模型可以表示为：
@@ -146,7 +146,5 @@ plt.ylabel('Value')
 plt.title('Kalman Filter for Respiration Monitoring')
 plt.show()
 ```
-
-**Result**:
 
 ![Kalman Filter for Respiration Monitoring](/kalmanfilter.png)

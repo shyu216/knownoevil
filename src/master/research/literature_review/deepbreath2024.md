@@ -40,4 +40,4 @@ Actively detect and ignore voluntary motion using hand-crafted thresholds.
 
 DeepBreath considers breathing mode and lung volume to  be two correlated measurements. To achieve calibration-free lung volume estimation, we designed a novel UNet-based [51] regression model to achieve one-model-fit-all lung volume regression.
 
-It is worth noting that the system will experience a cold start in the first 20 seconds after the system starts to  run, as the models need to take 20-second depth images to give the predictions of the current state.
+It is worth noting that the system will experience a cold start in the first 20 seconds after the system starts to run, as the models need to take 20-second depth images to give the predictions of the current state.
