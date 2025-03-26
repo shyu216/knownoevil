@@ -175,11 +175,11 @@ A more academic explanation of above 2 questions would be the following.
 
 ## What is a first-order digital lowpass filter?
 
-:::tip
+::: info
 一阶数字低通滤波器（first-order digital lowpass filter）通常是 IIR滤波器（Infinite Impulse Response filter）的一种。
 :::
 
-:::tip
+::: info
 传递函数（Transfer Function）是描述系统输入和输出之间关系的函数。在频域中，传递函数是输入信号和输出信号的傅里叶变换之间的比值。
 
 对于一个线性时不变系统（LTI系统），传递函数 $H(s)$ 定义为输出信号的拉普拉斯变换 $Y(s)$ 与输入信号的拉普拉斯变换 $X(s)$ 之间的比值：
@@ -204,7 +204,7 @@ $X(z)$ 是输入信号的 $z$ 变换。
 $z$ 是复频域变量。
 :::
 
-:::tip
+::: info
 拉普拉斯变换（Laplace Transform）是一种数学变换方法，用于将一个函数从时间域转换到复频域。
 
 对于一个时间域函数 $f(t)$，其拉普拉斯变换 $F(s)$ 定义为：
@@ -228,7 +228,7 @@ $$ f(t) = \mathcal{L}^{-1}{F(s)} = \frac{1}{2\pi j} \int_{\gamma - j\infty}^{\ga
 - $\gamma$ 是实数，使得积分路径位于 $F(s)$ 的所有奇点的右侧。
 :::
 
-:::tip
+::: info
 Z变换（Z Transform）是一种数学变换方法，用于将一个离散时间序列从时间域转换到复频域。
 
 对于一个离散时间序列 $x[n]$，其Z变换 $X(z)$ 定义为：
@@ -254,7 +254,7 @@ $$H(z) = \frac{Y(z)}{X(z)} = \frac{\alpha}{1 - (1 - \alpha)z^{-1}}$$
 
 where $H(z)$ is the transfer function, $Y(z)$ is the output signal in the Z domain, and $X(z)$ is the input signal in the Z domain.
 
-:::tip
+::: info
 通过对差分方程进行Z变换，可以得到系统的传递函数。
 
 对 $y[n]$ 进行Z变换：
@@ -297,7 +297,7 @@ $$H(z) = \frac{Y(z)}{X(z)} = \frac{a[0] + a[1]z^{-1}}{b[0] + b[1]z^{-1}}$$
 
 where $H(z)$ is the transfer function, $Y(z)$ is the output signal in the Z domain, and $X(z)$ is the input signal in the Z domain.
 
-:::tip
+::: info
 对 $y[n]$ 进行Z变换：
 $$ \mathcal{Z}{y[n]} = Y(z) $$
 对 $-b[1] y[n-1]$ 进行Z变换：
@@ -322,7 +322,7 @@ The output of these filters is shifted because the filters are causal and have a
 
 ![Butterworth VS IIR Filter](/butterworh_iir_filter.png)
 
-:::tip
+::: info
 相位响应（Phase Response）是描述滤波器对输入信号的相位变化的影响。它表示输入信号的每个频率分量在通过滤波器后，其相位发生了多少变化。相位响应在信号处理和滤波器设计中非常重要，因为它影响信号的时间特性和波形。
 
 对于一个线性时不变系统（LTI系统），其传递函数 $H(s)$ 或 $H(z)$ 可以表示为复数形式：

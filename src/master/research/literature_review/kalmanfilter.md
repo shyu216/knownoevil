@@ -10,30 +10,9 @@ tag:
 
 A recursive way to compute conditional expectation.
 
-It is to estimate $\hat{x}_k$ given $\{u_j, y_j\}^k_{j=1}$, where $u_j$ is the control input and $y_j$ is the measurement of a linear stochastic system:
-
-$$
-\begin{cases}
-x_{k+1} = Ax_k + Bu_k + w_k \\
-y_k = Cx_k + Du_k + v_k
-\end{cases}
-$$
-
-where $w_k$ and $v_k$ are the process and measurement noise, respectively. $A, B, C, D$ are the system matrices, usually hand-crafted.
-
-:::tip
-ABCD矩阵用于描述系统的状态空间模型：
-
-- $A$：状态转移矩阵，描述系统状态如何从一个时间步转移到下一个时间步。
-- $B$：控制输入矩阵，描述控制输入 $u_k$ 如何影响系统状态。
-- $C$：观测矩阵，描述系统状态如何映射到观测值。
-- $D$：直接传输矩阵，描述控制输入 $u_k$ 如何直接影响观测值。
-:::
-
-## How to use it for respiration monitoring?
-
 (The KF was discussed in page 47-48 of the paper.)
 
+**Kalman filter**: This technique has been used by several studies as a sensor fusion method. Thus, it is not a method to extract breathing parameters but to fuse measurements from different sensors. When multiple respiration sensors are available, the measurements they provide are not exactly the same. Furthermore, measurements always contain noise. The Kalman filter is used to provide a final value based on the measurements of the different sensors, the model of variation of the breathing parameter, the noise model of the sensors, and the variation model [270]. Figure 33 shows an overview of the Kalman filter algorithm adapted to the fusion of breathing sensors
 
 The Kalman filter has two distinct phases: prediction and update. The prediction phase estimates the state (breathing parameter) in the current time step using the state estimate from the previous time step (previous breathing parameter). The breathing parameter predicted in this phase is called the “a priori” state estimate $\hat{x}_{k|k-1}$ and is obtained according to Equation (26):
 
@@ -43,7 +22,7 @@ $$
 
 where $\hat{x}_{k-1|k-1}$ is the state estimate in the previous state, in this case the previous breathing parameter estimated, and $A$ is the state transition model. 
 
-:::tip
+::: info
 在卡尔曼滤波器的文献中，$\hat{x}_{k|k-1}$ 和 $\hat{x}^{-}_k$ 通常表示相同的概念，即“先验”状态估计。
 :::
 
@@ -54,7 +33,7 @@ $$
 P_{k|k-1} = A P_{k-1|k-1} A^T + Q. \quad (27)
 $$
 
-:::tip
+::: info
 PQ矩阵用于描述卡尔曼滤波器中的误差协方差和过程噪声：
 
 - $P$：误差协方差矩阵，描述状态估计误差的协方差。它在预测和更新阶段都会被更新。
@@ -87,7 +66,7 @@ As a result of the update phase, the final breathing parameter $\hat{x}_k$ is es
 
 ## What is the conclusion?
 
-:::tip
+::: info
 状态空间模型可以表示为：
 
 $$
