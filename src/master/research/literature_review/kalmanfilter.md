@@ -1,13 +1,10 @@
 ---
-title: Kalman filter algorithm for the fusion of different respiration sensors
-shortTitle: Kalman Filter
+title: Sensing Systems for Respiration Monitoring: A Technical Systematic Review
 icon: note-sticky
 timeline: true
 tag:
     - Signal Processing
 ---
-
-- paper: Sensing Systems for Respiration Monitoring: A Technical Systematic Review
 
 ## What is Kalman Filter?
 
