@@ -1,5 +1,5 @@
 ---
-title: DeepBreath: Breathing Exercise Assessment with a Depth Camera
+title: "DeepBreath: Breathing Exercise Assessment with a Depth Camera"
 shortTitle: DeepBreath
 icon: note-sticky
 timeline: true

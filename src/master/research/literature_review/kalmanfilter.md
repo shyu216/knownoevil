@@ -1,5 +1,5 @@
 ---
-title: Sensing Systems for Respiration Monitoring: A Technical Systematic Review
+title: "Sensing Systems for Respiration Monitoring: A Technical Systematic Review"
 icon: note-sticky
 timeline: true
 tag:
