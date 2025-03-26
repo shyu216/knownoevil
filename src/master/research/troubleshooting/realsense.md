@@ -6,8 +6,7 @@ icon: mug-hot
 
 ## What are all the supported modes?
 
-`get_stream_profiles()` gives:
-
+::: details `get_stream_profiles()`
 ```
 <pyrealsense2.[video_]stream_profile: Infrared(0) 1280x720 @ 6fps UYVY>
 <pyrealsense2.[video_]stream_profile: Infrared(0) 1280x720 @ 6fps BGRA8>
@@ -88,7 +87,7 @@ icon: mug-hot
 <pyrealsense2.[video_]stream_profile: Depth(0) 480x270 @ 6fps Z16>
 <pyrealsense2.[video_]stream_profile: Depth(0) 256x144 @ 90fps Z16>
 ```
-
+:::
 ## Problems on Windows
 
 Pyrealsense does not support Python 3.12 on Windows, so pip cannot find it.
