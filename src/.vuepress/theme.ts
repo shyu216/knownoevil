@@ -33,6 +33,12 @@ export default hopeTheme({
 
   displayFooter: true,
 
+  fullscreen: true,
+
+  blog: {
+    description: "Causing chaos, drooling, and being adorable."
+  },
+
   // metaLocales: {
   //   editLink: "Edit this page on GitHub",
   // },
@@ -140,10 +146,6 @@ export default hopeTheme({
         icon: "/apple-touch-icon.png",
         statusBarColor: "black",
       },
-      msTile: {
-        image: "/assets/icon/ms-icon-144.png",
-        color: "#ffffff",
-      },
       manifest: {
         icons: [
           {
@@ -158,30 +160,12 @@ export default hopeTheme({
             purpose: "maskable",
             type: "image/png",
           },
-          {
-            src: "/android-chrome-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-          {
-            src: "/android-chrome-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
         ],
         shortcuts: [
           {
-            name: "Demo",
-            short_name: "Demo",
-            url: "/demo/",
-            icons: [
-              {
-                src: "/assets/icon/guide-maskable.png",
-                sizes: "192x192",
-                purpose: "maskable",
-                type: "image/png",
-              },
-            ],
+            name: "SIHONG's Blog",
+            short_name: "SIHONG's Blog",
+            url: "/",
           },
         ],
       },

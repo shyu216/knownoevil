@@ -3,6 +3,8 @@ title: Breath Tracking Project
 icon: heartbeat
 star: true
 index: false
+timeline: false
+article: false
 collapsible: false
 category:
   - UniMelb

@@ -3,6 +3,8 @@ title: Literature Review
 icon: newspaper
 star: true
 index: false
+timeline: false
+article: false
 collapsible: false
 ---
 
