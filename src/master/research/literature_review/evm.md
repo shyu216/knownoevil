@@ -22,11 +22,11 @@ tag:
 
 Combine spatial decomposition and temporal filtering to reveal color and motion changes for perceptually appealing visualization (artifact-free).
 
-## Where idea comes from?
+## What is the idea?
 
 EVM relies on the optical flow algorithm to estimate the motion between frames, assuming that changes in pixel intensity represent pixel motion, provided that the image brightness does not change and the motion is smooth.
 
-## How to achieve?
+## What is the method?
 
 1. decompose the video into different spatial frequency bands. 
 2. perform temporal filtering on each band.

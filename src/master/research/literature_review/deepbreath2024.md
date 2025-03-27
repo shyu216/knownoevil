@@ -19,7 +19,7 @@ Breathing mode classification: chest and belly.
 - Calibration-free lung volume measurement, no clothing, and no involuntary body motion.
 - Real-time (12th I5 and 4060 Ti, 3fps) (update result every 3 seconds).
 
-## How to achieve?
+## What is the method?
 
 The proposed method consists of three modules:
 1. depth image segmentation
