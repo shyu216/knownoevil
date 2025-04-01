@@ -2,10 +2,8 @@
 title: A summary of my first attempt at a hackathon
 shortTitle: Hackathon
 icon: utensils
-category:
-   - Hackathon
 tag:
-   - Event
+   - Experience
 ---
 
 ## What is a hackathon?

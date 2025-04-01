@@ -2,10 +2,8 @@
 title: How to Review Literature
 shortTitle: Literature Review
 icon: feather
-category:
-   - Skills
 tag:
-   - Skills
+   - Experience
 ---
 
 - 建立「最小化文献框架」：在确定选题后，快速检索3-5篇权威综述/高引论文，用最少时间搭建基础文献网络，避免早期陷入文献海洋

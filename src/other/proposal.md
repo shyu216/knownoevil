@@ -2,10 +2,8 @@
 title: How to Write a Research Proposal
 shortTitle: Research Proposal
 icon: feather
-category:
-   - Skills
 tag:
-   - Skills
+   - Experience
 ---
 
 - source: [https://students.unimelb.edu.au/academic-skills/resources/reading,-writing-and-referencing/referencing-and-research/research-proposals](https://students.unimelb.edu.au/academic-skills/resources/reading,-writing-and-referencing/referencing-and-research/research-proposals)

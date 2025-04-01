@@ -1,9 +1,6 @@
 ---
 title: 量子计算的复习笔记
 icon: bookmark
-category:
-  - UniMelb
-  - 24S2
 tag:
   - Quantum Computing
   - Linear Algebra
