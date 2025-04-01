@@ -3,7 +3,7 @@ title: "SAMURAI: Shape And Material from Unconstrained Real-world Arbitrary Imag
 icon: note-sticky
 timeline: true
 tag:
-    - Semenatic Segmentation
+    - Semantic Segmentation
     - Pose Estimation
 ---
 

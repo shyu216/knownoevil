@@ -3,7 +3,7 @@ title: "Indoor Semantic Segmentation using depth information"
 icon: note-sticky
 timeline: true
 tag:
-    - Semenatic Segmentation
+    - Semantic Segmentation
 ---
 
 ## What is the method?

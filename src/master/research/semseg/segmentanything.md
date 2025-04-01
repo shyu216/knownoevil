@@ -3,7 +3,7 @@ title: "Segment Anything"
 icon: note-sticky
 timeline: true
 tag:
-    - Semenatic Segmentation
+    - Semantic Segmentation
 ---
 
 ## What is the idea?

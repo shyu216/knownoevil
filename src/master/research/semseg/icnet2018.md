@@ -4,7 +4,7 @@ shortTitle: ICNet
 icon: note-sticky
 timeline: true
 tag:
-    - Semenatic Segmentation
+    - Semantic Segmentation
 ---
 
 - code: [https://github.com/hszhao/ICNet](https://github.com/hszhao/ICNet)
