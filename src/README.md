@@ -9,7 +9,4 @@ heroFullScreen: true
 heroText: A place to jot down the picked up.
 layout: BlogHome # https://theme-hope.vuejs.press/guide/blog/home.html#blog-style-homepage
 bgImage: ./cuhk.jpg
-
 ---
-
-<!-- <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=j2899BlAonwJlyssFydPGo6p3jzrcPuHMsp6KwiPL80&cl=ffffff&w=a"></script> -->
