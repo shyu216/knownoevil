@@ -1,5 +1,5 @@
 ---
-title: How to Write a Research Proposal
+title: How to write a Research Proposal
 shortTitle: Research Proposal
 icon: feather
 tag:

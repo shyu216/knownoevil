@@ -1,5 +1,5 @@
 ---
-title: Fabric
+title: Fabric Fundamentals
 icon: flask
 ---
 

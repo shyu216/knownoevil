@@ -1,5 +1,5 @@
 ---
-title: How to Review Literature
+title: How to perform a Literature Review 
 shortTitle: Literature Review
 icon: feather
 tag:
