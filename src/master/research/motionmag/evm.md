@@ -44,7 +44,7 @@ EVM relies on the optical flow algorithm to estimate the motion between frames, 
 
 Originally, an image is a matrix of pixels in the spatial domain. Through Fourier Transform (FT), it becomes a combination of frequency planes (spectrum) with different weights in the frequency domain. Each plane represents a different spatial frequency. The high-frequency spectrum appears denser and represents the edges of objects.
 
-![Fourier Transform](/EVMFTdemo.png)
+![Fourier Transform](/assets/images/EVMFTdemo.png)
 
 ## What is spatial decomposition?
 
@@ -62,7 +62,7 @@ Frequency band is a range of frequencies in the spectrum. There are 2 types of b
 
 Fourier transform and Band-pass filter can be used to isolate a specific frequency band. A demo of band-pass filter is shown below.
 
-![Band-Pass Filter](/EVMFilterdemo.png)
+![Band-Pass Filter](/assets/images/EVMFilterdemo.png)
 
 ### What is pyramid representation?
 
@@ -320,7 +320,7 @@ $$ H(z) = \frac{Y(z)}{X(z)} = \frac{a[0] + a[1] z^{-1}}{b[0] + b[1] z^{-1}} $$
 
 The output of these filters is shifted because the filters are causal and have a delay in their response. The shift is due to the time it takes for the filter to process the input signal and produce the output signal.
 
-![Butterworth VS IIR Filter](/butterworh_iir_filter.png)
+![Butterworth VS IIR Filter](/assets/images/butterworh_iir_filter.png)
 
 ::: details Ask GPT
 相位响应（Phase Response）是描述滤波器对输入信号的相位变化的影响。它表示输入信号的每个频率分量在通过滤波器后，其相位发生了多少变化。相位响应在信号处理和滤波器设计中非常重要，因为它影响信号的时间特性和波形。

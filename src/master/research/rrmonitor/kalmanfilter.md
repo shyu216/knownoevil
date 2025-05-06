@@ -147,4 +147,4 @@ plt.title('Kalman Filter for Respiration Monitoring')
 plt.show()
 ```
 
-![Kalman Filter for Respiration Monitoring](/kalmanfilter.png)
+![Kalman Filter for Respiration Monitoring](/assets/images/kalmanfilter.png)

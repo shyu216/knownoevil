@@ -8,5 +8,5 @@ article: false
 heroFullScreen: true
 heroText: A place to jot down the picked up.
 layout: BlogHome # https://theme-hope.vuejs.press/guide/blog/home.html#blog-style-homepage
-bgImage: ./cuhk.jpg
+bgImage: /assets/images/cuhk.jpg
 ---

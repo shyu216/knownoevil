@@ -1,4 +1,5 @@
 import { defineUserConfig } from "vuepress";
+import { searchPlugin } from '@vuepress/plugin-search'
 
 import theme from "./theme.js";
 
@@ -11,6 +12,6 @@ export default defineUserConfig({
 
   theme,
 
-  // Enable it with pwa
+  // 和 PWA 一起启用
   shouldPrefetch: false,
 });
