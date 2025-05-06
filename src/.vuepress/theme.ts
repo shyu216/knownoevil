@@ -30,7 +30,7 @@ export default hopeTheme({
   // 博客相关
   blog: {
     description: "Causing chaos, drooling, and being adorable.",
-    intro: "/intro.html",
+    // intro: "/intro.html",
     medias: {
       // Baidu: "https://example.com",
       // BiliBili: "https://example.com",
@@ -84,6 +84,7 @@ export default hopeTheme({
   // metaLocales: {
   //   editLink: "在 GitHub 上编辑此页",
   // },
+  editLink: false,
 
   // 如果想要实时查看任何改变，启用它。注: 这对更新性能有很大负面影响
   // hotReload: true,
