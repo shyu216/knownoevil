@@ -1,5 +1,5 @@
 ---
-title: Coffee Terminology
+title: Coffee Table
 icon: martini-glass-citrus
 ---
 

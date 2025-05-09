@@ -1,5 +1,5 @@
 ---
-title: Fabric Classification
+title: Fabric Table
 icon: flask
 ---
 
