@@ -5,6 +5,4 @@ import { sidebar } from "vuepress-theme-hope";
 export default sidebar({
   "/coursework/": "structure",
   "/research/": "structure",
-  "/dev/": "structure",
-  "/world/": "structure",
 });
