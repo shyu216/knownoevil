@@ -2,7 +2,7 @@
 title: Efficient Cloth Try-on Image Synthesis via Denoising Diffusion Model
 shortTitle: Try-on Image
 order: 2
-icon: poop
+icon: map-pin
 category:
    - 25S1
 ---

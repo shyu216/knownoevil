@@ -2,7 +2,7 @@
 title: Brain-inspired computing by assemblies of neurons
 shortTitle: Brain-inspired computing
 order: 3
-icon: poop
+icon: map-pin
 category:
    - 25S1
 ---

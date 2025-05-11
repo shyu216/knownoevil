@@ -2,7 +2,7 @@
 title: Cloud-Device Collaborative Learning via small and large lanauge models for mobile health
 shortTitle: Mobile Health
 order: 1
-icon: poop
+icon: map-pin
 category:
    - 25S1
 ---

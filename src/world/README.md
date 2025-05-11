@@ -1,6 +1,7 @@
 ---
-title: Other
-icon: calendar-alt
+title: Explaining the World
+shortTitle: World
+icon: earth-asia
 index: false
 timeline: false
 article: false

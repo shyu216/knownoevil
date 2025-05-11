@@ -2,7 +2,7 @@
 title: Model Reprogramming for Low-Level Image Processing
 shortTitle: Model Reprogramming
 order: 6
-icon: poop
+icon: map-pin
 category:
    - 25S1
 ---
