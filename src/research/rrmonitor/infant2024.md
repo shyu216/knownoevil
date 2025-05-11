@@ -3,7 +3,8 @@ title: Video-Based Respiratory Rate Estimation for Infants in the NICU
 icon: note-sticky
 timeline: true
 tag:
-    - Signal Processing
+    - Breath Tracking
+    - Motion Magnification
 ---
 
 ## How they handle the data?

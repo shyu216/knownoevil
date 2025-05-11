@@ -5,9 +5,7 @@ icon: note-sticky
 timeline: true
 tag:
     - Image Processing
-    - Computer Vision
     - Motion Magnification
-    - Signal Processing
 ---
 
 - paper website: [https://people.csail.mit.edu/mrub/evm/](https://people.csail.mit.edu/mrub/evm/)

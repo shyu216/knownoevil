@@ -4,7 +4,8 @@ shortTitle: DeepBreath
 icon: note-sticky
 timeline: true
 tag:
-    - Computer Vision
+    - Deep Learning
+    - Breath Tracking
 ---
 
 ## What is the application?
