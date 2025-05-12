@@ -1,13 +1,13 @@
 ---
-title: "SAMURAI: Shape And Material from Unconstrained Real-world Arbitrary Image collections"
+title: "SAMURAI: Adapting Segment Anything Model  for Zero-Shot Visual Tracking with Motion-Aware Memory"
 icon: note-sticky
 timeline: true
 tag:
     - Semantic Segmentation
-    - Pose Estimation
 ---
+
+- https://github.com/yangchris11/samurai
 
 ## What is the goal?
 
-To inverse render an object under entirely unknown capture conditions.
-
+For visual object tracking.

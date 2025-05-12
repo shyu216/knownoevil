@@ -169,13 +169,13 @@ export default hopeTheme({
 
     // 启用之前需安装 @waline/client
     // 警告: 这是一个仅供演示的测试服务，在生产环境中请自行部署并使用自己的服务！
-    comment: {
-      provider: "Giscus",
-      repo: "shyu216/knownoevil",
-      repoId: "R_kgDOMdAfIg",
-      category: "Announcements",
-      categoryId: "DIC_kwDOMdAfIs4ChUxR",
-    },
+    // comment: {
+    //   provider: "Giscus",
+    //   repo: "shyu216/knownoevil",
+    //   repoId: "R_kgDOMdAfIg",
+    //   category: "Announcements",
+    //   categoryId: "DIC_kwDOMdAfIs4ChUxR",
+    // },
 
     components: {
       components: ["Badge", "VPCard"],
