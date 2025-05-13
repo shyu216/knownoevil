@@ -8,7 +8,7 @@ tag:
 ---
 
 
-Shor算法是一种量子算法，用于分解大整数为素数的乘积。这是一个量子计算课程辅导员发布的英文笔记的翻译版本。
+Shor算法是一种量子算法，用于分解大整数为素数的乘积。这是一个量子计算课程[辅导员](https://github.com/peiyong-addwater)发布的英文笔记的翻译版本。
 
 - [A Probably More Detailed Explanation of the Shor's Algorithm](https://github.com/shyu216/knownoevil/blob/main/assets/A%20Probably%20More%20Detailed%20Explanation%20of%20the%20Shor's%20Algorithm.pdf)
 

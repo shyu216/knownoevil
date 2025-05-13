@@ -5,7 +5,10 @@ timeline: true
 tag:
     - Dataset
     - Breath Tracking
+description: dPPG PFT 数据集详细介绍，含结构、评价指标、3D点云恢复方法。A comprehensive introduction to the dPPG PFT dataset, including structure, evaluation metrics, and 3D point cloud recovery.
 ---
+
+以下内容由这个数据库的readme.txt文件翻译而来。
 
 ## 简介
 
