@@ -14,7 +14,8 @@ dPPG PFT 数据集由布里斯托大学计算机科学系视觉信息实验室�
 - 适用于：深度视觉、呼吸监测、医学信号处理等研究
 - 采集方式：双 Kinect 深度相机（前后各一），同步采集
 - 公开时间：2018 年 2 月
-- 主要联系人：Vahid Soleimani（vahid.soleimani [at] bristol.ac.uk）
+- 主要联系人：[Vahid Soleimani](https://github.com/BristolVisualPFT)
+- 数据集主页：[A Dataset for Depth-Based Whole Body Photoplethysmography in Remote Pulmonary Function Testing](https://data.bris.ac.uk/data/dataset/1tqzx39mzkw832msuvy3obktqi)
 
 ## 数据集结构
 
