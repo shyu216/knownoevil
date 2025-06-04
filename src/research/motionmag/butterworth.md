@@ -8,6 +8,7 @@ tag:
 
 - reference: `scipy.signal.butter`, `Mathnet.Filtering.Butterworth`
 - reading: https://blog.csdn.net/zengxy3407/article/details/132035202
+- reading: https://blog.csdn.net/u013600306/article/details/142703250
 
 ## How to design a Butterworth filter?
 
