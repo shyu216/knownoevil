@@ -285,9 +285,7 @@ $$ H(z) = \frac{Y(z)}{X(z)} = \frac{\alpha}{1 - (1 - \alpha) z^{-1}} $$
 
 Given a frequncy $f_c$ and a sampling rate $f_s$, the first-order Butterworth lowpass filter can be represented by the following difference equation:
 
-$$y[n] = \frac{-b[1] y[n-1] + a[0] x[n] + a[1] x[n-1]}{b[0]}$$
-
-where $a[0] = \frac{1}{1 + \sqrt{2} \pi f_c / f_s}$, $a[1] = a[0]$, $b[0] = 1$, $b[1] = \frac{1 - \sqrt{2} \pi f_c / f_s}{1 + \sqrt{2} \pi f_c / f_s}$.
+$$y[n] = \frac{-b[1] y[n-1] + a[0] x[n] + a[1] x[n-1]}{b[0]}$$.
 
 And its transfer function in the Z domain is:
 
