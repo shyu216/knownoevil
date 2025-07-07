@@ -38,3 +38,9 @@ GPU is single instruction multiple thread (SIMT) architecture, so the compute sh
 ### What is a texture?
 
 A texture is a 2D image that can be applied to a 3D model or used in a shader. Normally it stores the RGB and alpha values of each pixel in floating point from 0 to 1.
+
+
+
+### How to use a DL model in Unity?
+
+Use the `Sentis` package. Removed `Ops` and `IBackend` methods, use the functional API to create and edit models instead. It means you do not have many operations for tensor.
