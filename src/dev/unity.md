@@ -35,6 +35,11 @@ Better to `new` them in the `Start()` method, and `Release()` them in the `OnDes
 
 GPU is single instruction multiple thread (SIMT) architecture, so the compute shader is written in a way that each thread can run independently. For example, use ternary operator `?:` to handle different cases, instead of using `if-else` statements.
 
+It uses High Level Shading Language (HLSL) to write the shader code, it is c-like. There are some common functions:
+- step(edge, x)：如果x >= edge，返回1，否则返回0。常用于阈值判断，避免if分支。
+- lerp(a, b, t)：线性插值，在a和b之间按t比例混合，t=0时为a，t=1时为b。
+- clamp(x, min, max)：将x限制在[min, max]区间内，超出则取边界值。
+
 ### What is a texture?
 
 A texture is a 2D image that can be applied to a 3D model or used in a shader. Normally it stores the RGB and alpha values of each pixel in floating point from 0 to 1.
@@ -44,3 +49,14 @@ A texture is a 2D image that can be applied to a 3D model or used in a shader. N
 ### How to use a DL model in Unity?
 
 Use the `Sentis` package. Removed `Ops` and `IBackend` methods, use the functional API to create and edit models instead. It means you do not have many operations for tensor.
+
+#### How to accelerate the model?
+
+- use smaller input size, from 640 to 320, the speed decreases from 220ms to 170ms.
+- use `Quantization` to reduce the model size, but failed
+  - `YOLO` do not support quantization to `int8` for `onnx`, see [https://docs.unity3d.com/Packages/com.unity.sentis@2.1/manual/quantize-a-model.html](https://docs.unity3d.com/Packages/com.unity.sentis@2.1/manual/quantize-a-model.html)
+  - `Sentis` supports quantization to `Uint8`, but the model only reduces memory usage, not speed, see [https://docs.unity3d.com/Packages/com.unity.sentis@2.1/manual/quantize-a-model.html](https://docs.unity3d.com/Packages/com.unity.sentis@2.1/manual/quantize-a-model.html)
+  - `onnx`'s `quantize_static()` needs calibration data, see [https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)
+- use `GPU` to accelerate the model, but failed
+  - `YOLO` says that `onnx` is better for `CPU`
+  - `Oculus` says that `Sentis` does not support `NPU` of `Quest 3`, see [https://developers.meta.com/horizon/documentation/unity/unity-pca-sentis/](https://developers.meta.com/horizon/documentation/unity/unity-pca-sentis/)
