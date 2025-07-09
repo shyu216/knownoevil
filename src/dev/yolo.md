@@ -1,6 +1,6 @@
 ---
 title: You Only Look Once (YOLO)
-short_title: YOLO
+shortTitle: YOLO
 icon: mug-hot
 ---
 
