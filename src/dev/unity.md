@@ -60,3 +60,9 @@ Use the `Sentis` package. Removed `Ops` and `IBackend` methods, use the function
 - use `GPU` to accelerate the model, but failed
   - `YOLO` says that `onnx` is better for `CPU`
   - `Oculus` says that `Sentis` does not support `NPU` of `Quest 3`, see [https://developers.meta.com/horizon/documentation/unity/unity-pca-sentis/](https://developers.meta.com/horizon/documentation/unity/unity-pca-sentis/)
+
+
+
+### What is a Pose?
+
+The position (x, y, z) and rotation (x, y, z, w) of an object in 3D space.
