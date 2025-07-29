@@ -9,3 +9,10 @@ icon: mug-hot
   - `...\anaconda3`
   - `...\anaconda3\Scripts`
   - `...\anaconda3\Library\bin`
+
+
+
+- List conda installed packages and pip packages
+  - Both: `conda list`
+  - Conda: `conda list --explicit`
+  - Pip: `pip list`
