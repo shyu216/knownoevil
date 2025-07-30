@@ -61,3 +61,10 @@ Further help:
 
 1. Find the PID of the process by `ps aux | grep <your process name>`.
 2. Kill the process by `kill -9 <PID>`.
+
+
+
+
+### How to setup it in WSL?
+
+install `usbipd`, then see: https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-device
