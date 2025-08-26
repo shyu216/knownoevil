@@ -7,7 +7,21 @@ tag:
     - Image Processing
 ---
 
-# How is it?
+# What is it？
 
-Achieved SOTA VIPL-HR MSE BPM 4.88.
+Stem + TD-MHSA + SlowFast
+
+# What is Stem？
+
+卷积、池化、下采样，to learn video representation.
+
+# What is temporal difference multi-head self-attention (TD-MHSA)?
+
+相邻帧减法、qkv加权求和，transformer的结构
+
+# What is SlowFast？
+
+slow，fast两条transformer结构
+
+
 
