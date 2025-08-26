@@ -191,57 +191,57 @@ export default hopeTheme({
     search: true,
 
     // 如果你需要 PWA。安装 @vuepress/plugin-pwa 并取消下方注释
-    pwa: {
-      update: "force",
-      favicon: "/favicon.ico",
-      cacheHTML: true,
-      cacheImage: true,
-      appendBase: true,
-      apple: {
-        icon: "/assets/icon/apple-touch-icon.png",
-        statusBarColor: "black",
-      },
-      manifest: {
-        icons: [
-          {
-            src: "/assets/icon/android-chrome-512x512.png",
-            sizes: "512x512",
-            purpose: "maskable",
-            type: "image/png",
-          },
-          {
-            src: "/assets/icon/android-chrome-192x192.png",
-            sizes: "192x192",
-            purpose: "maskable",
-            type: "image/png",
-          },
-          {
-            src: "/assets/icon/android-chrome-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-          {
-            src: "/assets/icon/android-chrome-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-        ],
-        shortcuts: [
-          {
-            name: "SIHONG's Blog",
-            short_name: "SIHONG's Blog",
-            url: "/",
-            icons: [
-              {
-                src: "/assets/icon/android-chrome-512x512.png",
-                sizes: "512x512",
-                purpose: "maskable",
-                type: "image/png",
-              },
-            ],
-          },
-        ],
-      },
-    },
+    // pwa: {
+    //   update: "force",
+    //   favicon: "/favicon.ico",
+    //   cacheHTML: true,
+    //   cacheImage: true,
+    //   appendBase: true,
+    //   apple: {
+    //     icon: "/assets/icon/apple-touch-icon.png",
+    //     statusBarColor: "black",
+    //   },
+    //   manifest: {
+    //     icons: [
+    //       {
+    //         src: "/assets/icon/android-chrome-512x512.png",
+    //         sizes: "512x512",
+    //         purpose: "maskable",
+    //         type: "image/png",
+    //       },
+    //       {
+    //         src: "/assets/icon/android-chrome-192x192.png",
+    //         sizes: "192x192",
+    //         purpose: "maskable",
+    //         type: "image/png",
+    //       },
+    //       {
+    //         src: "/assets/icon/android-chrome-512x512.png",
+    //         sizes: "512x512",
+    //         type: "image/png",
+    //       },
+    //       {
+    //         src: "/assets/icon/android-chrome-192x192.png",
+    //         sizes: "192x192",
+    //         type: "image/png",
+    //       },
+    //     ],
+    //     shortcuts: [
+    //       {
+    //         name: "SIHONG's Blog",
+    //         short_name: "SIHONG's Blog",
+    //         url: "/",
+    //         icons: [
+    //           {
+    //             src: "/assets/icon/android-chrome-512x512.png",
+    //             sizes: "512x512",
+    //             purpose: "maskable",
+    //             type: "image/png",
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // },
   },
 });
