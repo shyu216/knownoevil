@@ -1,5 +1,5 @@
 ---
-title: Wine
+title: Wine Table
 icon: wine-glass
 ---
 
