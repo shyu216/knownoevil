@@ -27,4 +27,4 @@ To avoid horizontal scrolling, enable `Editor: Word Wrap` in the editor settings
 
 Press `F11`. See also:
 
-<PDF src="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf">
+<PDF src="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf" />
