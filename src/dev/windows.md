@@ -24,3 +24,10 @@ sudo cp /var/cuda-repo-wsl-ubuntu-12-9-local/cuda-*-keyring.gpg /usr/share/keyri
 sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-9
 ```
+
+
+### How to custom a PDF size?
+
+设置，打印机和扫描仪，打印服务属性，创建新纸张规格。
+
+![print2pdf](/assets/images/print2pdf.png)

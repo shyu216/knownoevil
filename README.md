@@ -25,3 +25,10 @@ tag:
     - 
 ---
 ```
+
+
+Add image:
+
+```
+![](/assets/images/)
+```
