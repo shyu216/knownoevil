@@ -1,7 +1,7 @@
 import os
 import re
 
-def check_fontmatter_value(root, keyword='readme', value='article: false'):
+def check_frontmatter_value(root, keyword='readme', value='article: false'):
     for dirpath, _, filenames in os.walk(root):
         for fname in filenames:
             if keyword.lower() in fname.lower() and fname.lower().endswith('.md'):
@@ -20,4 +20,4 @@ def check_fontmatter_value(root, keyword='readme', value='article: false'):
                     print(f'⚠️ {fpath} 没有 YAML header')
 
 # 用法示例
-check_fontmatter_value('src', keyword='readme', value='article: false')
+check_frontmatter_value('src', keyword='readme', value='article: false')

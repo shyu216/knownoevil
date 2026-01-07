@@ -1,1 +1,15 @@
 // place your custom styles here
+
+// 自定义 Blog Hero 区域样式（对应官方 .vp-blog-hero）
+.vp-blog-hero {
+  // 非全屏模式的高度（官方默认 450px）
+  height: 150px; // 可自定义高度
+}
+
+// 调整 Hero 标题的间距
+.vp-blog-hero-title {   
+  font-size: 1.5rem !important; // 字体大小
+  font-style: italic !important;
+  text-transform: capitalize;
+  font-family: 'Courier New', monospace;
+}

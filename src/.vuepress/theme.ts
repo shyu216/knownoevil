@@ -243,4 +243,8 @@ export default hopeTheme({
       },
     },
   },
-});
+},
+{ 
+  // custom: true
+  // debug: true,
+},);
