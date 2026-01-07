@@ -181,7 +181,7 @@ export default hopeTheme({
       components: ["Badge", "VPCard", "PDF"],
     },
 
-    readingTime: false,
+    // readingTime: false,
 
     icon: {
       assets: "fontawesome-with-brands",
@@ -192,7 +192,6 @@ export default hopeTheme({
 
     // 如果你需要 PWA。安装 @vuepress/plugin-pwa 并取消下方注释
     pwa: {
-      update: "force",
       favicon: "/favicon.ico",
       cacheHTML: false,
       cacheImage: true,
