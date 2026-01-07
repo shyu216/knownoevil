@@ -1,6 +1,5 @@
 ---
-title: Peeping the Research
-shortTitle: Research
+title: 25 the Research
 icon: paint-brush
 star: true
 index: false
