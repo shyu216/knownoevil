@@ -33,23 +33,23 @@ export default hopeTheme({
     // intro: "/intro.html",
     medias: {
       // Baidu: "https://example.com",
-      // BiliBili: "https://example.com",
+      BiliBili: "https://space.bilibili.com/180340073",
       // Bitbucket: "https://example.com",
       // Dingding: "https://example.com",
       // Discord: "https://example.com",
       // Dribbble: "https://example.com",
-      // Email: "mailto:info@example.com",
+      // Email: "mailto:shyu0@qq.com",
       // Evernote: "https://example.com",
       // Facebook: "https://example.com",
       // Flipboard: "https://example.com",
       // Gitee: "https://example.com",
-      // GitHub: "https://example.com",
+      GitHub: "https://github.com/shyu216",
       // Gitlab: "https://example.com",
       // Gmail: "mailto:info@example.com",
       // Instagram: "https://example.com",
       // Lark: "https://example.com",
       // Lines: "https://example.com",
-      // Linkedin: "https://example.com",
+      Linkedin: "https://www.linkedin.com/in/sihong-yu-a35b30205/",
       // Pinterest: "https://example.com",
       // Pocket: "https://example.com",
       // QQ: "https://example.com",
@@ -165,7 +165,7 @@ export default hopeTheme({
   plugins: {
     blog: true,
 
-    git: true,
+    // git: true,
 
     // 启用之前需安装 @waline/client
     // 警告: 这是一个仅供演示的测试服务，在生产环境中请自行部署并使用自己的服务！
