@@ -1,6 +1,5 @@
 ---
 title: YOLO 的基本使用
-shortTitle: YOLO
 icon: mug-hot
 ---
 

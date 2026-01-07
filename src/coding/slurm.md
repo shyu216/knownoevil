@@ -1,6 +1,5 @@
 ---
 title: SLURM 的基本使用
-shortTitle: SLURM
 icon: mug-hot
 ---
 
