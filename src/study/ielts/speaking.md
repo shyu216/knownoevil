@@ -166,14 +166,56 @@ Yes, I think success is quite important for young people, **because** it gives t
 
 ---
 
-## 七、笨蛋专用练习法
+## 七、条件反射  
 
-1. 不背长稿，只背“开头句 + 连接词”。
-2. 用手机录音，按“1 题 1 分钟”随便说，重点练 **不停顿**。
-3. 每次只改一个小点：
-	- 今天只练 because/so；
-	- 明天只练过去–现在–未来；
-	- 后天只练感受词（happy, excited, nervous, stressed, relaxed...）。
+- 如果说着说着跑题了，想 pause 一下「拉回题目」：  
+  - *Anyway, to go back to the question, I think…*  
+  - *So, getting back to the topic, I’d say…*  
+  - *In short, about this question, I think…*  
 
-你只要把这几个“积木”练到条件反射，即使脑子一片空白，也能拼出还不错的答案。
+- 如果一下子蒙了 / 不太熟悉这个话题：  
+  - *I’m not really familiar with X, but from what I’ve heard, it’s quite similar to Y.*  
+  - *I’m not very familiar with this topic, but I guess…*  
+  - *I haven’t experienced this myself, but I think…*  
 
+- pause 和 em / ah / you know：  
+  - 短暂停顿（0.5–1 秒）+ 上面这些句子 **比** 一直说 *em, ah, you know* 好。  
+
+# 一些表达
+
+连接
+
+- I can't agree more
+- this concern is valid
+- from a parent‘s perspective
+
+句子
+
+- be cut out for 适合
+- be out for 一心要。。。
+- shift
+- be more into 更沉迷。。。
+- drives 让谁咋了 
+- allows 让谁能做什么
+- be conducive to 有益于
+- transform xx into xx
+- prefer xx over xx
+- barely have time to do sth 几乎没时间做什么
+
+内容
+
+- frustrated 沮丧
+- overwhelmed 不知所措
+- thrilled 兴奋
+- content 满足
+- stunning 令人惊叹
+- mouthwatering 馋人
+
+难的表述
+
+- The sunlight spills into the room： In the Southern Hemisphere, north facing houses catch more sunlight all year round because the sun stays in the northern sky most of the time. Being bathed in sunlight all day lifts my mood a lot. Especially for someone who is always in a hurry, this kind of natural warmth is really nourishing.
+- I had a lot of apprehension about this at first 我之前对这件事非常紧张 / 担心 / 不安
+
+- Running：My leg feels heavy/sour。 I can feel my heart working hard to pump blood all around my body. My breathing gets faster too. When running, there is often a gentle breeze that blows. It is so refreshing, like a soft touch on my face. After running, my body feels so alive. Doing aerobic exercises like running is a great way to boost our cariovascular system and make the heart stronger.
+  - After a day of sitting, I knew exercise was needed to wake up my body and make my mind sharp again.
+  - Some people might say that focusing too much on building big muscles in the gym can lead to an overemphasis on apperance over functionality. less flexible but more confident?
