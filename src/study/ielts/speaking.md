@@ -169,6 +169,7 @@ Yes, I think success is quite important for young people, **because** it gives t
 ## 七、条件反射  
 
 - 如果说着说着跑题了，想 pause 一下「拉回题目」：  
+  - I derailed, anyways
   - *Anyway, to go back to the question, I think…*  
   - *So, getting back to the topic, I’d say…*  
   - *In short, about this question, I think…*  
