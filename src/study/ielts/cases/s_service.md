@@ -1,5 +1,6 @@
 ---
 title: 描述一次服务
+icon: handshake
 ---
 
 I would like to talk about the time I got really good service at the Chinese restaurant last year right after my final exam week. I have been studying like crazy for hours every single day reviewing course notes and setting for all my written exams so I was totally exhausted, and also a little homesick being abroad I really needed to relax and have a taste of home cooked Chinese food so I opened Google map randomly picked a Chinese restaurant near my place, even though it's rating wasn't that high. I thought it was convenient and gave it a try

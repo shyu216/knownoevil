@@ -1,5 +1,6 @@
 ---
 title: 描述一技能、习惯、困难
+icon: lightbulb
 ---
 
 I would like to talk about the cooking skill I have learned by myself. As an international student, I live alone and far away from my parents, so I really need to cook by ourselves to survive. Actually, in high school, I just ate in the school canteen with my classmates, and at weekends, my parents cooked for me. So before university, I seldom cooked by myself and I was really bad at it. But I had to face this challenge when I went to university, so I tried to learn cooking through online videos. There are plenty of learning resources online that teach you how to cook simple dishes.

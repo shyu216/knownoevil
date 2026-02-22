@@ -1,5 +1,6 @@
 ---
 title: IELTS Writing
+icon: pen
 ---
 
 小作文一般1 2 3 3，即intro，overall，one hand，the other hand。抱着“给考官减负”的心态去写，把你的段落改到“爽”，应用“短快狠”
