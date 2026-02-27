@@ -128,3 +128,7 @@ https://www.google.com/about/careers/applications/dashboard
 https://account.amazon.jobs/en-US/applicant
 
 投了两个，softeware/network。
+
+### 投了一堆linkedin小厂，就不记录了吧，偷懒
+
+有家叫mindcode的startup，挂着量子计算工程师，招signal engineer，大概是训练llm的？好奇怪，不太懂。
