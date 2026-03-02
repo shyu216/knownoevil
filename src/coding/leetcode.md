@@ -65,3 +65,170 @@ icon: square-binary
 | 离线算法（Offline） | 预处理所有查询后统一处理         | 区间统计、莫队算法      | 收集所有查询 → 排序/分组 → 统一处理 |
 | 增量算法（Incremental） | 逐步添加数据动态维护结果         | 实时数据流处理          | 初始化结构 → 每次插入/更新 → 维护答案 |
 | 近似算法（Approximation） | 牺牲精度换取效率               | NP难问题工程解法        | 设计近似规则 → 迭代优化 → 得到可行解 |
+
+
+## Python 语法基础
+### 一、核心基础语法（算法题必用）
+#### 1. 列表/数组操作（最高频）
+算法题里80%的场景会用到列表，这些操作能让你少写循环：
+```python
+# 1. 列表推导式（替代多层循环，快速生成/过滤数据）
+# 例：生成1-10的平方，且只保留偶数平方
+squares = [x*x for x in range(1,11) if x%2 == 0]  # [4, 16, 36, 64, 100]
+
+# 2. 切片（快速取子数组、反转、步长取值）
+nums = [1,2,3,4,5]
+nums[::-1]          # 反转：[5,4,3,2,1]
+nums[1:4:2]         # 从索引1到3，步长2：[2,4]
+nums[:3]            # 前3个元素：[1,2,3]
+
+# 3. 快速初始化固定长度数组（动态规划/图论常用）
+dp = [0] * 100     # 长度100，初始值全0
+dp = [float('inf')] * n  # 初始化无穷大（最短路/DP常用）
+
+# 4. 列表的栈/队列操作（不用手动写栈/队列类）
+# 栈：append() + pop()（O(1)）
+stack = []
+stack.append(1); stack.pop()  # 弹出最后一个元素
+
+# 队列：append() + pop(0)（O(n)，小数据可用）
+# 大数据用deque（O(1)，必记！）
+from collections import deque
+q = deque([1,2,3])
+q.append(4); q.popleft()     # 弹出第一个元素：1
+```
+
+#### 2. 字典/集合（哈希表，O(1)查找，高频）
+算法题里用于「去重」「快速查找」「计数」：
+```python
+# 1. 字典默认值（避免KeyError，哈希表计数常用）
+from collections import defaultdict
+# 例：统计数组元素出现次数
+count = defaultdict(int)
+nums = [1,2,2,3]
+for num in nums:
+    count[num] += 1  # {1:1, 2:2, 3:1}
+
+# 2. 集合去重/判断存在（两数之和/滑动窗口常用）
+s = set([1,2,2,3])  # {1,2,3}
+if 2 in s:  # O(1)判断，比列表的in快100倍+
+
+# 3. 有序字典（LRU缓存/需要保留插入顺序的场景）
+from collections import OrderedDict
+od = OrderedDict()
+od[1] = 1; od[2] = 2
+od.popitem(last=False)  # 弹出第一个插入的元素
+```
+
+#### 3. 排序（自定义规则，高频考点）
+```python
+# 1. 基础排序（默认升序）
+nums = [3,1,2]; nums.sort()  # 原地排序：[1,2,3]
+sorted_nums = sorted(nums)   # 返回新列表，不修改原列表
+
+# 2. 自定义排序键（核心！中高难度题必用）
+# 例1：按元素的绝对值排序
+nums = [-3,1,-2]
+sorted(nums, key=lambda x: abs(x))  # [1,-2,-3]
+
+# 例2：按元组的第二个元素降序排序（贪心/区间题常用）
+intervals = [(1,3), (2,1), (3,2)]
+sorted(intervals, key=lambda x: -x[1])  # [(1,3), (3,2), (2,1)]
+
+# 例3：多条件排序（先按第一个元素升序，再按第二个降序）
+sorted(intervals, key=lambda x: (x[0], -x[1]))
+```
+
+### 二、中高难度算法题专属语法
+#### 1. 递归/回溯（DFS/排列组合/子集常用）
+```python
+# 递归函数+参数简化（避免全局变量）
+# 例：全排列问题（中难度高频）
+def permute(nums):
+    res = []
+    # 回溯函数（嵌套定义，直接访问外层的res/nums，不用传参）
+    def backtrack(path, used):
+        if len(path) == len(nums):
+            res.append(path.copy())  # 注意copy！否则会修改原列表
+            return
+        for i in range(len(nums)):
+            if not used[i]:
+                used[i] = True
+                path.append(nums[i])
+                backtrack(path, used)
+                # 回溯（撤销选择）
+                path.pop()
+                used[i] = False
+    backtrack([], [False]*len(nums))
+    return res
+
+permute([1,2,3])  # 输出所有排列：[[1,2,3],[1,3,2],...]
+```
+
+#### 2. 堆（优先队列，TopK/贪心/最短路径必用）
+```python
+import heapq
+
+# 1. 小顶堆（Python默认，取TopK大元素需转成负数）
+# 例：找数组中前K大的元素（高难度高频）
+def topKFrequent(nums, k):
+    count = defaultdict(int)
+    for num in nums:
+        count[num] += 1
+    # 堆中存（-次数，元素），用小顶堆模拟大顶堆
+    heap = []
+    for num, cnt in count.items():
+        heapq.heappush(heap, (-cnt, num))
+    # 取前k个
+    res = []
+    for _ in range(k):
+        res.append(heapq.heappop(heap)[1])
+    return res
+
+# 2. 堆的初始化（O(n)，比逐个push快）
+nums = [3,1,2]
+heapq.heapify(nums)  # 原地转成小顶堆：[1,3,2]
+```
+
+#### 3. 位运算（中高难度题技巧，比加减乘除快）
+```python
+# 常用位运算（异或/与/左移，二进制题常用）
+a, b = 5 (0b101), 3 (0b011)
+a ^ b  # 异或：0b110=6（相同为0，不同为1，两数之和/找唯一数常用）
+a & b  # 与：0b001=1（判断奇偶：x&1==1 是奇数）
+a << 1 # 左移1位：10（等价于*2，更快）
+a >> 1 # 右移1位：2（等价于//2，更快）
+
+# 例：不用加减乘除做加法（高难度面试题）
+def add(a, b):
+    while b != 0:
+        carry = (a & b) << 1  # 进位
+        a = a ^ b             # 无进位和
+        b = carry
+    return a
+```
+
+#### 4. 生成器（处理大数据/无限序列，避免内存溢出）
+```python
+# 例：生成斐波那契数列（大数据场景不用存所有数）
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a  # 生成器，每次返回一个值，不占内存
+        a, b = b, a+b
+
+# 用的时候迭代，只取需要的数
+for num in fib(10):
+    print(num)  # 0,1,1,2,3,...
+```
+
+### 三、避坑点（算法题常错）
+1. **列表引用问题**：递归/回溯中，`res.append(path)` 会存引用，必须用 `path.copy()` 或 `path[:]`；
+2. **整数溢出**：Python无溢出，但面试时要提「其他语言需要处理」；
+3. **时间复杂度**：`list.pop(0)` 是O(n)，大数据用 `deque.popleft()`（O(1)）；
+4. **默认参数陷阱**：递归函数默认参数不要用可变对象（如 `def dfs(path=[])`），会累积值。
+
+### 总结
+1. 中高难度算法题核心语法：**列表推导式+字典/集合+排序自定义key+堆+递归回溯+位运算**；
+2. 性能优化重点：用 `deque` 代替列表做队列，用 `heapq` 实现优先队列，用集合/字典做O(1)查找；
+3. 避坑关键：注意列表引用、默认参数、时间复杂度，优先用Python内置高效数据结构。
