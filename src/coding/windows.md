@@ -30,4 +30,4 @@ sudo apt-get -y install cuda-toolkit-12-9
 
 设置，打印机和扫描仪，打印服务属性，创建新纸张规格。
 
-![print2pdf](/assets/images/print2pdf.png)
+![print2pdf](./print2pdf.png)

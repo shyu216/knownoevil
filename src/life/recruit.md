@@ -190,4 +190,4 @@ Suggested steps:
 
 效果大概这样子，助我好运吧~
 
-![Workflow Snapshot](/assets/images/recruit_workflow.png)
+![Workflow Snapshot](./recruit_workflow.png)

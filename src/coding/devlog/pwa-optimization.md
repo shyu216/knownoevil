@@ -87,11 +87,11 @@ icon: mobile-alt
 
 #### Manifest配置
 
-![Manifest配置](/assets/images/manifest.png)
+![Manifest配置](./manifest.png)
 
 #### 移动设备Chrome安装提示
 
-![移动设备Chrome安装提示](/assets/images/mobile-chrome.png)
+![移动设备Chrome安装提示](./mobile-chrome.png)
 
 ### PWA配置字段说明
 

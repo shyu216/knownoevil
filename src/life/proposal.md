@@ -9,7 +9,8 @@ tag:
 ---
 
 - source: [https://students.unimelb.edu.au/academic-skills/resources/reading,-writing-and-referencing/referencing-and-research/research-proposals](https://students.unimelb.edu.au/academic-skills/resources/reading,-writing-and-referencing/referencing-and-research/research-proposals)
-- [MCS_proposal_suggestions](https://github.com/shyu216/knownoevil/blob/main/assets/MCS_proposal_suggestions.pdf)
+
+<PDF url="/life/MCS_proposal_suggestions.pdf" />
 
 
 ## What's it for?
