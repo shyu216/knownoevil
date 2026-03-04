@@ -10,7 +10,7 @@
     "docs:dev": "vuepress-vite dev src",
     "docs:update-package": "npx vp-update",
     "dev": "npm run docs:dev", 
-    "lint": "eslint . --ext .js,.ts,.vue"
+    "lint": "eslint src/**/*.{js,ts}"
   },
   "devDependencies": {
     "eslint": "^9.15.0",

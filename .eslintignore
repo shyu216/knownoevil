@@ -1,0 +1,11 @@
+# 构建产物
+dist/
+
+# 依赖包
+node_modules/
+
+# 临时文件
+.temp/
+
+# 缓存目录
+.cache/
