@@ -14,3 +14,4 @@ collapsible: false
 
 - [浏览器实时更新优化方案](./browser-update-optimization.md)
 - [GitHub Action Workflow 分析](./gh-action-analysis.md)
+- [PWA 配置分析与优化](./pwa-configuration-analysis.md)
