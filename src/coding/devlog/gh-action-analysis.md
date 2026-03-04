@@ -1,6 +1,6 @@
 ---
 title: GitHub Action Workflow 分析
-icon: github
+icon: sync-alt
 ---
 
 # GitHub Action Workflow 分析

@@ -208,9 +208,9 @@ export default hopeTheme({
         description: "A Place to Jot Down the Picked Up",
         theme_color: "#161616",
         background_color: "#ffffff",
-        start_url: "/",
+        start_url: "/knownoevil/",
         display: "standalone",
-        scope: "/",
+        scope: "/knownoevil/",
         orientation: "portrait",
         icons: [
           {

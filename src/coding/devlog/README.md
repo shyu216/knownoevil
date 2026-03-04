@@ -1,5 +1,5 @@
 ---
-title: TRAE的项目优化日记
+title: TRAE上的项目优化日记
 shortTitle: 项目优化
 icon: star
 index: false
@@ -8,11 +8,8 @@ article: false
 collapsible: false
 ---
 
+TRAE 是字节接入豆包的 AI IDE，是免费的，Dale打算在这里尝试 Vibe Coding。
+
 本目录记录了项目优化过程中的思考、方案和实现步骤。
 
-## 目录
-
-- [浏览器实时更新优化方案](./browser-update-optimization.md)
-- [GitHub Action Workflow 分析](./gh-action-analysis.md)
-- [PWA 配置分析与优化](./pwa-configuration-analysis.md)
-- [PWA 配置优化故事](./pwa-optimization-story.md)
+<Catalog hideHeading/>

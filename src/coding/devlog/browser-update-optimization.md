@@ -1,6 +1,6 @@
 ---
 title: 浏览器实时更新优化方案
-icon: refresh-cw
+icon: sync-alt
 ---
 
 # 浏览器实时更新优化方案
@@ -83,7 +83,7 @@ export default defineNavbarConfig([
   // 现有导航项...
   {
     text: "刷新",
-    icon: "refresh-cw",
+    icon: "sync-alt",
     link: "#",
     action: "checkUpdate",
   },
@@ -177,7 +177,7 @@ export default defineNavbarConfig([
   // 现有导航项...
   {
     text: "",
-    icon: "refresh-cw",
+    icon: "sync-alt",
     component: "RefreshButton",
   },
 ]);
