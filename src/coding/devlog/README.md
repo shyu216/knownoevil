@@ -13,3 +13,4 @@ collapsible: false
 ## 目录
 
 - [浏览器实时更新优化方案](./browser-update-optimization.md)
+- [GitHub Action Workflow 分析](./gh-action-analysis.md)
