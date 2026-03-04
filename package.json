@@ -13,7 +13,7 @@
     "lint": "eslint src/**/*.{js,ts}"
   },
   "devDependencies": {
-    "eslint": "^9.15.0",
+    "eslint": "^10.0.2",
     "eslint-plugin-vue": "^9.30.0"
   },
   "dependencies": {
