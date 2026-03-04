@@ -9,7 +9,12 @@
     "docs:clean-dev": "vuepress-vite dev src --clean-cache",
     "docs:dev": "vuepress-vite dev src",
     "docs:update-package": "npx vp-update",
-    "d": "npm run docs:dev"
+    "dev": "npm run docs:dev", 
+    "lint": "eslint . --ext .js,.ts,.vue"
+  },
+  "devDependencies": {
+    "eslint": "^9.15.0",
+    "eslint-plugin-vue": "^9.30.0"
   },
   "dependencies": {
     "@vuepress/plugin-pwa": "2.0.0-rc.121",
