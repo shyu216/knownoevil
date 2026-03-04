@@ -90,6 +90,8 @@ CI/CD 是持续集成（Continuous Integration）和持续部署（Continuous De
 
 ### 当前 CI/CD Workflow 结构
 
+![Workflow 结构](./workflow-error.png)
+
 当前的 CI/CD 工作流已优化为多 job 结构，包含以下四个主要阶段：
 
 #### 1. code-quality（代码质量检查）
