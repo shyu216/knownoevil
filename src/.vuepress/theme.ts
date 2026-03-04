@@ -196,11 +196,22 @@ export default hopeTheme({
       cacheHTML: false,
       cacheImage: true,
       appendBase: true,
+      themeColor: "#161616",
       apple: {
         icon: "/assets/icon/apple-touch-icon.png",
         statusBarColor: "black",
+        maskIcon: "/assets/icon/guide-maskable.png",
       },
       manifest: {
+        name: "Know No Evil",
+        short_name: "knownoevil",
+        description: "A Place to Jot Down the Picked Up",
+        theme_color: "#161616",
+        background_color: "#ffffff",
+        start_url: "/",
+        display: "standalone",
+        scope: "/",
+        orientation: "portrait",
         icons: [
           {
             src: "/assets/icon/android-chrome-512x512.png",
@@ -224,11 +235,21 @@ export default hopeTheme({
             sizes: "192x192",
             type: "image/png",
           },
+          {
+            src: "/assets/icon/favicon-32x32.png",
+            sizes: "32x32",
+            type: "image/png",
+          },
+          {
+            src: "/assets/icon/favicon-16x16.png",
+            sizes: "16x16",
+            type: "image/png",
+          },
         ],
         shortcuts: [
           {
-            name: "SIHONG's Blog",
-            short_name: "SIHONG's Blog",
+            name: "knownoevil",
+            short_name: "knownoevil",
             url: "/",
             icons: [
               {
