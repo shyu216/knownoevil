@@ -5,7 +5,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "docs:build": "vuepress-vite build src",
+    "docs:build": "vuepress-vite build src && python scripts/copy_pdfs.py",
     "docs:clean-dev": "vuepress-vite dev src --clean-cache",
     "docs:dev": "vuepress-vite dev src",
     "docs:update-package": "npx vp-update",
