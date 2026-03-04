@@ -10,7 +10,7 @@ tag:
 
 Shor算法是一种量子算法，用于分解大整数为素数的乘积。这是一个量子计算课程[助教](https://github.com/peiyong-addwater)发布的英文笔记的翻译版本。
 
-<PDF url="/assets/A%20Probably%20More%20Detailed%20Explanation%20of%20the%20Shor's%20Algorithm.pdf" />
+<PDF url="/coding/A%20Probably%20More%20Detailed%20Explanation%20of%20the%20Shor's%20Algorithm.pdf" />
 
 
 ## PKC 公钥密码学
