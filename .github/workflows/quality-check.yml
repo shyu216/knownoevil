@@ -1,4 +1,4 @@
-name: 部署文档
+name: Code Quality Check
 
 on:
   push:
