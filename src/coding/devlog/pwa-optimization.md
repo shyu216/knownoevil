@@ -83,6 +83,16 @@ icon: mobile-alt
 2. **Service Worker**：负责缓存资源、处理离线访问
 3. **响应式设计**：确保在不同设备上都能正常显示
 
+### 配置示例
+
+#### Manifest配置
+
+![Manifest配置](/assets/images/manifest.png)
+
+#### 移动设备Chrome安装提示
+
+![移动设备Chrome安装提示](/assets/images/mobile-chrome.png)
+
 ### PWA配置字段说明
 
 #### 基本信息
