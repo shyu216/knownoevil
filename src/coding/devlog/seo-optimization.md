@@ -1,9 +1,9 @@
 ---
-title: SEO 优化指南
+title: SEO 优化
 icon: search
 ---
 
-# SEO 优化指南
+# SEO 优化
 
 ## 什么是 SEO？
 

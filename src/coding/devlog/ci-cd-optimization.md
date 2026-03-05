@@ -1,9 +1,9 @@
 ---
-title: 当前CI/CD优化
+title: CI/CD优化
 icon: code-branch
 ---
 
-# 当前CI/CD优化
+# CI/CD优化
 
 ## 什么是 CI/CD？
 
