@@ -1,5 +1,5 @@
 ---
-title: A Quick Summary of Popular Algorithms in Leetcode
+title: Leetcode‘s Summary
 icon: square-binary
 ---
 
