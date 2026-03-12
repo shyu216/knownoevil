@@ -1,5 +1,5 @@
 ---
-title: 数字人文
+title: 数字人文项目构想
 icon: paintbrush
 ---
 

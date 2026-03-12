@@ -1,5 +1,5 @@
 ---
-title: Databricks 与 Snowflake
+title: Databricks 与 Snowflake 项目构想
 icon: snowflake
 ---
 

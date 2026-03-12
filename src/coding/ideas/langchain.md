@@ -1,5 +1,5 @@
 ---
-title: LangChain 入门与项目构想
+title: LangChain 项目构想
 icon: link
 ---
 
