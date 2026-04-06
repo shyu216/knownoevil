@@ -1,6 +1,6 @@
 ---
 title: JavaScript
-icon: javascript
+icon: brands:js
 ---
 
 

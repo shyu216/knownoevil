@@ -1,6 +1,6 @@
 ---
 title: Go 语言
-icon: golang
+icon: brands:golang
 ---
 
 

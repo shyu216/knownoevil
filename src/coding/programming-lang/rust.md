@@ -1,6 +1,6 @@
 ---
 title: Rust
-icon: rust
+icon: brands:rust
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: Java
-icon: java
+icon: brands:java
 ---
 
 

@@ -1,6 +1,6 @@
 ---
-title: Python 的基本使用
-icon: python
+title: Python
+icon: brands:python
 ---
 
 

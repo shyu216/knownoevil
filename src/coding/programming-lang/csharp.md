@@ -1,5 +1,5 @@
 ---
-title: C# 的基本使用
+title: C#
 icon: mug-hot
 ---
 
