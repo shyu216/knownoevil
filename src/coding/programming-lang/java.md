@@ -27,3 +27,122 @@ public class Main {
 ```
 
 运行只需要 `javac Main.java` 编译，然后 `java Main` 运行。
+
+### 基本操作
+
+[跟打代码](https://www.bilibili.com/video/BV1Ee411H7mT)
+
+```java
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args){
+        System.out.println(10 + 3);
+        System.out.println(10 - 3);
+        System.out.println(10 * 3);
+        System.out.println(10 / 3);
+        System.out.println(10 % 3);
+        System.out.println(10.0 / 3);
+        System.out.println((double) 10 / 3); 
+
+        int num = 10; // 32bit
+        double num1 = 10.2; // 64
+        double num2;
+        num2 = 11.3;
+
+        finial int num3 = 10;
+
+        byte num4 = 100; // 8
+        short num5 = 1000; // 16
+        long num6 = 1000L; // 64
+
+        float num7 = 12.6F; // 32
+
+        char A = 'A';
+        boolean isTrue = true; // > < = && || !
+
+        System.out.println(isTrue ? "Is True" : "Not real");
+
+        if (isTrue && true){
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+        for (int i=0; i<10; i++){
+            System.out.println(i);
+        } // while; do-while
+
+        int[] arr = new int[]{1,2,3};
+        System.out.println(Arrays,toString(arr));
+        System.out.println(arr[1]);
+        System.out.println(arr.length());
+
+        String str = "abcdefg" + "-" + "hijklmn";
+        System.out.println(str.length());
+        System.out.println(str.indexOf('d'));
+        System.out.println(str.replace('def', 'xyz'));
+        System.out.println(String.join("~uvw~", str.split("-")));
+    }
+}
+```
+
+
+### 类
+
+```java
+public class Main {
+    public static void main(String[] args){
+        Animal ani = new Animal("dale", 18); // 实例
+        System.out.println(ani.getName());
+        ani.setName("marco");
+        System.out.println(ani.getName());
+    }
+}
+
+// 封装
+private class Animal {
+    // 属性及默认值
+    private String name = "anoynomous";
+    private int age = 10000;
+
+    // 构造方法
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String setName(String newName) {
+        this.name = newName;
+    }
+
+    public void greet() {
+        System.out.println("Hi");
+    }
+}
+
+// 继承
+class Dog extends Animal {
+    private String color;
+    public Dog(String name, int age, String color) {
+        // 继承
+        super(name, age);
+        this.color = color;
+    }
+
+    // 多态1：重写
+    @Override
+    public void greet() {
+        System.out.println("WooWooWoo");
+    }
+
+    // 多态2：重载
+    public void greet(String owner) {
+        System.out.println("WooWooWoo " + owner);
+    }
+}
+```

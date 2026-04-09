@@ -32,20 +32,71 @@ func main() {
 
 ### 并发编程
 
-Go 语言的并发模型基于 CSP 理论（通信顺序进程），核心由两个概念组成：goroutine 和 channel。goroutine 是 Go 语言中的轻量级线程，负责执行具体的任务；channel 则是 goroutine 之间的通信机制和同步工具。这两者配合起来，goroutine 负责"干活"，channel 负责"传话"，让并发编程变得简单又安全。
+包裹并行逻辑用`goroutine`。获取结果或者传递数据用`channel`，例如获取word count结果，有几个goroutine就`<-`几次。传递控制内容用`context`，例如设计锁，停止时机。
 
-假设我们需要计算一个大数组中每个元素的平方，然后将结果汇总。使用并发的话，我们可以将数组分成几个部分，每个部分由一个 goroutine 处理，最后再将结果合并。
+一个简单的逻辑大概长这样：
+
 
 ```go
 package main
 
-import "fmt"
+import (
+	"context"
+	"fmt"
+	"strings"
+	"time"
+)
 
-func calculateSquares(numbers []int, result chan<- int) {
-    sum := 0
-    for _, num := range numbers {
-        sum += num * num
-    }
-    result <- sum
+// 模拟单词统计任务
+func wordCount(ctx context.Context, text string, resultChan chan<- int) {
+	// 1. 监听 ctx 取消信号（控制退出）
+	select {
+	case <-ctx.Done():
+		fmt.Println("任务被取消")
+		return
+	default:
+	}
+
+	// 2. 业务逻辑
+	words := strings.Fields(text)
+	count := len(words)
+
+	// 3. 模拟耗时
+	time.Sleep(100 * time.Millisecond)
+
+	// 4. 结果通过 channel 发出去
+	resultChan <- count
+}
+
+func main() {
+	// 1. 创建 context：控制所有 goroutine 停止
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	// 2. 创建 channel：接收多个 goroutine 结果
+	resultChan := make(chan int)
+
+	// 3. 要处理的文本
+	texts := []string{
+		"hello go world",
+		"goroutine channel context",
+		"go concurrency is awesome",
+	}
+
+	// 4. 启动 N 个 goroutine
+	for i, t := range texts {
+		go wordCount(ctx, t, resultChan)
+		fmt.Printf("启动 goroutine %d\n", i+1)
+	}
+
+	// 5. 有 N 个 goroutine，就从 channel 收 N 次结果
+	total := 0
+	for i := 0; i < len(texts); i++ {
+		count := <-resultChan
+		total += count
+		fmt.Printf("收到结果：%d，累计：%d\n", count, total)
+	}
+
+	fmt.Printf("最终总单词数：%d\n", total)
 }
 ```
