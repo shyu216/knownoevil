@@ -1,4 +1,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://shyu216.github.io/knownoevil/knownoevil/sitemap.xml
+Sitemap: https://shyu216.dpdns.org/knownoevil/knownoevil/sitemap.xml
