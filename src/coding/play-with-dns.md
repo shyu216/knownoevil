@@ -1,5 +1,5 @@
 ---
-title: 捣鼓捣鼓域名那些事
+title: 捣鼓域名那些事
 icon: file-code
 ---
 
@@ -21,7 +21,7 @@ icon: file-code
 
 不过目前我的东西都在github了，都是我io域名的不同path，配置起来都更方便。workflow也可以写得更灵活。虽然只有静态后端，但也都用。有空再捣鼓捣鼓动态后端。
 
-### 怎么把shyu216.github.io搬到shyu216.dpdns.org
+### 怎么把shyu216 github io搬到shyu216 dpdns org
 
 cloudflare是一个综合性的网络服务商，它把 DNS（domain name system，域名系统，互联网的GPS） 解析、CDN（content delivery network，内容分发网络，把服务器内容提前放到世界各地的仓库） 加速和网络安全防护（防ddos，即distributed denail-of-service分布式拒绝服务攻击，有组织的网络“交通堵塞”；阻止服务器ip直连）等功能整合到了一起。
 
@@ -38,24 +38,30 @@ github也能认出这个域名对应是哪个仓库，返回正确的数据。
 
 ### 看看日志
 
-现在我们打开www.shyu216.dpdns.org，可以看见它返回了301，告诉我们东西在shyu216.dpdns.org。
 
-![www.shyu216.dpdns.org](捣鼓域名/www.shyu216.dpdns.org.png)
+
+![屏幕截图 2026-04-14 171026](play-with-dns/屏幕截图2026-04-14171026.png)
+
+现在我们打开www.shyu216.dpdns.org，可以看见它返回了301，告诉我们东西在shyu216.dpdns.org。没有github相关内容。
+
+![www.shyu216.dpdns.org](play-with-dns/www.shyu216.dpdns.org.png)
 
 接着浏览器有了第二个req，即shyu216.dpdns.org。res里面就是我们html内容了。看到我们服务器是cloudflare，而不是AmazonS3这类服务器，所以这就是cdn起作用了。
 
-![第二个fetch](捣鼓域名/第二个fetch.png)
+![第二个fetch](play-with-dns/第二个fetch.png)
 
-### 测一测shyu216.github.io和shyu216.dpdns.org
+
+
+### 测一测shyu216 github io和shyu216 dpdns org
 
 可以看到它们俩的返回ip不一样了，然后org的失败也更少了。
 
-::: details shyu216.github.io
-![io](捣鼓域名/www.itdog.cn_http_io.png)
+::: details shyu216 github io
+![io](play-with-dns/www.itdog.cn_http_io.png)
 :::
 
-::: details shyu216.dpdns.org
-![org](捣鼓域名/www.itdog.cn_http_org.png)
+::: details shyu216 dpdns org
+![org](play-with-dns/www.itdog.cn_http_org.png)
 :::
 
 
