@@ -61,3 +61,15 @@ pre[class*="language-"] {
   border: 1px solid var(--vp-c-border);
   border-radius: 14px;
 }
+
+.timeline-wrapper {
+  --dot-color: var(--vp-c-bg-elv);
+  --dot-bar-color: var(--vp-c-border-hard);
+  --dot-border-color: var(--vp-c-accent-bg);
+
+  [data-theme="dark"] & {
+    --dot-color: var(--vp-c-bg-elv);
+    --dot-bar-color: var(--vp-c-border-hard);
+    --dot-border-color: var(--vp-c-accent-bg);
+  }
+}
