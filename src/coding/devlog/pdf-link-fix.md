@@ -1,13 +1,6 @@
 ---
 title: PDF链接修复
-shortTitle: PDF链接修复
-date: 2026-03-04
 icon: file-pdf
-star: false
-tag:
-  - Development
-  - VuePress
-  - GitHub Actions
 ---
 
 ## 问题描述

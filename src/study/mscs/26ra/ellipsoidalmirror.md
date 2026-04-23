@@ -3,9 +3,13 @@ title: Light field display with ellipsoidal mirror array and single projector
 icon: note-sticky
 ---
 
+2019
+
 https://opg.optica.org/oe/fulltext.cfm?uri=oe-27-15-21999
 
-单投影仪低成本3d显示。用椭球面布置镜子阵列反射光，并用特殊散射膜过滤，模拟多投影仪效果。
+一种单投影仪，低成本的3d显示。
+
+用椭球面布置镜子阵列反射光，并用特殊散射膜过滤，模拟多投影仪效果。
 
 这是一个水平视差显示器，需要左右位置不一样，接收的光也要不一样，因为人眼是左右的。
 水平不散（被滤掉不同方向来的，1度），垂直散（60度）。就像手机防窥膜。
