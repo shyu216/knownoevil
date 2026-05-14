@@ -15,7 +15,7 @@ projects:
   - icon: user
     name: My Page
     desc: Dale's cyber profile
-    link: https://shyu216.github.io/YeluYelu/
+    link: https://shyu216.github.io
   - icon: code
     name: My Wakatime
     desc: The 10,000 hours coding goal
