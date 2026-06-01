@@ -151,3 +151,43 @@ https://www.youtube.com/watch?v=LTccZzfZyxA&list=PL7xXqJFxvYvjkxnJUt75Xr7ScUTULx
   - **纯光场**：不需要任何眼镜或眼球追踪，直接看到具有深度和视差的立体图像。
   - **波导（Waveguide）**：用于 AR 眼镜的光学元件，将微显示器图像通过全反射传导至人眼前方，实现虚实叠加。
   - **4K 全息 HLD 显示屏**：采用 Hololuminescent Display 技术，无需眼镜即可呈现深度达数英尺的裸眼 3D 全息画面，曾获 SID 年度最佳显示器奖。
+
+
+---
+
+## 目前在卖的
+
+Samsung Odyssey 3D G90XF S27FG900X Monitor
+Spec: face tracking + binocular scene, it's said that the sceen is from TCL
+Link: https://www.samsung.com/au/monitors/gaming/odyssey-3d-g90xf-27-inch-165hz-uhd-ls27fg900xexxy
+
+Samsung 65" R95H Micro RGB 4K Smart AI TV [2026]
+Spec: dot ≤ 100 µm, marketing miniLED as micro RGB, not real micro LED
+Link: https://www.jbhifi.com.au/products/samsung-65-r95h-micro-rgb-4k-smart-ai-tv-2026
+
+Apple Studio Display XDR
+Spec: miniLED, 5120x2880, 2000nit, 120Hz
+Link: https://www.apple.com/au/studio-display-xdr/
+
+Seeya 1.3 inch Micro-OLEDoS SY130LJM01
+Spec: 3552×3552, 4000nit, 90Hz
+Link: 
+- 官网: https://www.seeya-tech.com/html/products/4141.html
+- 淘宝: https://e.tb.cn/h.R5vJNBJus33TV5K?tk=Pd7s5CdyrPG
+- 1688: https://www.alibaba.com/product-detail/1-3-Inch-SY130LJM01-3552-3552_1601020809238.html
+
+Sony 0.68 inch Micro-OLEDoS ECX343EN
+Spec: 1920×1200, 5000nit, 120Hz
+Link: https://www.panoxdisplay.com/micro-display/068micro-oled5000brightness.html
+
+Samsung eMagin WUXGA
+Spec: prototype, saying their dPd technology can do 28000nit(2025 SID display week)
+Link: 
+- https://emagin.com/products/wuxga/
+- https://www.youtube.com/watch?v=2CimiRAvj3U
+
+Directional Pixel Technology, Realfiction
+Spec: 80x80, 4 people/8 eyes(2026 SID display week)
+Link: 
+- https://www.realfiction.com/what-is-dpt
+- https://www.youtube.com/watch?v=LTccZzfZyxA

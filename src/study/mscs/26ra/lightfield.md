@@ -35,3 +35,7 @@ light field和lumigraph是一个东西，两个课题组同时发现的。一个
 人眼感知的是spectral power distribution谱功率密度，光在不同波长的分布。颜色是感知。杆状细胞感知光强，锥型细胞感知颜色。不同人区别很大。同色异谱。
 
 CIE颜色空间，luminance亮度，chromaticity色度xyz，x+y+z=1。
+
+前庭眼动反射，7-10ms，戴vr刷新率不快就会晕。理想要120Hz。
+
+40 PPD（Pixels Per Degree，像素每度）， “实用清晰”头显密度，对应视力4.85水平，需要7200*7200像素（180度下）。
