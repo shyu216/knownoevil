@@ -1,6 +1,6 @@
 ---
-title: 3D Display
-icon: desktop
+title: 6DoF Tracking
+icon: circle-nodes
 star: true
 index: false
 timeline: false
@@ -10,6 +10,6 @@ category:
   - UniMelb
 ---
 
-Explore the glasses-less 3D display.
+Explore the 3D object pose estimation and tracking.
 
 <Catalog hideHeading/>
