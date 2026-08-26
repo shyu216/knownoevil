@@ -233,21 +233,36 @@ GT 误差通过比较 GT 与逐帧 PnP 的差异来估计（这是 GT 误差的�
 
 ### 5.1 2607091225
 
-| 有效 PnP 位姿 | 牙齿-相机距离: GT vs PnP | PnP 误差 vs GT |
-|:---:|:---:|:---:|
-| ![valid pnp](plots/2607091225/2607091225_01_valid_pnp.png) | ![distance](plots/2607091225/2607091225_02_tooth_distance.png) | ![error](plots/2607091225/2607091225_03_pnp_gt_error.png) |
+<table>
+  <tr><td align="center"><b>有效 PnP 位姿</b></td></tr>
+  <tr><td align="center"><img src="plots/2607091225/2607091225_01_valid_pnp.png" width="600"></td></tr>
+  <tr><td align="center"><b>牙齿-相机距离: GT vs PnP</b></td></tr>
+  <tr><td align="center"><img src="plots/2607091225/2607091225_02_tooth_distance.png" width="600"></td></tr>
+  <tr><td align="center"><b>PnP 误差 vs GT</b></td></tr>
+  <tr><td align="center"><img src="plots/2607091225/2607091225_03_pnp_gt_error.png" width="600"></td></tr>
+</table>
 
 ### 5.2 2607101520
 
-| 有效 PnP 位姿 | 牙齿-相机距离: GT vs PnP | PnP 误差 vs GT |
-|:---:|:---:|:---:|
-| ![valid pnp](plots/2607101520/2607101520_01_valid_pnp.png) | ![distance](plots/2607101520/2607101520_02_tooth_distance.png) | ![error](plots/2607101520/2607101520_03_pnp_gt_error.png) |
+<table>
+  <tr><td align="center"><b>有效 PnP 位姿</b></td></tr>
+  <tr><td align="center"><img src="plots/2607101520/2607101520_01_valid_pnp.png" width="600"></td></tr>
+  <tr><td align="center"><b>牙齿-相机距离: GT vs PnP</b></td></tr>
+  <tr><td align="center"><img src="plots/2607101520/2607101520_02_tooth_distance.png" width="600"></td></tr>
+  <tr><td align="center"><b>PnP 误差 vs GT</b></td></tr>
+  <tr><td align="center"><img src="plots/2607101520/2607101520_03_pnp_gt_error.png" width="600"></td></tr>
+</table>
 
 ### 5.3 2607311737
 
-| 有效 PnP 位姿 | 牙齿-相机距离: GT vs PnP | PnP 误差 vs GT |
-|:---:|:---:|:---:|
-| ![valid pnp](plots/2607311737/2607311737_01_valid_pnp.png) | ![distance](plots/2607311737/2607311737_02_tooth_distance.png) | ![error](plots/2607311737/2607311737_03_pnp_gt_error.png) |
+<table>
+  <tr><td align="center"><b>有效 PnP 位姿</b></td></tr>
+  <tr><td align="center"><img src="plots/2607311737/2607311737_01_valid_pnp.png" width="600"></td></tr>
+  <tr><td align="center"><b>牙齿-相机距离: GT vs PnP</b></td></tr>
+  <tr><td align="center"><img src="plots/2607311737/2607311737_02_tooth_distance.png" width="600"></td></tr>
+  <tr><td align="center"><b>PnP 误差 vs GT</b></td></tr>
+  <tr><td align="center"><img src="plots/2607311737/2607311737_03_pnp_gt_error.png" width="600"></td></tr>
+</table>
 
 ## 6. 总结步骤
 
