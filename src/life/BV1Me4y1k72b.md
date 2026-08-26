@@ -1,5 +1,5 @@
 ---
-title: "【硬核科普】一个视频带你了解LCD OLED QLED mini-LED等显示技术的区别"
+title: "LCD OLED QLED mini-LED等显示技术的区别"
 icon: note-sticky
 ---
 

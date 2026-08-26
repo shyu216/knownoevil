@@ -1,5 +1,5 @@
 ---
-title: 三云对比：AWS / Azure / GCP
+title: AWS / Azure / GCP
 icon: cloud
 ---
 

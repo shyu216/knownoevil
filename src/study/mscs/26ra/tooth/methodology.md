@@ -1,5 +1,5 @@
 ---
-title: 图像到网格配准方法（Image-to-Mesh Registration）
+title: 图像到模型配准方法（Image-to-Mesh Registration）
 icon: camera
 tag:
   - XFeat
@@ -8,11 +8,11 @@ tag:
   - HoloLens
 ---
 
-一种单帧**图像到网格配准（image-to-mesh registration）**方法：将一张真实采集图像 $I$ 与预渲染的参考视图库匹配，恢复三维场景坐标系下的相机位姿 $T_{wc}$，再把目标网格（mesh）$\mathcal{M}$ 重新投影（re-project）回原始图像做视觉合理性检查。
+一种单帧**图像到模型配准（image-to-mesh registration）**方法：将一张真实采集图像 $I$ 与预渲染的参考视图库匹配，恢复三维场景坐标系下的相机位姿 $T_{wc}$，再把目标模型（mesh）$\mathcal{M}$ 重新投影（re-project）回原始图像做视觉合理性检查。
 
 > **参考代码：** `exp_script/03_full_pipeline.py` → `main()` (L755) · `exp_script/helper_ai.py` → `strategy_allview_allscale()` (L1126)
 
-整个流程为：(1) 采样参考视图 + 预提取特征；(2) 基于 XFeat（轻量特征提取网络 / accelerated features）+ LightGlue（轻量级图匹配器 / lightweight matcher）的跨视图稀疏匹配；(3) 由深度图构建 2D–3D 对应点，并用 PoseLib（位姿求解库 / pose-solver library）做鲁棒 PnP（透视n点法 / Perspective-n-Point）求解；(4) 对候选视图打分并选取最佳位姿；(5) 对网格做光线投射（ray-cast）并合成叠加到图像上。
+整个流程为：(1) 采样参考视图 + 预提取特征；(2) 基于 XFeat（轻量特征提取网络 / accelerated features）+ LightGlue（轻量级图匹配器 / lightweight matcher）的跨视图稀疏匹配；(3) 由深度图构建 2D–3D 对应点，并用 PoseLib（位姿求解库 / pose-solver library）做鲁棒 PnP（透视n点法 / Perspective-n-Point）求解；(4) 对候选视图打分并选取最佳位姿；(5) 对模型做光线投射（ray-cast）并合成叠加到图像上。
 
 > **参考代码：** `exp_script/03_full_pipeline.py` → `main()` loop (L866–L1143) · `exp_script/helper_ai.py` → `match_one_view()` (L1041)
 
@@ -132,7 +132,7 @@ $$
 T_{cw}=\begin{bmatrix}R^*&\mathbf{t}^*\\\mathbf{0}^\top&1\end{bmatrix}
 $$
 
-取逆得到相机→世界（用于网格渲染）：
+取逆得到相机→世界（用于模型渲染）：
 
 $$
 T_{wc}=T_{cw}^{-1}=\begin{bmatrix}{R^*}^\top&-{R^*}^\top\mathbf{t}^*\\\mathbf{0}^\top&1\end{bmatrix}
@@ -166,7 +166,7 @@ $$
 
 ---
 
-## 6. 网格渲染与合成（Mesh Rendering & Compositing）
+## 6. 模型渲染与合成（Mesh Rendering & Compositing）
 
 ### 6.1 内参缩放对齐（Intrinsics scale alignment）
 
@@ -188,7 +188,7 @@ $$
 E=T_{wc}^{*-1}=\begin{bmatrix}R^\top&-R^\top\mathbf{c}\\\mathbf{0}^\top&1\end{bmatrix},\qquad \mathbf{c}=T_{wc}^*[:3,3]
 $$
 
-对每个像素 $(u,v)$ 投射针孔光线，与网格 $\mathcal{M}$ 求交，取命中的三角形索引 $f$ 与重心坐标权重 $(w_0,w_1,w_2)$。按顶点色重心插值上色：
+对每个像素 $(u,v)$ 投射针孔光线，与模型 $\mathcal{M}$ 求交，取命中的三角形索引 $f$ 与重心坐标权重 $(w_0,w_1,w_2)$。按顶点色重心插值上色：
 
 $$
 c(u,v)=w_0\,c_{f,0}+w_1\,c_{f,1}+w_2\,c_{f,2},\qquad w_0+w_1+w_2=1
