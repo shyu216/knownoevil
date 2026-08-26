@@ -70,6 +70,7 @@ icon: file
   用轻量网络预测边界概率图代替手工颜色直方图，假设学习器扛遮挡、优化器保精度，两边拼起来取长补短。
   - *Deep Active Contours for Real-Time 6-DoF Object Tracking*, 2023
 
-
+- 加了uv材质图
+  - Uni6D: A Unified CNN Framework without Projection Breakdown for 6D Pose Estimation
 
 
