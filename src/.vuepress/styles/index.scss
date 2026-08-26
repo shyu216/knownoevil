@@ -40,12 +40,18 @@ a {
   }
 }
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('/CraftyGirls-Regular.ttf') format('ttf');
+  font-display: swap;
+}
+
 .vp-blog-hero-title {
   font-size: 1.6rem !important;
   font-style: italic !important;
   letter-spacing: 0.02em;
   text-transform: none;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: 'MyFont', system-ui, -apple-system, sans-serif;;
 }
 
 .vp-blog-hero-description,
