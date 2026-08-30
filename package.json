@@ -19,7 +19,7 @@
   "dependencies": {
     "@vuepress/plugin-pwa": "2.0.0-rc.121",
     "@vuepress/plugin-search": "2.0.0-rc.121",
-    "katex": "^0.16.22",
+    "katex": "^0.16.38",
     "mathjax-full": "^3.2.2",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "sass-embedded": "^1.97.1",
