@@ -22,7 +22,7 @@ projects:
     link: ./coding/wakatime
   - icon: kiwi-bird
     name: 夜鹭页录
-    desc: 夜师傅图鉴github用户端
+    desc: 夜师傅图鉴github客户端
     link: https://shyu216.dpdns.org/YeluYelu/
   - icon: book-open
     name: 唐宋诗词
@@ -30,6 +30,6 @@ projects:
     link: https://shyu216.dpdns.org/chinese-poetry-data-mining/
   - icon: gamepad
     name: COC城墙编辑器
-    desc: Zero-dependency, single-file Clash of Clans wall layout editor
+    desc: Clash of Clans wall layout editor
     link: https://shyu216.dpdns.org/coc-wall-crafter/
 ---
