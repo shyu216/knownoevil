@@ -13,19 +13,23 @@ bgImageStyle:
   filter: "saturate(0.9) contrast(0.5) brightness(0.9)"
 projects:
   - icon: user
-    name: My Page
+    name: Yu Page
     desc: Dale's cyber profile
-    link: https://shyu216.github.io
+    link: https://shyu216.dpdns.org
   - icon: code
-    name: My Wakatime
-    desc: The 10,000 hours coding goal
+    name: Yu Wakatime
+    desc: Dale's 10,000 hours coding goal
     link: ./coding/wakatime
   - icon: kiwi-bird
-    name: YeluYelu
-    desc: 夜鹭页录，一个常见鸟类图鉴的github用户端
-    link: https://shyu216.github.io/YeluYelu/
+    name: 夜鹭页录
+    desc: 夜师傅图鉴github用户端
+    link: https://shyu216.dpdns.org/YeluYelu/
   - icon: book-open
-    name: Chinese Poetry Data Mining
-    desc: 300k+唐宋诗词的数据可视化
-    link: https://shyu216.github.io/chinese-poetry-data-mining/
+    name: 唐宋诗词
+    desc: 300k+词条分块静态网站
+    link: https://shyu216.dpdns.org/chinese-poetry-data-mining/
+  - icon: gamepad
+    name: COC城墙编辑器
+    desc: Zero-dependency, single-file Clash of Clans wall layout editor
+    link: https://shyu216.dpdns.org/coc-wall-crafter/
 ---
