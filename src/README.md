@@ -16,10 +16,10 @@ projects:
     name: Yu Page
     desc: Dale's cyber profile
     link: https://shyu216.dpdns.org
-  - icon: code
-    name: Yu Wakatime
-    desc: Dale's 10,000 hours coding goal
-    link: ./coding/wakatime
+  # - icon: code
+  #   name: Yu Wakatime
+  #   desc: Dale's 10,000 hours coding goal
+  #   link: ./coding/wakatime
   - icon: kiwi-bird
     name: 夜鹭页录
     desc: 夜师傅图鉴github客户端
