@@ -3,7 +3,7 @@ title: "XFeat: Accelerated Features for Lightweight Image Matching"
 icon: file
 ---
 
-<PDF src="https://arxiv.org/pdf/2404.19174" />
+- https://arxiv.org/pdf/2404.19174
 
 ::: details Chinese Translation
 
