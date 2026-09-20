@@ -51,65 +51,65 @@ LightGlue 将这些创新中的一些适应于 2D 特征匹配，并在效率和
 
 ## 3. 快速特征匹配 (Fast feature matching)
 
-**问题表述 (Problem formulation)：** LightGlue 遵循 SuperGlue，预测从图像 \(A\) 和 \(B\) 中提取的两组局部特征之间的部分分配 (partial assignment)。每个局部特征 \(i\) 由一个 2D 点位置 \(\mathbf{p}_i \coloneqq (x, y)_i \in [0, 1]^2\)（由图像尺寸归一化）和一个视觉描述符 \(\mathbf{d}_i \in \mathbb{R}^d\) 组成。图像 \(A\) 和 \(B\) 分别有 \(M\) 和 \(N\) 个局部特征，索引为 \(\mathcal{A} \coloneqq \{1, \ldots , M\}\) 和 \(\mathcal{B} \coloneqq \{1, \ldots , N\}\)。
+**问题表述 (Problem formulation)：** LightGlue 遵循 SuperGlue，预测从图像 $A$ 和 $B$ 中提取的两组局部特征之间的部分分配 (partial assignment)。每个局部特征 $i$ 由一个 2D 点位置 $\mathbf{p}_i \coloneqq (x, y)_i \in [0, 1]^2$（由图像尺寸归一化）和一个视觉描述符 $\mathbf{d}_i \in \mathbb{R}^d$ 组成。图像 $A$ 和 $B$ 分别有 $M$ 和 $N$ 个局部特征，索引为 $\mathcal{A} \coloneqq \{1, \ldots , M\}$ 和 $\mathcal{B} \coloneqq \{1, \ldots , N\}$。
 
-我们设计 LightGlue 输出一组对应关系 \(\mathcal{M} = \{(i,j)\} \subset \mathcal{A} \times \mathcal{B}\)。每个点至少可匹配一次，因为它源于一个唯一的 3D 点，并且由于遮挡或不可重复性，一些关键点是不可匹配的。如前人工作，我们因此寻求局部特征之间的软部分分配矩阵 (soft partial assignment matrix) \(\mathbf{P} \in [0, 1]^{M \times N}\)，从中我们可以提取对应关系。
+我们设计 LightGlue 输出一组对应关系 $\mathcal{M} = \{(i,j)\} \subset \mathcal{A} \times \mathcal{B}$。每个点至少可匹配一次，因为它源于一个唯一的 3D 点，并且由于遮挡或不可重复性，一些关键点是不可匹配的。如前人工作，我们因此寻求局部特征之间的软部分分配矩阵 (soft partial assignment matrix) $\mathbf{P} \in [0, 1]^{M \times N}$，从中我们可以提取对应关系。
 
-**概述 - 图 3：** LightGlue 由 \(L\) 个相同的层 (layers) 堆叠而成，这些层联合处理两个集合。每一层由自注意力 (self-attention) 和交叉注意力 (cross-attention) 单元组成，用于更新每个点的表示。然后，分类器在每一层决定是否停止推理，从而避免不必要的计算。最后，一个轻量级头 (lightweight head) 从表示集合中计算部分分配。
+**概述 - 图 3：** LightGlue 由 $L$ 个相同的层 (layers) 堆叠而成，这些层联合处理两个集合。每一层由自注意力 (self-attention) 和交叉注意力 (cross-attention) 单元组成，用于更新每个点的表示。然后，分类器在每一层决定是否停止推理，从而避免不必要的计算。最后，一个轻量级头 (lightweight head) 从表示集合中计算部分分配。
 
 ### 3.1. Transformer 骨干 (Transformer backbone)
 
-我们将图像 \(I \in \{A, B\}\) 中的每个局部特征 \(i\) 与一个状态 \(\mathbf{x}_i^I \in \mathbb{R}^d\) 关联。状态用相应的视觉描述符初始化 \(\mathbf{x}_i^I \leftarrow \mathbf{d}_i^I\)，随后由每一层更新。我们将一层定义为一个自注意力单元和一个交叉注意力单元的连续。
+我们将图像 $I \in \{A, B\}$ 中的每个局部特征 $i$ 与一个状态 $\mathbf{x}_i^I \in \mathbb{R}^d$ 关联。状态用相应的视觉描述符初始化 $\mathbf{x}_i^I \leftarrow \mathbf{d}_i^I$，随后由每一层更新。我们将一层定义为一个自注意力单元和一个交叉注意力单元的连续。
 
-**注意力单元 (Attention unit)：** 在每个单元中，多层感知机 (Multi-Layer Perceptron, MLP) 根据从源图像 \(S \in \{A, B\}\) 聚合的消息 \(\mathbf{m}_i^{I \leftarrow S}\) 更新状态：
+**注意力单元 (Attention unit)：** 在每个单元中，多层感知机 (Multi-Layer Perceptron, MLP) 根据从源图像 $S \in \{A, B\}$ 聚合的消息 $\mathbf{m}_i^{I \leftarrow S}$ 更新状态：
 
-\[\mathbf{x}_i^I \leftarrow \mathbf{x}_i^I + \mathrm{MLP}\left([\mathbf{x}_i^I | \mathbf{m}_i^{I \leftarrow S}]\right)~, \quad (1)\]
+$$\mathbf{x}_i^I \leftarrow \mathbf{x}_i^I + \mathrm{MLP}\left([\mathbf{x}_i^I | \mathbf{m}_i^{I \leftarrow S}]\right)~, \quad (1)$$
 
-其中 \([\cdot | \cdot ]\) 堆叠两个向量。这对两张图像中的所有点并行计算。在自注意力单元中，每个图像 \(I\) 从同一图像的点中提取信息，因此 \(S = I\)。在交叉注意力单元中，每个图像从另一张图像中提取信息，因此 \(S = \{A, B\} \backslash I\)。
+其中 $[\cdot | \cdot ]$ 堆叠两个向量。这对两张图像中的所有点并行计算。在自注意力单元中，每个图像 $I$ 从同一图像的点中提取信息，因此 $S = I$。在交叉注意力单元中，每个图像从另一张图像中提取信息，因此 $S = \{A, B\} \backslash I$。
 
-消息由注意力机制计算为图像 \(S\) 所有状态 \(j\) 的加权平均：
+消息由注意力机制计算为图像 $S$ 所有状态 $j$ 的加权平均：
 
-\[\mathbf{m}_i^{I \leftarrow S} = \sum_{j \in S} \mathrm{Softmax}\left(a_{ik}^{IS}\right)_j \mathbf{W} \mathbf{x}_j^S~, \quad (2)\]
+$$\mathbf{m}_i^{I \leftarrow S} = \sum_{j \in S} \mathrm{Softmax}\left(a_{ik}^{IS}\right)_j \mathbf{W} \mathbf{x}_j^S~, \quad (2)$$
 
-其中 \(\mathbf{W}\) 是投影矩阵，\(a_{ij}^{IS}\) 是图像 \(I\) 和 \(S\) 的点 \(i\) 和 \(j\) 之间的注意力分数。该分数的计算方式在自注意力和交叉注意力单元中有所不同。
+其中 $\mathbf{W}$ 是投影矩阵，$a_{ij}^{IS}$ 是图像 $I$ 和 $S$ 的点 $i$ 和 $j$ 之间的注意力分数。该分数的计算方式在自注意力和交叉注意力单元中有所不同。
 
-**自注意力 (Self-attention)：** 每个点关注同一图像的所有点。我们对每张图像 \(I\) 执行相同的后续步骤，因此为了清晰起见，省略上标 \(I\)。对于每个点 \(i\)，当前状态 \(\mathbf{x}_i\) 首先通过不同的线性变换分解为键 (key) 和查询 (query) 向量 \(\mathbf{k}_i\) 和 \(\mathbf{q}_i\)。然后我们将点 \(i\) 和 \(j\) 之间的注意力分数定义为
+**自注意力 (Self-attention)：** 每个点关注同一图像的所有点。我们对每张图像 $I$ 执行相同的后续步骤，因此为了清晰起见，省略上标 $I$。对于每个点 $i$，当前状态 $\mathbf{x}_i$ 首先通过不同的线性变换分解为键 (key) 和查询 (query) 向量 $\mathbf{k}_i$ 和 $\mathbf{q}_i$。然后我们将点 $i$ 和 $j$ 之间的注意力分数定义为
 
-\[a_{ij} = \mathbf{q}_i^\top \mathbf{R}\left(\mathbf{p}_j - \mathbf{p}_i\right)\mathbf{k}_j~, \quad (3)\]
+$$a_{ij} = \mathbf{q}_i^\top \mathbf{R}\left(\mathbf{p}_j - \mathbf{p}_i\right)\mathbf{k}_j~, \quad (3)$$
 
-其中 \(\mathbf{R}(\cdot) \in \mathbb{R}^{d \times d}\) 是点之间相对位置的旋转编码 (rotary encoding) [67]。我们将空间划分为 \(d / 2\) 个 2D 子空间，并按照傅里叶特征 (Fourier Features) [37] 的方式，将每个子空间旋转一个对应于投影到学习基 \(\mathbf{b}_k \in \mathbb{R}^2\) 上的角度：
+其中 $\mathbf{R}(\cdot) \in \mathbb{R}^{d \times d}$ 是点之间相对位置的旋转编码 (rotary encoding) [67]。我们将空间划分为 $d / 2$ 个 2D 子空间，并按照傅里叶特征 (Fourier Features) [37] 的方式，将每个子空间旋转一个对应于投影到学习基 $\mathbf{b}_k \in \mathbb{R}^2$ 上的角度：
 
-\[\mathbf{R}(\mathbf{p}) = \left( \begin{array}{cc}\hat{\mathbf{R}} (\mathbf{b}_i^\top \mathbf{p}) & \mathbf{0}\\ \mathbf{0} & \mathbf{0} \end{array} \right),\hat{\mathbf{R}} (\theta) = \left( \begin{array}{cc}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{array} \right).\]
+$$\mathbf{R}(\mathbf{p}) = \left( \begin{array}{cc}\hat{\mathbf{R}} (\mathbf{b}_i^\top \mathbf{p}) & \mathbf{0}\\ \mathbf{0} & \mathbf{0} \end{array} \right),\hat{\mathbf{R}} (\theta) = \left( \begin{array}{cc}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{array} \right).$$
 
 位置编码是注意力的关键部分，因为它允许根据位置来处理不同的元素。我们注意到，在投影相机几何中，视觉观测的位置相对于相机在图像平面内的平移是等变的 (equivariant)：源于同一正平行平面上 3D 点的 2D 点以相同的方式平移，它们的相对距离保持不变。这要求一种只捕获点的相对位置而非绝对位置的编码。
 
-旋转编码 [67] 使模型能够检索位于距 \(i\) 学习到的相对位置的 \(j\) 点。位置编码不应用于值 \(\mathbf{v}_j\)，因此不会溢出到状态 \(\mathbf{x}_i\) 中。该编码对所有层都是相同的，因此计算一次并缓存。
+旋转编码 [67] 使模型能够检索位于距 $i$ 学习到的相对位置的 $j$ 点。位置编码不应用于值 $\mathbf{v}_j$，因此不会溢出到状态 $\mathbf{x}_i$ 中。该编码对所有层都是相同的，因此计算一次并缓存。
 
-**交叉注意力 (Cross-attention)：** \(I\) 中的每个点关注另一张图像 \(S\) 的所有点。我们为每个元素计算一个键 \(\mathbf{k}_i\)，但没有查询。这允许将分数表示为
+**交叉注意力 (Cross-attention)：** $I$ 中的每个点关注另一张图像 $S$ 的所有点。我们为每个元素计算一个键 $\mathbf{k}_i$，但没有查询。这允许将分数表示为
 
-\[a_{ij}^{IS} = \mathbf{k}_i^T\mathbf{k}_j^S\stackrel {!}{=}a_{ji}^{SI}. \quad (5)\]
+$$a_{ij}^{IS} = \mathbf{k}_i^T\mathbf{k}_j^S\stackrel {!}{=}a_{ji}^{SI}. \quad (5)$$
 
-因此，我们只需要为 \(I \leftarrow S\) 和 \(S \leftarrow I\) 消息计算一次相似度。这个技巧以前被称为双向注意力 (bidirectional attention) [77]。由于这一步是昂贵的，复杂度为 \(O(NMd)\)，它节省了显著的因素 2。我们不添加任何位置信息，因为相对位置在跨图像时没有意义。
+因此，我们只需要为 $I \leftarrow S$ 和 $S \leftarrow I$ 消息计算一次相似度。这个技巧以前被称为双向注意力 (bidirectional attention) [77]。由于这一步是昂贵的，复杂度为 $O(NMd)$，它节省了显著的因素 2。我们不添加任何位置信息，因为相对位置在跨图像时没有意义。
 
 ### 3.2. 对应关系预测 (Correspondence prediction)
 
 我们设计了一个轻量级头，在任意层根据更新后的状态预测分配。
 
-**分配分数 (Assignment scores)：** 我们首先计算两张图像的点之间的成对分数矩阵 \(\mathbf{S} \in \mathbb{R}^{M \times N}\)：
+**分配分数 (Assignment scores)：** 我们首先计算两张图像的点之间的成对分数矩阵 $\mathbf{S} \in \mathbb{R}^{M \times N}$：
 
-\[\mathbf{S}_{ij} = \mathrm{Linear}\left(\mathbf{x}_i^A\right)^\top \mathrm{Linear}\left(\mathbf{x}_j^B\right)\quad \forall (i,j)\in \mathcal{A}\times \mathcal{B}, \quad (6)\]
+$$\mathbf{S}_{ij} = \mathrm{Linear}\left(\mathbf{x}_i^A\right)^\top \mathrm{Linear}\left(\mathbf{x}_j^B\right)\quad \forall (i,j)\in \mathcal{A}\times \mathcal{B}, \quad (6)$$
 
-其中 \(\mathrm{Linear}(\cdot)\) 是带偏置的学习线性变换。该分数编码每对点对应（即同一 3D 点的 2D 投影）的亲和力。我们还为每个点计算一个可匹配性分数 (matchability score)：
+其中 $\mathrm{Linear}(\cdot)$ 是带偏置的学习线性变换。该分数编码每对点对应（即同一 3D 点的 2D 投影）的亲和力。我们还为每个点计算一个可匹配性分数 (matchability score)：
 
-\[\sigma_{i} = \mathrm{Sigmoid}\left(\mathrm{Linear}(\mathbf{x}_{i})\right)\in [0,1]~. \quad (7)\]
+$$\sigma_{i} = \mathrm{Sigmoid}\left(\mathrm{Linear}(\mathbf{x}_{i})\right)\in [0,1]~. \quad (7)$$
 
-该分数编码 \(i\) 具有对应点的可能性。在另一张图像中未检测到的点（例如被遮挡时）是不可匹配的，因此 \(\sigma_{i} \to 0\)。
+该分数编码 $i$ 具有对应点的可能性。在另一张图像中未检测到的点（例如被遮挡时）是不可匹配的，因此 $\sigma_{i} \to 0$。
 
-**对应关系 (Correspondences)：** 我们将相似度和可匹配性分数组合成软部分分配矩阵 \(\mathbf{P}\)：
+**对应关系 (Correspondences)：** 我们将相似度和可匹配性分数组合成软部分分配矩阵 $\mathbf{P}$：
 
-\[\mathbf{P}_{ij} = \sigma_i^A\sigma_j^B\mathrm{Sofmax}(\mathbf{S}_{kj})_i\mathrm{Sofmax}(\mathbf{S}_{ik})_j. \quad (8)\]
+$$\mathbf{P}_{ij} = \sigma_i^A\sigma_j^B\mathrm{Sofmax}(\mathbf{S}_{kj})_i\mathrm{Sofmax}(\mathbf{S}_{ik})_j. \quad (8)$$
 
-当两个点都被预测为可匹配，并且它们的相似度高于两张图像中的任何其他点时，点对 \((i,j)\) 产生对应关系。我们选择 \(\mathbf{P}_{ij}\) 大于阈值 \(\tau\) 且大于其行和列中任何其他元素的对。
+当两个点都被预测为可匹配，并且它们的相似度高于两张图像中的任何其他点时，点对 $(i,j)$ 产生对应关系。我们选择 $\mathbf{P}_{ij}$ 大于阈值 $\tau$ 且大于其行和列中任何其他元素的对。
 
 ### 3.3. 自适应深度和宽度 (Adaptive depth and width)
 
@@ -119,15 +119,15 @@ LightGlue 将这些创新中的一些适应于 2D 特征匹配，并在效率和
 
 在每一层结束时，LightGlue 推断每个点的预测分配的置信度：
 
-\[c_{i} = \mathrm{Sigmoid}\left(\mathrm{MLP}(\mathbf{x}_{i})\right)\in [0,1]~. \quad (9)\]
+$$c_{i} = \mathrm{Sigmoid}\left(\mathrm{MLP}(\mathbf{x}_{i})\right)\in [0,1]~. \quad (9)$$
 
-较高的值表示 \(i\) 的表示是可靠且最终的——它被自信地匹配或不可匹配。这受到多项工作的启发，这些工作成功地将此策略应用于语言和视觉任务 [62, 20, 71, 80, 40]。紧凑的 MLP 在最坏情况下仅增加 \(2\%\) 的推理时间，但通常节省更多。
+较高的值表示 $i$ 的表示是可靠且最终的——它被自信地匹配或不可匹配。这受到多项工作的启发，这些工作成功地将此策略应用于语言和视觉任务 [62, 20, 71, 80, 40]。紧凑的 MLP 在最坏情况下仅增加 $2\%$ 的推理时间，但通常节省更多。
 
-**退出准则 (Exit criterion)：** 对于给定的层 \(\ell\)，如果 \(c_{i} > \lambda_{\ell}\)，则认为点 \(i\) 是自信的。如果所有点中有足够比例 \(\alpha\) 是自信的，我们停止推理：
+**退出准则 (Exit criterion)：** 对于给定的层 $\ell$，如果 $c_{i} > \lambda_{\ell}$，则认为点 $i$ 是自信的。如果所有点中有足够比例 $\alpha$ 是自信的，我们停止推理：
 
-\[\mathrm{exit} = \left(\frac{1}{N + M}\sum_{I\in \{A,B\}}\sum_{i\in \mathcal{I}}\left\| c_i^I >\lambda_\ell \right\| \right) > \alpha . \quad (10)\]
+$$\mathrm{exit} = \left(\frac{1}{N + M}\sum_{I\in \{A,B\}}\sum_{i\in \mathcal{I}}\left\| c_i^I >\lambda_\ell \right\| \right) > \alpha . \quad (10)$$
 
-我们观察到，如 [62] 中一样，分类器本身在早期层中不太自信。因此，我们基于每个分类器的验证准确性在整个层中衰减 \(\lambda_{\ell}\)。退出阈值 \(\alpha\) 直接控制准确性和推理时间之间的权衡。
+我们观察到，如 [62] 中一样，分类器本身在早期层中不太自信。因此，我们基于每个分类器的验证准确性在整个层中衰减 $\lambda_{\ell}$。退出阈值 $\alpha$ 直接控制准确性和推理时间之间的权衡。
 
 **点剪枝 (Point pruning)：** 当退出准则不满足时，被预测为既自信又不可匹配的点不太可能有助于后续层中其他点的匹配。例如，这些点位于图像间明显不共视的区域。因此，我们在每一层丢弃它们，只将剩余的点馈送到下一层。鉴于注意力的二次复杂度，这显著减少了计算，并且不影响准确性。
 
@@ -135,13 +135,13 @@ LightGlue 将这些创新中的一些适应于 2D 特征匹配，并在效率和
 
 我们分两个阶段训练 LightGlue：我们首先训练它预测对应关系，然后才训练置信度分类器。因此，后者不影响最终层的准确性或训练的收敛。
 
-**对应关系 (Correspondences)：** 我们用从两视图变换估计的真实标签监督分配矩阵 \(\mathbf{P}\)。给定单应性 (homography) 或像素级深度和相对位姿 (relative pose)，我们将点从 \(A\) 扭曲到 \(B\)，反之亦然。真实匹配 \(\mathcal{M}\) 是在两张图像中都具有低重投影误差 (reprojection error) 和一致深度的点对。当某些点 \(\bar{A}\subseteq \mathcal{A}\) 和 \(\bar{B}\subseteq \mathcal{B}\) 与所有其他点的重投影或深度误差足够大时，它们被标记为不可匹配。然后我们最小化每一层 \(\ell\) 预测的分配的对数似然，推动 LightGlue 尽早预测正确的对应关系：
+**对应关系 (Correspondences)：** 我们用从两视图变换估计的真实标签监督分配矩阵 $\mathbf{P}$。给定单应性 (homography) 或像素级深度和相对位姿 (relative pose)，我们将点从 $A$ 扭曲到 $B$，反之亦然。真实匹配 $\mathcal{M}$ 是在两张图像中都具有低重投影误差 (reprojection error) 和一致深度的点对。当某些点 $\bar{A}\subseteq \mathcal{A}$ 和 $\bar{B}\subseteq \mathcal{B}$ 与所有其他点的重投影或深度误差足够大时，它们被标记为不可匹配。然后我们最小化每一层 $\ell$ 预测的分配的对数似然，推动 LightGlue 尽早预测正确的对应关系：
 
-\[\begin{array}{l}{\mathrm{loss} = -\frac{1}{L}\sum_{\ell}\left(\frac{1}{|\mathcal{M}|}\sum_{(i,j)\in \mathcal{M}}\log^{\ell}\mathbf{P}_{ij}\right.}\\ {\qquad +\left.\frac{1}{2|\bar{A}|}\sum_{i\in \bar{A}}\log \left(1 - \ell \sigma_{i}^{A}\right)\right.}\\ {\qquad +\left.\frac{1}{2|\bar{B}|}\sum_{j\in \bar{B}}\log \left(1 - \ell \sigma_{j}^{B}\right)\right).} \end{array} \quad (11)\]
+$$\begin{array}{l}{\mathrm{loss} = -\frac{1}{L}\sum_{\ell}\left(\frac{1}{|\mathcal{M}|}\sum_{(i,j)\in \mathcal{M}}\log^{\ell}\mathbf{P}_{ij}\right.}\\ {\qquad +\left.\frac{1}{2|\bar{A}|}\sum_{i\in \bar{A}}\log \left(1 - \ell \sigma_{i}^{A}\right)\right.}\\ {\qquad +\left.\frac{1}{2|\bar{B}|}\sum_{j\in \bar{B}}\log \left(1 - \ell \sigma_{j}^{B}\right)\right).} \end{array} \quad (11)$$
 
 损失在正负标签之间平衡。
 
-**置信度分类器 (Confidence classifier)：** 然后我们训练公式 (9) 的 MLP 来预测每一层的预测是否与最终层相同。设 \(\ell m_{i}^{A}\in \mathcal{B}\cup \{\bullet \}\) 是层 \(\ell\) 中与 \(i\) 匹配的 \(B\) 中点的索引，如果 \(i\) 不可匹配，则 \(\ell m_{i}^{A} = \bullet\)。每个点的真实二元标签是 \(\| \ell m_{i}^{A} = \ell m_{i}^{A}\|\)，对于 \(B\) 也相同。然后我们最小化层 \(\ell \in \{1,\dots,L - 1\}\) 的分类器的二元交叉熵。
+**置信度分类器 (Confidence classifier)：** 然后我们训练公式 (9) 的 MLP 来预测每一层的预测是否与最终层相同。设 $\ell m_{i}^{A}\in \mathcal{B}\cup \{\bullet \}$ 是层 $\ell$ 中与 $i$ 匹配的 $B$ 中点的索引，如果 $i$ 不可匹配，则 $\ell m_{i}^{A} = \bullet$。每个点的真实二元标签是 $\| \ell m_{i}^{A} = \ell m_{i}^{A}\|$，对于 $B$ 也相同。然后我们最小化层 $\ell \in \{1,\dots,L - 1\}$ 的分类器的二元交叉熵。
 
 ### 3.5. 与 SuperGlue 的比较 (Comparison with SuperGlue)
 
@@ -161,7 +161,7 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 由于 MegaDepth 的深度图通常不完整，我们还将具有大对极误差 (epipolar error) 的点标记为不可匹配。仔细调参和退火学习率 (annealing the learning rate) 提高了准确性。用更多的点训练也是如此：我们每张图像使用 2k 而不是 1k。批次大小很重要：我们使用梯度检查点 (gradient checkpointing) [10] 和混合精度 (mixed-precision) 在单个具有 24GB VRAM 的 GPU 上容纳 32 个图像对。
 
-**实现细节 (Implementation details)：** LightGlue 有 \(L = 9\) 层。每个注意力单元有 4 个头。所有表示的维度为 \(d = 256\)。在整篇论文中，标记为优化的运行时间数字使用高效的自注意力实现 [14]。更多细节在附录中给出。
+**实现细节 (Implementation details)：** LightGlue 有 $L = 9$ 层。每个注意力单元有 4 个头。所有表示的维度为 $d = 256$。在整篇论文中，标记为优化的运行时间数字使用高效的自注意力实现 [14]。更多细节在附录中给出。
 
 我们用 SuperPoint [16] 和 SIFT [41] 局部特征训练 LightGlue，但它与其他任何类型兼容。在 MegaDepth [38] 上微调模型时，我们使用 Sun et al. [68] 的数据分割，以避免在 Image Matching Challenge [31] 中包含的场景上训练。
 
@@ -187,7 +187,7 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 **设置 (Setup)：** 我们使用来自 MegaDepth-1500 测试集的图像对，遵循 [68] 的评估。测试集包含来自两个流行的摄影旅游目的地的 1500 个图像对：圣彼得广场和国会大厦。数据的收集方式使得难度基于视觉重叠进行平衡。我们在下游任务相对位姿估计上评估我们的方法。
 
-我们分别使用 vanilla RANSAC 和 LO-RANSAC [34] 估计本质矩阵，并将它们分解为旋转和平移。内点阈值在测试数据上为每种方法调整——我们认为这使得比较更公平，因为我们不评估 RANSAC 本身。我们将位姿误差计算为旋转和平移中的最大角度误差，并报告其在 \(5^{\circ}\) \(10^{\circ}\) 和 \(20^{\circ}\) 的 AUC。
+我们分别使用 vanilla RANSAC 和 LO-RANSAC [34] 估计本质矩阵，并将它们分解为旋转和平移。内点阈值在测试数据上为每种方法调整——我们认为这使得比较更公平，因为我们不评估 RANSAC 本身。我们将位姿误差计算为旋转和平移中的最大角度误差，并报告其在 $5^{\circ}$ $10^{\circ}$ 和 $20^{\circ}$ 的 AUC。
 
 **基线 (Baselines)：** 我们每张图像提取 2048 个局部特征，每张图像调整大小使其较大维度为 1600 像素。使用 SuperPoint [16] 特征，我们将 LightGlue 与带互查的最近邻匹配以及 SuperGlue [56] 和 SGMNet [8] 的官方实现进行比较。对于 DISK [73]，我们仅评估其自身强大的基线，因为没有其他用 DISK 训练的匹配器公开可用。
 
@@ -197,37 +197,37 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 更大的图像会提高它们的准确性，如稀疏特征一样，但会导致 prohibitive 和不切实际的运行时间和内存需求。
 
-**结果 (Results)：** 表 2 显示 LightGlue 在 SuperPoint 特征上大大优于现有方法 SuperGlue 和 SGMNet，并且可以大大提高 DISK 局部特征的匹配准确性。它产生更好的对应关系和更准确的相对位姿，并将推理时间减少 \(30\%\)。LightGlue 通常预测比 SuperGlue 略少的匹配，但这些匹配更准确。通过在模型早期检测自信的预测，自适应变体比 SuperGlue 和 SGMNet 快 \(2\times\) 以上，并且仍然更准确。使用仔细调整的 LO-RANSAC [34]，LightGlue 可以达到比一些流行的稠密匹配器更高的准确性，这些匹配器慢 5 到 11 倍。在评估的稠密匹配器中，ASPANFormer 是最准确的。考虑到准确性和速度之间的权衡，LightGlue 大大优于所有方法。
+**结果 (Results)：** 表 2 显示 LightGlue 在 SuperPoint 特征上大大优于现有方法 SuperGlue 和 SGMNet，并且可以大大提高 DISK 局部特征的匹配准确性。它产生更好的对应关系和更准确的相对位姿，并将推理时间减少 $30\%$。LightGlue 通常预测比 SuperGlue 略少的匹配，但这些匹配更准确。通过在模型早期检测自信的预测，自适应变体比 SuperGlue 和 SGMNet 快 $2\times$ 以上，并且仍然更准确。使用仔细调整的 LO-RANSAC [34]，LightGlue 可以达到比一些流行的稠密匹配器更高的准确性，这些匹配器慢 5 到 11 倍。在评估的稠密匹配器中，ASPANFormer 是最准确的。考虑到准确性和速度之间的权衡，LightGlue 大大优于所有方法。
 
 ### 5.3. 室外视觉定位 (Outdoor visual localization)
 
 **设置 (Setup)：** 我们使用大规模 Aachen Day-Night 基准 [59] 评估挑战性条件下的长期视觉定位。我们遵循 Hierarchical Localization 框架和 hloc 工具箱 [55]。我们首先使用 COLMAP [60] 从 4328 张具有已知位姿和校准的白天参考图像中三角化一个稀疏 3D 点云。对于 824 个白天和 98 个夜间查询中的每一个，我们使用 NetVLAD [1] 检索 50 张图像，匹配每一张，并使用 RANSAC 和 Perspective-n-Point 求解器估计相机位姿。我们报告多个阈值下的位姿召回率以及建图和定位期间匹配步骤的平均吞吐量。
 
-**表 3. 室外视觉定位。** 在 Aachen Day-Night 数据集上，LightGlue 的性能与 SuperGlue 相当，但运行速度快 \(2.5\times\)，优化时快 \(4\times\)。SGMNet 和 ClusterGNN 在夜间图像上都更慢且鲁棒性更差（\\*近似）。
+**表 3. 室外视觉定位。** 在 Aachen Day-Night 数据集上，LightGlue 的性能与 SuperGlue 相当，但运行速度快 $2.5\times$，优化时快 $4\times$。SGMNet 和 ClusterGNN 在夜间图像上都更慢且鲁棒性更差（\\*近似）。
 
 **基线 (Baselines)：** 我们使用 SuperPoint 提取多达 4096 个特征，并将它们与 SuperGlue、SGMNet [8]、ClusterGNN [65] 以及具有自适应深度和宽度的 LightGlue 匹配。由于 ClusterGNN 的实现不公开，我们报告原始论文中发现的准确性以及作者 kindly 提供的时间估计。
 
-**结果 (Results)：** 表 3 显示 LightGlue 达到与 SuperGlue 相似的准确性，但吞吐量高 \(2.5\times\)。优化变体利用高效的自注意力 [14]，将吞吐量提高 \(4\times\)。LightGlue 因此可以实时匹配多达 4096 个关键点。
+**结果 (Results)：** 表 3 显示 LightGlue 达到与 SuperGlue 相似的准确性，但吞吐量高 $2.5\times$。优化变体利用高效的自注意力 [14]，将吞吐量提高 $4\times$。LightGlue 因此可以实时匹配多达 4096 个关键点。
 
 ### 5.4. 见解 (Insights)
 
 **消融研究 (Ablation study)：** 我们通过在具有极端光度增强的挑战性合成单应性数据集上预训练后评估 LightGlue 来验证我们的设计决策。我们用 SuperPoint 特征和 5M 样本训练不同的变体，全部在 4 个 GPU 日内。我们从应用于训练期间未见图像的相同增强中创建测试集。我们从每张图像中提取 512 个关键点。我们还与 SuperGlue 进行比较，我们用相同的设置训练它。更多细节在附录中提供。
 
-我们在表 4 中报告消融结果。与 SuperGlue 相比，LightGlue 收敛速度显著更快，并实现 \(+4\%\) 召回率和 \(+12\%\) 精确率。注意，SuperGlue 可以通过足够长的训练达到与 LightGlue 相似的准确性，但改进的收敛性使其在新数据上训练更加实用。
+我们在表 4 中报告消融结果。与 SuperGlue 相比，LightGlue 收敛速度显著更快，并实现 $+4\%$ 召回率和 $+12\%$ 精确率。注意，SuperGlue 可以通过足够长的训练达到与 LightGlue 相似的准确性，但改进的收敛性使其在新数据上训练更加实用。
 
 没有可匹配性分类器，网络就失去了区分好坏匹配的能力，如图 6 所示。直观上，相似度矩阵提出许多可能的匹配，而可匹配性过滤不正确的提议。因此，我们的部分分配可以看作是互最近邻搜索和学习内点分类器 [44, 82] 的优雅融合。这比解决 SuperGlue 的最优传输问题要快得多。
 
-用旋转嵌入替换学习的绝对位置编码提高了准确性，在每个自注意力层旋转查询和键会带来轻微的运行时间损失。使用相对位置，LightGlue 学习匹配跨图像的几何模式。在每一层提醒网络位置提高了网络的鲁棒性，导致 \(+2\%\) 精确率。
+用旋转嵌入替换学习的绝对位置编码提高了准确性，在每个自注意力层旋转查询和键会带来轻微的运行时间损失。使用相对位置，LightGlue 学习匹配跨图像的几何模式。在每一层提醒网络位置提高了网络的鲁棒性，导致 $+2\%$ 精确率。
 
 **表 4. 合成单应性上的消融研究。** a-b) 可匹配性和位置编码都在不影响时间的情况下提高了准确性。c) 双向交叉注意力更快，且没有准确性下降。d) 得益于深度监督，早期层在低难度对上产生良好的预测。
 
-双向交叉注意力与标准交叉注意力同样准确，但通过仅计算一次相似度矩阵节省 \(20\%\) 运行时间。目前，瓶颈是沿两个维度计算 softmax。使用专用的双向 softmax 内核，可以避免大量冗余计算。
+双向交叉注意力与标准交叉注意力同样准确，但通过仅计算一次相似度矩阵节省 $20\%$ 运行时间。目前，瓶颈是沿两个维度计算 softmax。使用专用的双向 softmax 内核，可以避免大量冗余计算。
 
-使用深度监督，中间层也有有意义的输出。仅 5 层后，网络就可以预测鲁棒的匹配，实现 \(>90\%\) 召回率。在最后几层，网络专注于剔除异常值，从而提高匹配精确率。
+使用深度监督，中间层也有有意义的输出。仅 5 层后，网络就可以预测鲁棒的匹配，实现 $>90\%$ 召回率。在最后几层，网络专注于剔除异常值，从而提高匹配精确率。
 
-**自适应性 (Adaptivity)：** 通过预测可匹配性分数和置信度，我们可以在逐个案例的基础上自适应地减少前向传播期间的计算。表 5 研究了两种剪枝机制——自适应深度和宽度——在 MegaDepth 图像对上针对不同视觉重叠范围的有效性。对于简单样本，例如视频的连续帧，网络快速收敛并在几层后退出，导致 \(1.86\times\) 加速。在低视觉重叠的情况下，例如回环检测，网络需要更多层才能收敛。然而，它早期拒绝自信和不匹配的点，并将它们排除在后续层的输入之外，从而避免不必要的计算。
+**自适应性 (Adaptivity)：** 通过预测可匹配性分数和置信度，我们可以在逐个案例的基础上自适应地减少前向传播期间的计算。表 5 研究了两种剪枝机制——自适应深度和宽度——在 MegaDepth 图像对上针对不同视觉重叠范围的有效性。对于简单样本，例如视频的连续帧，网络快速收敛并在几层后退出，导致 $1.86\times$ 加速。在低视觉重叠的情况下，例如回环检测，网络需要更多层才能收敛。然而，它早期拒绝自信和不匹配的点，并将它们排除在后续层的输入之外，从而避免不必要的计算。
 
-**表 5. 自适应深度和宽度的影响。** 早停在小场景中帮助最大，网络仅在一半层后停止。在更难的场景中，网络需要更多层才能收敛，但图像对之间较小的视图重叠允许网络更积极地剪枝网络的宽度。总体而言，自适应深度和宽度剪枝将运行时间减少 \(33\%\)，并且在简单对上特别有效。
+**表 5. 自适应深度和宽度的影响。** 早停在小场景中帮助最大，网络仅在一半层后停止。在更难的场景中，网络需要更多层才能收敛，但图像对之间较小的视图重叠允许网络更积极地剪枝网络的宽度。总体而言，自适应深度和宽度剪枝将运行时间减少 $33\%$，并且在简单对上特别有效。
 
 **效率 (Efficiency)：** 图 7 显示了不同数量输入关键点的运行时间。对于每张图像多达 2K 个关键点（这是视觉定位的常见设置），LightGlue 比 SuperGlue [56] 和 SGMNet [8] 都快。自适应剪枝进一步减少了任何输入大小的运行时间。
 
@@ -247,17 +247,17 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 **DISK：** 我们还用 DISK 局部特征 [73] 训练 LightGlue，这是 Image Matching Challenge 的前赢家。我们遵循与 SuperPoint 相同的训练设置。对于评估，我们遵循作者关于受限关键点场景（每张图像最多 2048 个特征）的指南，并使用带 0.95 比率测试的互最近邻匹配作为基线。我们再次使用 DEGENSAC 进行相对位姿估计，阈值为 0.75。
 
-**结果 (Results)：** 表 6 报告了评估结果。我们还报告了所有 3 个验证场景的平均匹配速度。LightGlue 在立体和多视图赛道中都与 SuperGlue 具有竞争力，同时运行速度快 \(2.5\times\)。这些运行时间改进的大部分归因于自适应深度，它大大减少了简单图像对的运行时间。
+**结果 (Results)：** 表 6 报告了评估结果。我们还报告了所有 3 个验证场景的平均匹配速度。LightGlue 在立体和多视图赛道中都与 SuperGlue 具有竞争力，同时运行速度快 $2.5\times$。这些运行时间改进的大部分归因于自适应深度，它大大减少了简单图像对的运行时间。
 
-用 DISK [73] 训练的 LightGlue 大大优于带比率测试的最近邻匹配基线和 SuperPoint+LightGlue。在较小的阈值上，DISK+LightGlue 在立体和多视图任务中相比我们的 SuperPoint 等效物实现 \(+8\% / + 5\%\) AUC。使用 DISK，我们的模型比 SP+LightGlue 预测多 \(30\%\) 的匹配，且对极精确率更高。
+用 DISK [73] 训练的 LightGlue 大大优于带比率测试的最近邻匹配基线和 SuperPoint+LightGlue。在较小的阈值上，DISK+LightGlue 在立体和多视图任务中相比我们的 SuperPoint 等效物实现 $+8\% / + 5\%$ AUC。使用 DISK，我们的模型比 SP+LightGlue 预测多 $30\%$ 的匹配，且对极精确率更高。
 
-**表 6. Image Matching Challenge 2020 的 Structure-from-Motion。** 我们在多个误差阈值下评估立体赛道，以及多视图赛道中不同数量图像 \(N\) 的情况。LightGlue 在多视图赛道上比 SuperGlue 产生更好的位姿，并显著减少匹配时间。结合 DISK，LightGlue 在两个赛道中都大幅优于 SuperPoint+SuperGlue 和 DISK+NN+ratio。
+**表 6. Image Matching Challenge 2020 的 Structure-from-Motion。** 我们在多个误差阈值下评估立体赛道，以及多视图赛道中不同数量图像 $N$ 的情况。LightGlue 在多视图赛道上比 SuperGlue 产生更好的位姿，并显著减少匹配时间。结合 DISK，LightGlue 在两个赛道中都大幅优于 SuperPoint+SuperGlue 和 DISK+NN+ratio。
 
 **Image Matching Challenge 2021：** 我们评估 IMC 2021 [27] 基准的摄影旅游子集，包括立体和多视图赛道。我们在干净设置和受限关键点设置（最多 2048 个检测）下比较我们的 SuperPoint [16] 和 DISK [73] 基线与它们各自的基线。此外，我们将 IMC 2020 上得分最高的方法 DISK+LightGlue 与调优版本的 DISK [73]、SuperPoint+SuperGlue [16, 56] 以及稠密匹配器 LoFTR [68] 的 SfM 实现进行比较。表 7 报告了实验。LightGlue 以相当大的优势优于所有方法。
 
 **表 7. IMC 2021 - 摄影旅游。** \\*DISK+NN 和 SP+SG 使用测试时增强，而 LightGlue 不使用。为了与这些调优的基线竞争，我们只是增加关键点数量，例如 DISK (8K)。LoFTR-SfM 用 SuperPoint 检测聚类稠密匹配。LightGlue 在立体和多视图任务中都优于其他稀疏基线，甚至大幅超过公共排行榜上调优的基线。
 
-**Image Matching Challenge 2023：** 我们参加 IMC 2023 [28]，它评估端到端 Structure-from-Motion 的相机位姿准确性，在多个阈值上平均，具有超越摄影旅游的多样化场景集。我们使用 hloc [55] 的默认重建管道，并使用 NetVLAD [1] 为每张图像检索 50 对。我们在 3 次运行中平均结果，以减少重建管道中随机性的影响。在公共/私有排行榜上，SuperPoint+SuperGlue 分别达到 \(36.1 / 43.8(\%)\) 的分数，而 SuperPoint+LightGlue 达到 \(38.4 / 46.1\)，提高了 \(+2.3\%\)。
+**Image Matching Challenge 2023：** 我们参加 IMC 2023 [28]，它评估端到端 Structure-from-Motion 的相机位姿准确性，在多个阈值上平均，具有超越摄影旅游的多样化场景集。我们使用 hloc [55] 的默认重建管道，并使用 NetVLAD [1] 为每张图像检索 50 对。我们在 3 次运行中平均结果，以减少重建管道中随机性的影响。在公共/私有排行榜上，SuperPoint+SuperGlue 分别达到 $36.1 / 43.8(\%)$ 的分数，而 SuperPoint+LightGlue 达到 $38.4 / 46.1$，提高了 $+2.3\%$。
 
 ### B. 额外结果 (Additional results)
 
@@ -267,7 +267,7 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 为了更公平的评估，我们在 MegaDepth [38] 分割的测试场景上进行了广泛的室外实验，该分割涵盖 4 个 SuperGlue 未训练过的独特摄影旅游地标：圣家堂、林肯纪念堂雕像、伦敦塔和英国博物馆。为了平衡图像对的难度，我们根据视觉重叠分数 [19, 56] 将配对分成三类，区间为 [10, 30]%、[30, 50]% 和 [50, 70]%。我们在每个场景每个区间采样 150 个图像对，总共 1800 个图像对。我们仔细用表 2 中使用的相同设置重新运行实验。我们报告精确率为对极误差低于 3px 的匹配比例。使用 SIFT [41]，我们仅评估比率测试和 SGMNet [8]，因为原始 SuperGlue 模型不公开可用。
 
-表 8 确认 LightGlue 比现有稀疏匹配器预测更准确的对应关系，时间仅为一小部分。像 LoFTR 这样的无检测器特征匹配器在此任务上仍然是 state-of-the-art，尽管使用 LO-RANSAC 时仅高出 \(2\%\) AUC@5°。
+表 8 确认 LightGlue 比现有稀疏匹配器预测更准确的对应关系，时间仅为一小部分。像 LoFTR 这样的无检测器特征匹配器在此任务上仍然是 state-of-the-art，尽管使用 LO-RANSAC 时仅高出 $2\%$ AUC@5°。
 
 **表 8. Megadepth-1800 上的相对位姿估计。** 此分割与表 2 不同。与以前工作 [38, 68] 使用的分割相比，这组测试图像避免了与 SuperGlue [56] 的训练重叠。LightGlue 预测相似数量的对应关系，但具有比现有稀疏匹配器更高的精确率 (P)、位姿准确性 (AUC) 和速度。它在推理时间的一小部分内与稠密匹配器竞争。
 
@@ -275,7 +275,7 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 **表 9. Aachen v1.1 上的室外视觉定位。** LightGlue 以更高的吞吐量达到相似的准确性。
 
-**室内视觉定位 (Indoor visual localization)：** 我们在表 10 中报告 InLoc 的结果。我们使用 hloc 并再次为公平起见运行 SuperGlue。对于 LoFTR 和 ASpanFormer，报告现有结果，因为没有代码可用。LightGlue 与 SuperGlue 具有竞争力，并且在 \((0.25\mathrm{m},10^{\circ})\) 处更准确。\(< 2\%\) 的差异不显著，因为每个分割只有 205/151 个查询（\(1.5\%\) 的差异 \(\equiv 3\) 个查询）。LightGlue 相对于 SuperGlue 的失败（6/356 图像 @1m）是由于在重复物体（如垃圾桶）上匹配更多，即更好的匹配和弱检索——我们在图 10 中展示了一个例子。
+**室内视觉定位 (Indoor visual localization)：** 我们在表 10 中报告 InLoc 的结果。我们使用 hloc 并再次为公平起见运行 SuperGlue。对于 LoFTR 和 ASpanFormer，报告现有结果，因为没有代码可用。LightGlue 与 SuperGlue 具有竞争力，并且在 $(0.25\mathrm{m},10^{\circ})$ 处更准确。$< 2\%$ 的差异不显著，因为每个分割只有 205/151 个查询（$1.5\%$ 的差异 $\equiv 3$ 个查询）。LightGlue 相对于 SuperGlue 的失败（6/356 图像 @1m）是由于在重复物体（如垃圾桶）上匹配更多，即更好的匹配和弱检索——我们在图 10 中展示了一个例子。
 
 **表 10. InLoc 上的室内视觉定位。** LightGlue 的表现与 SuperGlue 相似（在数据集的变异性范围内）。
 
@@ -283,37 +283,37 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 #### C.1. 架构 (Architecture)
 
-**位置编码 (Positional Encoding)：** 2D 图像坐标归一化到 [-1, 1] 范围，同时保持图像宽高比。然后我们用线性投影 \(\mathbf{W}_p \in \mathbb{R}^{2d / 2h}\) 将 2D 坐标投影到频率，其中 \(h\) 是注意力头的数量。我们为所有层缓存结果。我们遵循 Roformer [67] 的高效方案，在自注意力期间将旋转应用于查询和键嵌入，避免计算相对位置偏置的二次复杂度。我们在交叉注意力期间不应用任何位置编码，而是让网络通过聚合每张图像内的上下文来学习空间模式。
+**位置编码 (Positional Encoding)：** 2D 图像坐标归一化到 [-1, 1] 范围，同时保持图像宽高比。然后我们用线性投影 $\mathbf{W}_p \in \mathbb{R}^{2d / 2h}$ 将 2D 坐标投影到频率，其中 $h$ 是注意力头的数量。我们为所有层缓存结果。我们遵循 Roformer [67] 的高效方案，在自注意力期间将旋转应用于查询和键嵌入，避免计算相对位置偏置的二次复杂度。我们在交叉注意力期间不应用任何位置编码，而是让网络通过聚合每张图像内的上下文来学习空间模式。
 
-**图神经网络 (Graph Neural Network)：** 图神经网络由 9 个 transformer 层组成，每层都有一个自注意力和一个交叉注意力单元。更新 MLP（公式 1）有一个维度为 \(d_h = 2d\) 的隐藏层，后跟 LayerNorm、GeLU 激活和带偏置的线性投影 \((2d,d)\)。
+**图神经网络 (Graph Neural Network)：** 图神经网络由 9 个 transformer 层组成，每层都有一个自注意力和一个交叉注意力单元。更新 MLP（公式 1）有一个维度为 $d_h = 2d$ 的隐藏层，后跟 LayerNorm、GeLU 激活和带偏置的线性投影 $(2d,d)$。
 
 每个注意力单元有三个投影矩阵用于查询、键和值，加上一个额外的线性投影，用于合并多头输出。在双向交叉注意力中，查询和键的投影是共享的。在实践中，我们使用高效的自注意力 [14]，它优化了注意力聚合的 IO 复杂度。这也可以扩展到双向交叉注意力。在训练期间，我们使用梯度检查点来显著减少所需的 VRAM。
 
-**对应关系 (Correspondences)：** 线性层（公式 6）从 \(d\) 映射到 \(d\)，并且不跨层共享。对于所有实验，我们使用互查和过滤阈值 \(\tau = 0.1\)。
+**对应关系 (Correspondences)：** 线性层（公式 6）从 $d$ 映射到 $d$，并且不跨层共享。对于所有实验，我们使用互查和过滤阈值 $\tau = 0.1$。
 
-**置信度分类器 (Confidence classifier)：** 分类器用线性层后跟 sigmoid 激活来预测置信度。为每个关键点预测置信度，并且仅在层 \(1,\ldots ,L - 1\)，因为根据定义，最终层 \(L\) 的置信度为 1。每个预测用二元交叉熵损失监督，其梯度不传播到状态中，以避免影响匹配准确性。状态已经编码了足够的信息，因为它也受到可匹配性预测的监督。
+**置信度分类器 (Confidence classifier)：** 分类器用线性层后跟 sigmoid 激活来预测置信度。为每个关键点预测置信度，并且仅在层 $1,\ldots ,L - 1$，因为根据定义，最终层 $L$ 的置信度为 1。每个预测用二元交叉熵损失监督，其梯度不传播到状态中，以避免影响匹配准确性。状态已经编码了足够的信息，因为它也受到可匹配性预测的监督。
 
 **退出准则和点剪枝 (Exit criterion and point pruning)：** 在训练期间，我们观察到置信度预测在早期层中不太准确。因此我们指数衰减置信度阈值：
 
-\[\lambda_{l} = 0.8 + 0.1e^{-4\ell /L}. \quad (12)\]
+$$\lambda_{l} = 0.8 + 0.1e^{-4\ell /L}. \quad (12)$$
 
-如果 \(c_i^t > \lambda_t\)，则认为状态是自信的。在推理期间，如果 \(\alpha = 95\%\) 的状态被认为是自信的，我们停止网络。
+如果 $c_i^t > \lambda_t$，则认为状态是自信的。在推理期间，如果 $\alpha = 95\%$ 的状态被认为是自信的，我们停止网络。
 
 对于点剪枝，当点的预测置信度高且其可匹配性低时，认为该点不可匹配：
 
-\[\mathrm{unmatchable}(i) = c_i^t >\lambda_t\& \sigma_i^t < \beta \quad (13)\]
+$$\mathrm{unmatchable}(i) = c_i^t >\lambda_t\& \sigma_i^t < \beta \quad (13)$$
 
-我们在表 11 中报告了 MegaDepth 上相对位姿估计的退出置信度 \(\alpha\) 的消融。将 \(\alpha\) 降低到 \(80\%\) 将推理时间减少近 \(50\%\)，与我们的完整模型相比，同时在此任务上保持与 SuperGlue 相比有竞争力的准确性。降低置信度阈值在运行时间-准确性权衡方面远比将模型裁剪到更少的层更有效。提前停止网络主要牺牲精确率。对于我们的实验，我们选择 \(95\%\) 置信度，平均减少 \(25\%\) 的运行时间，在下游任务上几乎没有准确性损失。
+我们在表 11 中报告了 MegaDepth 上相对位姿估计的退出置信度 $\alpha$ 的消融。将 $\alpha$ 降低到 $80\%$ 将推理时间减少近 $50\%$，与我们的完整模型相比，同时在此任务上保持与 SuperGlue 相比有竞争力的准确性。降低置信度阈值在运行时间-准确性权衡方面远比将模型裁剪到更少的层更有效。提前停止网络主要牺牲精确率。对于我们的实验，我们选择 $95\%$ 置信度，平均减少 $25\%$ 的运行时间，在下游任务上几乎没有准确性损失。
 
-**表 11. MegaDepth 上早停的评估。** 更深的层预测的匹配更准确，但需要更多的计算，推理时间更高。自适应地建模置信度选择产生足够准确性的模型深度。更保守的停止，具有更高的阈值 \(\alpha\)，以更高的推理时间为代价产生更高的准确性。\(\alpha = 95\%\) 产生最佳权衡。
+**表 11. MegaDepth 上早停的评估。** 更深的层预测的匹配更准确，但需要更多的计算，推理时间更高。自适应地建模置信度选择产生足够准确性的模型深度。更保守的停止，具有更高的阈值 $\alpha$，以更高的推理时间为代价产生更高的准确性。$\alpha = 95\%$ 产生最佳权衡。
 
-这里，\(\beta = 0.01\) 是关于点可匹配程度的阈值。如果公式 13 成立，我们在后续层中将其排除在上下文聚合之外。这增加了每层的 gather 和 scatter 开销，但剪枝随着更多关键点而变得越来越有效。
+这里，$\beta = 0.01$ 是关于点可匹配程度的阈值。如果公式 13 成立，我们在后续层中将其排除在上下文聚合之外。这增加了每层的 gather 和 scatter 开销，但剪枝随着更多关键点而变得越来越有效。
 
-在图 11 中，我们报告了每一层中被排除的关键点比例。仅几层上下文聚合后，LightGlue 就自信地早期排除 \(>30\%\) 的关键点。由于关键点数量对运行时间有二次影响，如图 7 所示，这可以大大减少前向传播中的计算次数，从而显著减少推理时间。
+在图 11 中，我们报告了每一层中被排除的关键点比例。仅几层上下文聚合后，LightGlue 就自信地早期排除 $>30\%$ 的关键点。由于关键点数量对运行时间有二次影响，如图 7 所示，这可以大大减少前向传播中的计算次数，从而显著减少推理时间。
 
 #### C.2. 局部特征 (Local features)
 
-我们用三种流行的局部特征检测器和描述符训练 LightGlue：SuperPoint [16]、SIFT [41] 和 DISK [73]。在训练和评估期间，我们丢弃所有方法的检测阈值，并根据检测分数使用 top-k 关键点。在训练期间，如果可用检测少于 k，我们追加随机检测和描述符。对于 SIFT [41] 和 DISK [73]，我们在将描述符馈送到 Transformer 骨干之前添加一个线性层，将描述符投影到 \(d = 256\)。
+我们用三种流行的局部特征检测器和描述符训练 LightGlue：SuperPoint [16]、SIFT [41] 和 DISK [73]。在训练和评估期间，我们丢弃所有方法的检测阈值，并根据检测分数使用 top-k 关键点。在训练期间，如果可用检测少于 k，我们追加随机检测和描述符。对于 SIFT [41] 和 DISK [73]，我们在将描述符馈送到 Transformer 骨干之前添加一个线性层，将描述符投影到 $d = 256$。
 
 **SuperPoint：** SuperPoint 是一种流行的特征检测器，它在独特区域产生高度可重复的点。我们使用 MagicLeap [16] 的官方开源版 SuperPoint。检测是像素精确的，即关键点定位准确性取决于图像分辨率。
 
@@ -333,7 +333,7 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 **监督 (Supervision)：** 具有 3px 对称重投影误差的对应关系被视为内点，在此阈值下没有任何对应关系的点被视为异常值。
 
-**训练细节 (Training details)：** 我们为 SuperPoint/SIFT/DISK 提取 512/1024/1024 个关键点，批次大小为 64。初始学习率为 0.0001，我们在 20 个 epoch 后每个 epoch 将学习率乘以 0.8。我们在 40 个 epoch（6M 图像对）后停止训练，或用 2 张 Nvidia RTX 3090（对于 SuperPoint）训练 2 天。我们的网络在验证和测试集上达到 \(>99\%\) 召回率和 \(>90\%\) 精确率。我们还观察到，对于微调，可以在仅一天后停止预训练，只有轻微损失。
+**训练细节 (Training details)：** 我们为 SuperPoint/SIFT/DISK 提取 512/1024/1024 个关键点，批次大小为 64。初始学习率为 0.0001，我们在 20 个 epoch 后每个 epoch 将学习率乘以 0.8。我们在 40 个 epoch（6M 图像对）后停止训练，或用 2 张 Nvidia RTX 3090（对于 SuperPoint）训练 2 天。我们的网络在验证和测试集上达到 $>99\%$ 召回率和 $>90\%$ 精确率。我们还观察到，对于微调，可以在仅一天后停止预训练，只有轻微损失。
 
 我们还实验了从 MegaDepth [38] 采样图像进行单应性预训练，未能观察到重大差异。强光度增强和透视变化对于训练鲁棒模型至关重要。
 
@@ -341,9 +341,9 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 我们在具有伪真实相机位姿和深度图像的摄影旅游图像上微调我们的模型。
 
-**数据集 (Dataset)：** 我们使用 MegaDepth 数据集 [38]，它包含全球各地各种流行地标的稠密重建，通过 COLMAP+MVS [60, 61] 获得。遵循 Sun et al. [68]，我们根据共视分数 [19] 将每个配对分箱到区间 \([0.1, 0.3]\)、\([0.3, 0.5]\) 和 \([0.5, 0.7]\)。图像匹配挑战 [26] 中验证和测试集一部分的场景也从训练中排除，导致 368/5/24 场景用于训练/验证/测试。在每个 epoch 开始时，我们每个场景采样 100 个图像对。
+**数据集 (Dataset)：** 我们使用 MegaDepth 数据集 [38]，它包含全球各地各种流行地标的稠密重建，通过 COLMAP+MVS [60, 61] 获得。遵循 Sun et al. [68]，我们根据共视分数 [19] 将每个配对分箱到区间 $[0.1, 0.3]$、$[0.3, 0.5]$ 和 $[0.5, 0.7]$。图像匹配挑战 [26] 中验证和测试集一部分的场景也从训练中排除，导致 368/5/24 场景用于训练/验证/测试。在每个 epoch 开始时，我们每个场景采样 100 个图像对。
 
-图像调整大小使其较大边缘为 1024，并将图像零填充到 \(1024 \times 1024\) 分辨率。
+图像调整大小使其较大边缘为 1024，并将图像零填充到 $1024 \times 1024$ 分辨率。
 
 **监督 (Supervision)：** 遵循 SuperGlue [56]，我们使用相机位姿和深度将点重投影到另一张图像。最大重投影误差为 3 像素且互为最近邻的对应关系被标记为内点。最近对应关系具有大于 5px 重投影误差的点被标记为异常值。此外，我们还声明没有深度且没有 Sampson 误差小于 3 px 的对应关系的点为异常值。
 
@@ -355,13 +355,13 @@ LightGlue 受 SuperGlue 启发，但在对其准确性、效率和训练易用�
 
 对于 SuperPoint，我们提取具有最高检测分数的 top 1024 关键点，并报告精确率（3px 单应性误差内的匹配比例）和召回率（3px 单应性误差内恢复的互最近邻匹配比例）。对于 LoFTR，我们仅报告对极精确率。此外，我们在下游任务单应性矩阵估计中评估模型。遵循 SuperGlue [56]，我们报告使用 RANSAC/MAGSAC [3] 的鲁棒估计和带加权 DLT 算法的最小二乘解的位姿估计结果。我们通过估计单应性相对于真实单应性的平均绝对角点距离来评估其准确性。
 
-我们使用 OpenCV 和 USAC_MAGSAC 进行鲁棒单应性估计，并为每种方法单独调整阈值。我们做出这一决定的理由（与以前的特征匹配工作 [56, 68] 固定 RANSAC 参数相反）是我们主要使用 RANSAC 作为评估下游任务低级匹配的工具，我们希望最小化其超参数引入的变化，以获得公平和代表性的评估。不同的匹配通常需要不同的 RANSAC 阈值，因此固定阈值对于比较是次优的。例如，在室外相对位姿估计中，调整 RANSAC 阈值在 SuperGlue 上产生 \(+7\%\) AUC@5，扭曲了报告的数字。
+我们使用 OpenCV 和 USAC_MAGSAC 进行鲁棒单应性估计，并为每种方法单独调整阈值。我们做出这一决定的理由（与以前的特征匹配工作 [56, 68] 固定 RANSAC 参数相反）是我们主要使用 RANSAC 作为评估下游任务低级匹配的工具，我们希望最小化其超参数引入的变化，以获得公平和代表性的评估。不同的匹配通常需要不同的 RANSAC 阈值，因此固定阈值对于比较是次优的。例如，在室外相对位姿估计中，调整 RANSAC 阈值在 SuperGlue 上产生 $+7\%$ AUC@5，扭曲了报告的数字。
 
 ### D. 计时 (Timings)
 
 所有实验均在单个具有 10GB VRAM 的 RTX 3080 上进行。我们仅报告匹配过程的时间，不包括稀疏特征提取（与图像数量成线性关系）和鲁棒位姿估计。我们报告各自数据集的平均值。
 
-在图 13 中，我们基准测试自/交叉注意力和解决部分分配问题与 SuperGlue [56] 中相应部分的对比。双向交叉注意力通过仅计算一次相似度矩阵将运行时间减少 \(33\%\)。然而，主要瓶颈仍然是计算两个方向上的 softmax。
+在图 13 中，我们基准测试自/交叉注意力和解决部分分配问题与 SuperGlue [56] 中相应部分的对比。双向交叉注意力通过仅计算一次相似度矩阵将运行时间减少 $33\%$。然而，主要瓶颈仍然是计算两个方向上的 softmax。
 
 我们的廉价双 softmax 和一元可匹配性预测比使用最优传输 [66, 48] 解决它要快得多，后者在训练期间需要 100 次迭代以保持稳定性。
 
