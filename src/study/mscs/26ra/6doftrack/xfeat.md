@@ -152,3 +152,14 @@ $$\mathcal{L} = \alpha \mathcal{L}_{ds} + \beta \mathcal{L}_{rel} + \gamma \math
 
 :::
 
+### softmax函数
+
+归一化概率分布，指数化放大差距
+
+### 关键点偏移
+
+特征图每个 1/8 位置有一个 64D descriptor；关键点头在同一位置输出 65 维 logits，决定该位置对应的原图 8×8 区域内是否有 1 个关键点，这是稀疏的
+
+### Mutual Nearest Neighbor（互最近邻）
+
+手工设计的匹配策略，常用余弦相似度
